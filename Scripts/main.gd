@@ -21,16 +21,20 @@ func _ready():
 func _process(delta):
 	keyInputs()
 	if(GlobalScript.activating_minigame):
-		activateMinigame()
+		if(!GlobalScript.minigame_active):
+			activateMinigame()
+		else:
+			deactivateMinigame()
 
 func keyInputs():
 	GlobalScript.interact = 0
 	GlobalScript.choose = 0
 	if(Input.is_action_just_pressed("interact")):
-		if(AllDia.dia_open):
-			GlobalScript.interact = 2
-		else:
-			GlobalScript.interact = 1
+		if(!GlobalScript.minigame_active):
+			if(AllDia.dia_open):
+				GlobalScript.interact = 2
+			else:
+				GlobalScript.interact = 1
 	if(Input.is_action_just_pressed("walk_right")):
 		if(AllDia.dia_open):
 			GlobalScript.choose = 2
@@ -40,10 +44,16 @@ func keyInputs():
 
 func activateMinigame():
 	mini_ui.show()
-	
+	GlobalScript.can_move = false
+	GlobalScript.activating_minigame = false
+	GlobalScript.minigame_active = true
+	mini_ui.resetMinigame()
 
 func deactivateMinigame():
 	mini_ui.hide()
+	GlobalScript.can_move = true
+	GlobalScript.activating_minigame = false
+	GlobalScript.minigame_active = false
 
 func _on_to_grove_body_entered(body: Node2D) -> void:
 	if(body.has_method("player")):

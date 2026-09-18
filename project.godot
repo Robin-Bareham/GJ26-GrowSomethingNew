@@ -30,6 +30,7 @@ window/size/viewport_height=1080
 interactables=""
 player=""
 search=""
+rubbish=""
 
 [input]
 
@@ -69,6 +70,7 @@ walk_down={
 
 2d_physics/layer_1="world"
 2d_physics/layer_2="interactables"
+2d_physics/layer_4="rubbish"
 
 [rendering]
 
