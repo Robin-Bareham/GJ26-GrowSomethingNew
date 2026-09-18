@@ -10,8 +10,15 @@ var next_scene = ""
 var previous_scene = "woods"
 var game_end = false
 
+#Transition Positions
+var p_nobf_px = 1154.0
+var p_nobf_py = 133.0
+
+var interact = 0 #0 = No interact, 1 = Object Interact, 2 = Dialogue Interact
+var choose = 0 #No choice, 1 = left, 2 = right, 3 = up, 4= down
+
 var items = {
-	"blindfold": false
+	"Blindfold": false
 }
 
 func change_scene():

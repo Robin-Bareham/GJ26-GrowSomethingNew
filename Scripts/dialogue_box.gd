@@ -14,7 +14,7 @@ var optSelected: StyleBoxFlat = load("res://Assets/Styles/option_selected.tres")
 
 var v_currently_active = false
 var v_current_dialogue = []
-var v_current_line = 0
+var v_current_line = -1
 var v_current_node #The object we're interacting with if applicable
 var v_new_node = ""
 #Option Dialogues
@@ -42,14 +42,16 @@ func hideBox():
 	GlobalScript.can_move = true
 	v_currently_active = false
 	v_text.text = ""
-	v_current_line = 0
+	v_current_line = -1
 	v_current_dialogue = []
 	v_box_container.hide()
 	v_option_container.hide()
 	v_opt1 = false
 	v_opt2 = false
 	v_opt_active = false
-	pass
+	if(v_new_node!= ""):
+		change_node.emit(v_new_node)
+		v_new_node = ""
 
 func showBox(object: String):
 	#Set statuses to true
@@ -57,60 +59,44 @@ func showBox(object: String):
 	GlobalScript.can_move = false
 	#Get the lines of dialogue related to the object
 	v_current_dialogue = AllDia.dia_dic[object]
-	#Update Text
-	v_text.text = v_current_dialogue[v_current_line][2]
-	v_next.text = v_current_dialogue[v_current_line][3]
-	#Update Icon
-	editImages()
 	v_box_container.show()
 	v_currently_active = true
 	pass
-	
-func alterBox(object: String):
-	v_text.text = v_current_dialogue[v_current_line]
-	pass
 
 func progressDialogue():
-	if(AllDia.dia_open):
+	if(GlobalScript.interact == 2):
 		# NORMAL dialogue Box		
-		if(Input.is_action_just_pressed("interact") && !v_option_container.visible ):
-			print_debug("I'M BACK IN THE BUILDING")
-			if(v_currently_active):
-				#If there is to be a question answered / buttons.
-				if(v_current_dialogue[v_current_line][1] > 0):
-					alternateText()
-				else:
-					v_option_container.hide()
-					nextLine()
+		if(!v_option_container.visible ):
+			# does this line have a v on it?
+			if(v_next.text == "v"):
+				hideBox() #end the dialogue
+				return
+			nextLine(-1)
 		# Option Box
 		if(v_option_container.visible):
-			if(Input.is_action_just_pressed("interact") && v_opt_active && (v_opt1 || v_opt2 )):
+			if(v_opt1 || v_opt2 ):
 				v_option_container.hide()
-				v_opt_active = false
 				#Show the current dialogue
 				#Jump to the line as stated in pos 6 (opt 1) and 7 (opt2)
+				var indexJump
 				if(v_opt2):
-					v_current_line = v_current_dialogue[v_current_line][7]
+					indexJump = v_current_dialogue[v_current_line][7]
 				else:
-					v_current_line = v_current_dialogue[v_current_line][6]
-				nextLine()
-				
-			#Choosing between options
-			if(Input.is_action_just_pressed("walk_right") && !v_opt2):
-				v_opt1 = false
-				v_opt2 = true
-				v_option2_panel.add_theme_stylebox_override("panel",optSelected)
-				v_option1_panel.add_theme_stylebox_override("panel",optDeselected)
-			if(Input.is_action_just_pressed("walk_left") && !v_opt1):
-				v_opt1 = true
-				v_opt2 = false
-				v_option2_panel.add_theme_stylebox_override("panel",optDeselected)
-				v_option1_panel.add_theme_stylebox_override("panel",optSelected)
-			#Stops it from answering on the first time
-			if(!v_opt_active):
-				v_opt_active = true
-
-
+					indexJump = v_current_dialogue[v_current_line][6]
+				nextLine(indexJump)
+	#Switch between options if Option Box is visible.
+	if(v_option_container.visible && (GlobalScript.choose == 1 || GlobalScript.choose == 2)):
+		if(GlobalScript.choose == 2 && !v_opt2):
+			v_opt1 = false
+			v_opt2 = true
+			v_option2_panel.add_theme_stylebox_override("panel",optSelected)
+			v_option1_panel.add_theme_stylebox_override("panel",optDeselected)
+		if(GlobalScript.choose == 1 && !v_opt1):
+			v_opt1 = true
+			v_opt2 = false
+			v_option2_panel.add_theme_stylebox_override("panel",optDeselected)
+			v_option1_panel.add_theme_stylebox_override("panel",optSelected)
+			
 func optActivated():
 	v_opt1 = false
 	v_opt2 = false
@@ -135,19 +121,23 @@ func editImages():
 		v_image.add_theme_stylebox_override("panel",style_box) #Updates Image
 	pass
 
-func nextLine():
-	v_text.text = v_current_dialogue[v_current_line][2]
-	#If at the end of the dialogue, the next input will close it
-	v_next.text = v_current_dialogue[v_current_line][3]
-	editImages()
-	if(v_current_dialogue[v_current_line][3] == "v"):
-		AllDia.dia_open = false
-		AllDia.dia_closing = true
+func nextLine(jump: int):
+	if(jump > -1):
+		v_current_line = jump
 	else:
 		v_current_line += 1
-
+	#Change text
+	v_text.text = v_current_dialogue[v_current_line][2]
+	#Change Next symbol
+	v_next.text = v_current_dialogue[v_current_line][3]
+	#Change Icon
+	editImages()
+	#Checks for extra changes
+	alternateText()
+	
 func alternateText():
-	#If the dialogue is an option
+	#If options are to be activated
+	v_option_container.hide()
 	if(v_current_dialogue[v_current_line][1] == 1):
 		optActivated()
 	#If the dialogue edits a node or item
@@ -156,13 +146,10 @@ func alternateText():
 			v_new_node = v_current_dialogue[v_current_line][5] #Change node's name to new object
 		else:
 			changingItem(v_current_dialogue[v_current_line][5])
-		nextLine()
 	#If the dialogue changes scene
 	elif(v_current_dialogue[v_current_line][1] == 3):
 		GlobalScript.transition_scene = true
 		GlobalScript.next_scene = v_current_dialogue[v_current_line][5]
-		nextLine()
-	pass
 
 func changingItem(item: String):
 	if(GlobalScript.items[item]):
@@ -180,8 +167,11 @@ func boxActivated(type: String):
 	
 	if(!v_currently_active):
 		showBox(type)
+		nextLine(-1)
 	else:
 		hideBox()
-		if(v_new_node!= ""):
-			change_node.emit(v_new_node)
-			v_new_node = ""
+		
+func scriptActivate(type: String):
+	if(!v_currently_active):
+		showBox(type)
+		nextLine(-1)

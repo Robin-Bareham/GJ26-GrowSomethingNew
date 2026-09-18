@@ -18,7 +18,7 @@ func _process(delta):
 
 func playerInteraction():
 	# Activates dialogue from interaction if the player's within an object
-	if(Input.is_action_just_pressed("interact")):
+	if(GlobalScript.interact == 1):
 		match GlobalScript.currentState:
 			GlobalScript.gameState.GAME:
 				if(v_interractable_list.size() != 0 && AllDia.dia_open == false):

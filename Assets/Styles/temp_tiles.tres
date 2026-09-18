@@ -1,0 +1,60 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dg5ratrdincof"]
+
+[ext_resource type="Texture2D" uid="uid://vojxcliebyyf" path="res://Assets/TempAssets/GrassTileSprites.png" id="1_rt0q6"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jw32o"]
+texture = ExtResource("1_rt0q6")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-19.4743, -20.3211, 32, -20.3211, 32, -6.20921, -4.23355, -6.20921, -4.79803, 32, -18.9099, 32)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -20.8855, 32, -20.3211, 32, -6.20921, -32, -6.20921)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -20.8855, 18.9099, -20.3211, 19.4743, 32, 5.92698, 32, 5.3625, -5.64474, -32, -6.20921)
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+0:4/0 = 0
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-18.9099, -32, -4.79803, -32, -4.79803, 32, -18.9099, 32)
+1:4/0 = 0
+2:4/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(19.4743, -32, 19.4743, 32, 5.92698, 32, 5.92698, -32)
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+0:5/0 = 0
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-18.9099, -32, -4.79803, -32, -4.79803, 5.08027, 32, 5.64474, 32, 20.3211, -18.9099, 20.3211)
+1:5/0 = 0
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 5.08027, 32, 5.64474, 32, 20.3211, -32, 19.7566)
+2:5/0 = 0
+2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(19.4743, -32, 18.9099, 18.0632, -32, 18.0632, -32, 5.64474, 5.92698, 5.08027, 5.92698, -32)
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+
+[resource]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
+sources/1 = SubResource("TileSetAtlasSource_jw32o")

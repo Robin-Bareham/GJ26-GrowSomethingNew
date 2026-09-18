@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bj1eykesm3n60"
-path="res://.godot/imported/Temp_TileMap.png-006a4b9126b95c2b64135386be6c8a67.ctex"
+uid="uid://vojxcliebyyf"
+path="res://.godot/imported/GrassTileSprites.png-910752aa0e60621a643ad092f9cd391d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/TempAssets/Temp_TileMap.png"
-dest_files=["res://.godot/imported/Temp_TileMap.png-006a4b9126b95c2b64135386be6c8a67.ctex"]
+source_file="res://Assets/TempAssets/GrassTileSprites.png"
+dest_files=["res://.godot/imported/GrassTileSprites.png-910752aa0e60621a643ad092f9cd391d.ctex"]
 
 [params]
 

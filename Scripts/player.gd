@@ -6,6 +6,9 @@ class_name Player
 const v_speed = 300
 var v_current_direction = "none" 
 
+# IF YOU WANT TO LIMIT THE CAMERA 
+# GO TO LIMIT and change the values
+
 func _ready():
 	$AnimatedSprite2D.play("idle")
 
@@ -13,7 +16,7 @@ func _ready():
 func _physics_process(delta):
 	if(GlobalScript.can_move):
 		playerMovement(delta)
-	playerInputs()
+		playerInputs()
 	pass
 
 func playerMovement(dt):
@@ -74,4 +77,8 @@ func playerAnimation(action):
 		pass	
 	
 	
+	pass
+
+func player():
+	#Used for checking transitions between scenes
 	pass

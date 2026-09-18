@@ -129,5 +129,11 @@ script = ExtResource("3_6t5aa")
 position = Vector2(1, 3)
 shape = SubResource("CapsuleShape2D_cvnsp")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -250
+limit_top = 0
+limit_right = 1900
+limit_bottom = 1080
+
 [connection signal="area_entered" from="Interaction_HB" to="Interaction_HB" method="_on_area_entered"]
 [connection signal="area_exited" from="Interaction_HB" to="Interaction_HB" method="_on_area_exited"]
