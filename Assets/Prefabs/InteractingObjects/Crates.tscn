@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsa8cboditswf"]
+
+[ext_resource type="Texture2D" uid="uid://baw06uq4s7ng5" path="res://Assets/TempAssets/Temp_object.png" id="1_1knqo"]
+[ext_resource type="PackedScene" uid="uid://b3l2rau5x4ir7" path="res://Scenes/interactable.tscn" id="2_0a5x3"]
+
+[node name="Crates" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1knqo")
+
+[node name="Interactable" parent="Sprite2D" node_paths=PackedStringArray("v_object_node") instance=ExtResource("2_0a5x3")]
+v_object_name = "Crate"
+v_object_node = NodePath("../..")

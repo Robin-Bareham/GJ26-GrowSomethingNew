@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4k64aungmso1"]
+
+[ext_resource type="Texture2D" uid="uid://vlcrcsewy8fv" path="res://Assets/TempAssets/Temp_Object2.png" id="1_5dsjd"]
+[ext_resource type="PackedScene" uid="uid://b3l2rau5x4ir7" path="res://Scenes/interactable.tscn" id="1_sn854"]
+
+[node name="Levers" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5dsjd")
+
+[node name="Interactable" parent="Sprite2D" node_paths=PackedStringArray("v_object_node") instance=ExtResource("1_sn854")]
+position = Vector2(0, -4)
+v_object_name = "Question"
+v_object_node = NodePath("../..")

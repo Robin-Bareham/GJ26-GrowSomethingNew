@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt1jd6r8s7g8a"]
+
+[ext_resource type="PackedScene" uid="uid://b4f1xuf74cag6" path="res://Scenes/player.tscn" id="1_r150o"]
+[ext_resource type="PackedScene" uid="uid://d4k64aungmso1" path="res://Assets/Prefabs/InteractingObjects/Levers.tscn" id="2_kln2b"]
+[ext_resource type="PackedScene" uid="uid://dsa8cboditswf" path="res://Assets/Prefabs/InteractingObjects/Crates.tscn" id="3_rgh2o"]
+[ext_resource type="PackedScene" uid="uid://ddftgguhn3vko" path="res://Scenes/dialogue_box.tscn" id="4_rgh2o"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Levers" parent="." instance=ExtResource("2_kln2b")]
+position = Vector2(264, 148)
+
+[node name="Crates" parent="." instance=ExtResource("3_rgh2o")]
+position = Vector2(520, 150)
+
+[node name="Levers2" parent="." instance=ExtResource("2_kln2b")]
+position = Vector2(772, 126)
+
+[node name="Player" parent="." instance=ExtResource("1_r150o")]
+position = Vector2(396, 252)
+
+[node name="DialogueBox" parent="." instance=ExtResource("4_rgh2o")]
