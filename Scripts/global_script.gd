@@ -1,10 +1,24 @@
 extends Node
 
-var dialogue_open = false 
 var can_move = true
+enum gameState{MENU,GAME,PAUSE,PUZZLE}
+var currentState: gameState
 
-var dialogue_dic = {
-	"Crate": [" Ann","Temp_Icon0", "0","This is a crate :D","0"],
-	"Lever": [" Jesper","Temp_Icon1","0","This is a lever", "don't pull it","ya can't anyway.","0"],
-	"Question": [" Jesper","Temp_Icon1","3",["This is a question, answer yes or no.","YES","NO"],"You answered yes!","You answered no.","0"]
+var current_scene = "woods"
+var transition_scene = false
+var next_scene = ""
+var previous_scene = "woods"
+var game_end = false
+
+var items = {
+	"blindfold": false
 }
+
+func change_scene():
+	if(transition_scene):
+		var temp_path = "res://Scenes/" + next_scene + ".tscn"
+		get_tree().change_scene_to_file(temp_path)
+		transition_scene = false
+		previous_scene = current_scene
+		current_scene = next_scene
+		next_scene = ""

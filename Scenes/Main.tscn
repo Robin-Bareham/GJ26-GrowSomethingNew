@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt1jd6r8s7g8a"]
+[gd_scene load_steps=6 format=3 uid="uid://dt1jd6r8s7g8a"]
 
+[ext_resource type="Script" uid="uid://q8xk1303vajw" path="res://Scripts/main.gd" id="1_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://b4f1xuf74cag6" path="res://Scenes/player.tscn" id="1_r150o"]
 [ext_resource type="PackedScene" uid="uid://d4k64aungmso1" path="res://Assets/Prefabs/InteractingObjects/Levers.tscn" id="2_kln2b"]
 [ext_resource type="PackedScene" uid="uid://dsa8cboditswf" path="res://Assets/Prefabs/InteractingObjects/Crates.tscn" id="3_rgh2o"]
 [ext_resource type="PackedScene" uid="uid://ddftgguhn3vko" path="res://Scenes/dialogue_box.tscn" id="4_rgh2o"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_pbw6q")
 
 [node name="Levers" parent="." instance=ExtResource("2_kln2b")]
 position = Vector2(264, 148)
