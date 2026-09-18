@@ -1,7 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
-@onready var v_area: Area2D = $Hitbox
+@onready var v_area = $Hitbox
+@onready var v_camera = $Camera2D
 
 const v_speed = 300
 var v_current_direction = "none" 
@@ -9,8 +10,12 @@ var v_current_direction = "none"
 # IF YOU WANT TO LIMIT THE CAMERA 
 # GO TO LIMIT and change the values
 
+
+
+
 func _ready():
 	$AnimatedSprite2D.play("idle")
+	
 
 # Update Function
 func _physics_process(delta):
@@ -78,6 +83,14 @@ func playerAnimation(action):
 	
 	
 	pass
+
+func changeCameraLimits(p_left:int,p_right: int, p_bottom: int, p_top: int):
+	v_camera.set_limit(SIDE_LEFT,p_left)
+	v_camera.set_limit(SIDE_RIGHT,p_right)
+	v_camera.set_limit(SIDE_BOTTOM,p_bottom)
+	v_camera.set_limit(SIDE_TOP,p_top)
+
+
 
 func player():
 	#Used for checking transitions between scenes

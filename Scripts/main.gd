@@ -6,6 +6,16 @@ extends Node2D
 func _ready():
 	GlobalScript.currentState = GlobalScript.gameState.GAME
 	
+	var curScn = GlobalScript.current_scene
+	var prevScn = GlobalScript.previous_scene
+	#Change Player's Camera limits when entering a scene
+	match curScn:
+		"woods":
+			player.changeCameraLimits(GlobalScript.cl_woods_l,GlobalScript.cl_woods_r,GlobalScript.cl_woods_b,GlobalScript.cl_woods_t)
+		"grove":
+			player.changeCameraLimits(GlobalScript.cl_grove_l,GlobalScript.cl_grove_r,GlobalScript.cl_grove_b,GlobalScript.cl_grove_t)
+	
+	
 func _process(delta):
 	keyInputs()
 

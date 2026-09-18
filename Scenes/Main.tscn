@@ -27,7 +27,7 @@ position = Vector2(520, 150)
 position = Vector2(772, 126)
 
 [node name="Player" parent="." instance=ExtResource("1_r150o")]
-position = Vector2(1154, 133)
+position = Vector2(1154, 221)
 
 [node name="ToGrove" type="Area2D" parent="."]
 

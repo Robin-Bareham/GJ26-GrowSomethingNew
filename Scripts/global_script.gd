@@ -4,6 +4,7 @@ var can_move = true
 enum gameState{MENU,GAME,PAUSE,PUZZLE}
 var currentState: gameState
 
+# Possible scenes: woods, grove
 var current_scene = "woods"
 var transition_scene = false
 var next_scene = ""
@@ -14,11 +15,21 @@ var game_end = false
 var p_nobf_px = 1154.0
 var p_nobf_py = 133.0
 
+#Camera limits per scene
+var cl_woods_l = -250
+var cl_woods_t = 0
+var cl_woods_r = 1900
+var cl_woods_b = 1080
+var cl_grove_l = -430
+var cl_grove_t = -234
+var cl_grove_r = 2403
+var cl_grove_b = 1120
+
 var interact = 0 #0 = No interact, 1 = Object Interact, 2 = Dialogue Interact
 var choose = 0 #No choice, 1 = left, 2 = right, 3 = up, 4= down
 
 var items = {
-	"Blindfold": false
+	"Blindfold": true
 }
 
 func change_scene():

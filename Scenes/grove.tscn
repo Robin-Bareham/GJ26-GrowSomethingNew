@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://dkkyfvqf35c0b"]
+[gd_scene load_steps=6 format=4 uid="uid://dkkyfvqf35c0b"]
 
 [ext_resource type="TileSet" uid="uid://dg5ratrdincof" path="res://Assets/Styles/temp_tiles.tres" id="1_0a58k"]
 [ext_resource type="PackedScene" uid="uid://b4f1xuf74cag6" path="res://Scenes/player.tscn" id="1_2fjvt"]
 [ext_resource type="Script" uid="uid://q8xk1303vajw" path="res://Scripts/main.gd" id="1_uwyuk"]
 [ext_resource type="PackedScene" uid="uid://ddftgguhn3vko" path="res://Scenes/dialogue_box.tscn" id="2_0a58k"]
+[ext_resource type="PackedScene" uid="uid://cmemw2wsuy5ug" path="res://Assets/Prefabs/InteractingObjects/Pile.tscn" id="5_21kdw"]
 
 [node name="Grove" type="Node2D"]
 script = ExtResource("1_uwyuk")
@@ -13,6 +14,14 @@ tile_map_data = PackedByteArray("AAD+//z/AQABAAMAAAD///z/AQABAAMAAAAAAPz/AQABAAM
 tile_set = ExtResource("1_0a58k")
 
 [node name="Player" parent="." instance=ExtResource("1_2fjvt")]
-position = Vector2(470, 351)
+position = Vector2(751, 211)
 
 [node name="DialogueBox" parent="." instance=ExtResource("2_0a58k")]
+
+[node name="Pile" parent="." instance=ExtResource("5_21kdw")]
+position = Vector2(555, 107)
+v_object_name = "Empty"
+
+[node name="Pile2" parent="." instance=ExtResource("5_21kdw")]
+position = Vector2(1098, 277)
+v_object_name = "Object"

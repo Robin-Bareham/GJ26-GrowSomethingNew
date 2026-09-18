@@ -28,8 +28,11 @@ func playerInteraction():
 
 func _on_area_entered(area: Area2D) -> void:
 	area_root = area.get_parent().get_parent()
-	var can_act = area_root.is_in_group("interactables")
-	if(can_act && area.is_visible_in_tree()):
+	if(area_root.is_in_group("search") && area.is_visible_in_tree()):
+		#Activate Minigame
+		pass
+	#Is it an interactable??
+	if(area_root.is_in_group("interactables") && area.is_visible_in_tree()):
 		area_root.setInteractable(true)
 		updateObject()
 		v_interractable_list.append(area_root.getName())
@@ -37,8 +40,7 @@ func _on_area_entered(area: Area2D) -> void:
 
 func _on_area_exited(area: Area2D) -> void:
 	area_root = area.get_parent().get_parent()
-	var can_act = area_root.is_in_group("interactables")
-	if(can_act && area.is_visible_in_tree()):
+	if(area_root.is_in_group("interactables") && area.is_visible_in_tree()):
 		area_root.setInteractable(false)
 		var index = v_interractable_list.find(area_root.getName())
 		if index != -1:
