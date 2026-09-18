@@ -2,10 +2,11 @@ extends Area2D
 
 var v_interractable_list = []
 var area_root
+var v_in_search = false
 
 @onready var v_dialogue_box = get_tree().current_scene.get_node("DialogueBox")
 
-signal dialogue_activation(type: String)
+signal dialogue_activation(type: String, dia: int)
 signal send_object(type: Node2D)
 
 
@@ -23,14 +24,17 @@ func playerInteraction():
 			GlobalScript.gameState.GAME:
 				if(v_interractable_list.size() != 0 && AllDia.dia_open == false):
 					#Sending signals to dialogue box
-					dialogue_activation.emit(v_interractable_list[0]) #Dialogue
+					if(v_in_search):
+						dialogue_activation.emit(v_interractable_list[0],1)
+					else:
+						dialogue_activation.emit(v_interractable_list[0],0) #Dialogue
 					send_object.emit(area_root) #Object
 
 func _on_area_entered(area: Area2D) -> void:
 	area_root = area.get_parent().get_parent()
-	if(area_root.is_in_group("search") && area.is_visible_in_tree()):
-		#Activate Minigame
-		pass
+	v_in_search = false
+	if(area_root.is_in_group("search")):
+		v_in_search = true
 	#Is it an interactable??
 	if(area_root.is_in_group("interactables") && area.is_visible_in_tree()):
 		area_root.setInteractable(true)
@@ -57,3 +61,5 @@ func updateObject():
 	#If there's saving and loading, this is where you check
 	#if objects have the right name for the items the player currently has.
 	pass
+
+	

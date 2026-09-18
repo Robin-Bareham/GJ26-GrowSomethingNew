@@ -1,0 +1,114 @@
+[gd_scene load_steps=6 format=3 uid="uid://cqqgdlvutgwu7"]
+
+[ext_resource type="Texture2D" uid="uid://b18sig8yvus7" path="res://Assets/TempAssets/temp_obj.png" id="1_iqey4"]
+[ext_resource type="Texture2D" uid="uid://ce7cv35qufisi" path="res://Assets/TempAssets/temp_leaf1.png" id="1_s7wve"]
+[ext_resource type="Script" uid="uid://kkfkpe72cogu" path="res://Scripts/minigameobject.gd" id="2_5bepb"]
+[ext_resource type="Texture2D" uid="uid://brn8h7p18rfwy" path="res://Assets/TempAssets/temp_leaf2.png" id="4_id8w1"]
+[ext_resource type="Texture2D" uid="uid://dfcps1tf8g2qu" path="res://Assets/TempAssets/temp_leaf3.png" id="5_yx24v"]
+
+[node name="minigame" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.302229, 0.364211, 0.181348, 1)
+
+[node name="Goal" type="Sprite2D" parent="."]
+position = Vector2(961, 534)
+scale = Vector2(1.77642, 1.80081)
+texture = ExtResource("1_iqey4")
+script = ExtResource("2_5bepb")
+
+[node name="Button" type="Button" parent="Goal"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_left = 0.000430906
+anchor_right = 0.99161
+anchor_bottom = 1.008
+offset_left = -123.106
+offset_top = -122.0
+offset_right = -122.936
+offset_bottom = -122.968
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Leaf" type="Sprite2D" parent="."]
+position = Vector2(826, 474)
+scale = Vector2(2.10976, 2.18699)
+texture = ExtResource("1_s7wve")
+script = ExtResource("2_5bepb")
+
+[node name="Button" type="Button" parent="Leaf"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_left = -0.00769918
+anchor_right = 1.016
+anchor_bottom = 1.008
+offset_left = -123.106
+offset_top = -122.0
+offset_right = -122.936
+offset_bottom = -122.968
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Leaf2" type="Sprite2D" parent="."]
+position = Vector2(1281, 601)
+scale = Vector2(2.55691, 2.58537)
+texture = ExtResource("4_id8w1")
+script = ExtResource("2_5bepb")
+
+[node name="Button" type="Button" parent="Leaf2"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_left = -0.00769918
+anchor_right = 1.016
+anchor_bottom = 1.008
+offset_left = -123.106
+offset_top = -122.0
+offset_right = -122.936
+offset_bottom = -122.968
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Stick" type="Sprite2D" parent="."]
+position = Vector2(925, 607)
+scale = Vector2(2.2439, 2.36179)
+texture = ExtResource("5_yx24v")
+script = ExtResource("2_5bepb")
+
+[node name="Button" type="Button" parent="Stick"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_left = -0.089
+anchor_right = 1.016
+anchor_bottom = 1.008
+offset_left = -123.106
+offset_top = -122.0
+offset_right = -122.936
+offset_bottom = -122.968
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[connection signal="button_down" from="Goal/Button" to="Goal" method="_on_button_button_down"]
+[connection signal="button_up" from="Goal/Button" to="Goal" method="_on_button_button_up"]
+[connection signal="mouse_entered" from="Goal/Button" to="Goal" method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Goal/Button" to="Goal" method="_on_button_mouse_exited"]
+[connection signal="button_down" from="Leaf/Button" to="Leaf" method="_on_button_button_down"]
+[connection signal="button_up" from="Leaf/Button" to="Leaf" method="_on_button_button_up"]
+[connection signal="mouse_entered" from="Leaf/Button" to="Leaf" method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Leaf/Button" to="Leaf" method="_on_button_mouse_exited"]
+[connection signal="button_down" from="Leaf2/Button" to="Leaf2" method="_on_button_button_down"]
+[connection signal="button_up" from="Leaf2/Button" to="Leaf2" method="_on_button_button_up"]
+[connection signal="mouse_entered" from="Leaf2/Button" to="Leaf2" method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Leaf2/Button" to="Leaf2" method="_on_button_mouse_exited"]
+[connection signal="button_down" from="Stick/Button" to="Stick" method="_on_button_button_down"]
+[connection signal="button_up" from="Stick/Button" to="Stick" method="_on_button_button_up"]
+[connection signal="mouse_entered" from="Stick/Button" to="Stick" method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Stick/Button" to="Stick" method="_on_button_mouse_exited"]

@@ -4,6 +4,9 @@ var can_move = true
 enum gameState{MENU,GAME,PAUSE,PUZZLE}
 var currentState: gameState
 
+var minigame_active = false
+var activating_minigame = false
+
 # Possible scenes: woods, grove
 var current_scene = "woods"
 var transition_scene = false

@@ -1,7 +1,9 @@
 extends Node2D
 
 @onready var dia_ui = $DialogueBox
+@onready var mini_ui = $minigame
 @onready var player = $Player
+
 
 func _ready():
 	GlobalScript.currentState = GlobalScript.gameState.GAME
@@ -18,6 +20,8 @@ func _ready():
 	
 func _process(delta):
 	keyInputs()
+	if(GlobalScript.activating_minigame):
+		activateMinigame()
 
 func keyInputs():
 	GlobalScript.interact = 0
@@ -34,6 +38,13 @@ func keyInputs():
 		if(AllDia.dia_open):
 			GlobalScript.choose = 1
 
+func activateMinigame():
+	mini_ui.show()
+	
+
+func deactivateMinigame():
+	mini_ui.hide()
+
 func _on_to_grove_body_entered(body: Node2D) -> void:
 	if(body.has_method("player")):
 		if(GlobalScript.items["Blindfold"]):
@@ -42,6 +53,6 @@ func _on_to_grove_body_entered(body: Node2D) -> void:
 			GlobalScript.change_scene()
 		else:
 			AllDia.scripted = true
-			dia_ui.scriptActivate("NoBF")
+			dia_ui.boxActivated("NoBF",0)
 			player.position.x = GlobalScript.p_nobf_px
 			player.position.y = GlobalScript.p_nobf_py

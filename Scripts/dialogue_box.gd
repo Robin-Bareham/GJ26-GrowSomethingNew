@@ -22,6 +22,7 @@ var v_current_question = 0
 var v_opt1 = false
 var v_opt2 = false
 var v_opt_active = false
+var v_dia_type
 
 #What it can receive from
 @onready var v_interaction_hb = get_tree().current_scene.get_node("Player").get_node("Interaction_HB")
@@ -58,7 +59,10 @@ func showBox(object: String):
 	AllDia.dia_open = true
 	GlobalScript.can_move = false
 	#Get the lines of dialogue related to the object
-	v_current_dialogue = AllDia.dia_dic[object]
+	if(v_dia_type == 0):
+		v_current_dialogue = AllDia.dia_dic[object]
+	else:
+		v_current_dialogue = AllDia.pile_dic["pile"]
 	v_box_container.show()
 	v_currently_active = true
 	pass
@@ -78,6 +82,14 @@ func progressDialogue():
 				v_option_container.hide()
 				#Show the current dialogue
 				#Jump to the line as stated in pos 6 (opt 1) and 7 (opt2)
+				if(v_dia_type == 1):
+					if(v_opt2):
+						hideBox()
+						return
+					else:
+						hideBox()
+						GlobalScript.activating_minigame = true
+						return
 				var indexJump
 				if(v_opt2):
 					indexJump = v_current_dialogue[v_current_line][7]
@@ -163,15 +175,9 @@ func changingItem(item: String):
 func receiveNode(type: Node2D):
 	v_current_node = type
 
-func boxActivated(type: String):
+func boxActivated(type: String, dia: int):
 	
 	if(!v_currently_active):
-		showBox(type)
-		nextLine(-1)
-	else:
-		hideBox()
-		
-func scriptActivate(type: String):
-	if(!v_currently_active):
+		v_dia_type = dia
 		showBox(type)
 		nextLine(-1)

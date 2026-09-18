@@ -11,3 +11,7 @@ var dia_dic = {
 	"Empty" : [["tempI",0,"nada","v"]],
 	"Object" : [["tempI",0,"object","v"]]
 }
+
+var pile_dic = {
+	"pile" : [["tempI",1,"Should I search this pile?",">","Yes","No"]]
+}

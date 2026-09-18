@@ -36,6 +36,5 @@ position = Vector2(1154.75, -62)
 shape = SubResource("RectangleShape2D_v1gob")
 
 [node name="DialogueBox" parent="." instance=ExtResource("4_rgh2o")]
-visible = false
 
 [connection signal="body_entered" from="ToGrove" to="." method="_on_to_grove_body_entered"]
