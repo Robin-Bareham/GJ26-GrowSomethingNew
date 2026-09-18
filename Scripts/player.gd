@@ -7,11 +7,6 @@ class_name Player
 const v_speed = 300
 var v_current_direction = "none" 
 
-# IF YOU WANT TO LIMIT THE CAMERA 
-# GO TO LIMIT and change the values
-
-
-
 
 func _ready():
 	$AnimatedSprite2D.play("idle")

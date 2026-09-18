@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcysirtic5rqu"]
+
+[ext_resource type="Script" uid="uid://clu00d735qwxt" path="res://Scripts/object.gd" id="1_k0k1y"]
+[ext_resource type="Texture2D" uid="uid://hpd8n63noopi" path="res://Assets/TempAssets/blindfold.png" id="2_k0k1y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_goq14"]
+size = Vector2(40, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nnltn"]
+size = Vector2(64.5, 54)
+
+[node name="blindfold" type="Node2D" node_paths=PackedStringArray("v_object_node") groups=["interactables"]]
+script = ExtResource("1_k0k1y")
+v_object_name = "Blindfold"
+v_object_node = NodePath(".")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("2_k0k1y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_goq14")
+
+[node name="Interact" type="Area2D" parent="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/Interact"]
+shape = SubResource("RectangleShape2D_nnltn")

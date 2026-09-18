@@ -18,8 +18,6 @@ tile_set = ExtResource("1_0a58k")
 [node name="Player" parent="." instance=ExtResource("1_2fjvt")]
 position = Vector2(751, 211)
 
-[node name="DialogueBox" parent="." instance=ExtResource("2_0a58k")]
-
 [node name="Pile" parent="." instance=ExtResource("5_21kdw")]
 position = Vector2(555, 107)
 v_object_name = "temp_obj"
@@ -32,3 +30,5 @@ v_object_name = "temp_leaf2"
 visible = false
 
 [node name="ConstantUI" parent="." instance=ExtResource("7_3wb70")]
+
+[node name="DialogueBox" parent="." instance=ExtResource("2_0a58k")]

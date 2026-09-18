@@ -158,10 +158,11 @@ func alternateText():
 		optActivated()
 	#If the dialogue edits a node or item
 	elif(v_current_dialogue[v_current_line][1] == 2):
-		if(v_current_dialogue[v_current_line][4] == "N/A"): #If there's no item to change
-			v_new_node = v_current_dialogue[v_current_line][5] #Change node's name to new object
-		else:
-			changingItem(v_current_dialogue[v_current_line][5])
+		if(v_current_dialogue[v_current_line][4] != "N/A"): #If there's an item to change
+			changingItem(v_current_dialogue[v_current_line][4])
+		if(v_current_dialogue[v_current_line][5] != "N/A"):
+			print_debug(v_current_dialogue[v_current_line][5])
+			v_new_node = v_current_dialogue[v_current_line][5]
 	#If the dialogue changes scene
 	elif(v_current_dialogue[v_current_line][1] == 3):
 		GlobalScript.transition_scene = true

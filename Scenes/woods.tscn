@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://dt1jd6r8s7g8a"]
+[gd_scene load_steps=11 format=4 uid="uid://dt1jd6r8s7g8a"]
 
 [ext_resource type="Script" uid="uid://q8xk1303vajw" path="res://Scripts/main.gd" id="1_1kwb7"]
 [ext_resource type="TileSet" uid="uid://dg5ratrdincof" path="res://Assets/Styles/temp_tiles.tres" id="2_bmgl1"]
 [ext_resource type="PackedScene" uid="uid://d4k64aungmso1" path="res://Assets/Prefabs/InteractingObjects/Levers.tscn" id="3_mqq3u"]
 [ext_resource type="PackedScene" uid="uid://dsa8cboditswf" path="res://Assets/Prefabs/InteractingObjects/Crates.tscn" id="4_rbfhy"]
 [ext_resource type="PackedScene" uid="uid://bki5pqpb6gw78" path="res://Assets/Prefabs/InteractingObjects/lake.tscn" id="5_pwe2a"]
+[ext_resource type="PackedScene" uid="uid://bcysirtic5rqu" path="res://Assets/Prefabs/InteractingObjects/blindfold.tscn" id="6_bmgl1"]
 [ext_resource type="PackedScene" uid="uid://b4f1xuf74cag6" path="res://Scenes/player.tscn" id="6_v6cek"]
 [ext_resource type="PackedScene" uid="uid://ddftgguhn3vko" path="res://Scenes/dialogue_box.tscn" id="7_mdopd"]
 [ext_resource type="PackedScene" uid="uid://d3k4r1wr4q6uh" path="res://Scenes/constant_ui.tscn" id="8_2opmi"]
@@ -12,7 +13,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1gob"]
 size = Vector2(486.5, 144)
 
-[node name="Main" type="Node2D"]
+[node name="woods" type="Node2D"]
 script = ExtResource("1_1kwb7")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -32,6 +33,9 @@ position = Vector2(772, 126)
 position = Vector2(-41, 551)
 rotation = -0.276687
 scale = Vector2(2.52203, 2.88)
+
+[node name="blindfold" parent="." instance=ExtResource("6_bmgl1")]
+position = Vector2(1462, 703)
 
 [node name="Player" parent="." instance=ExtResource("6_v6cek")]
 position = Vector2(1164, 248)

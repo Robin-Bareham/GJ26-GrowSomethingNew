@@ -7,7 +7,7 @@ var currentState: gameState
 var minigame_active = false
 var activating_minigame = false
 var minigame_goal_image = "temp_obj"
-
+var energy = 100
 # Possible scenes: woods, grove
 var current_scene = "woods"
 var transition_scene = false
@@ -35,7 +35,7 @@ var interact = 0 #0 = No interact, 1 = Object Interact, 2 = Dialogue Interact
 var choose = 0 #No choice, 1 = left, 2 = right, 3 = up, 4= down
 
 var items = {
-	"Blindfold": true
+	"Blindfold": false
 }
 
 func change_scene():

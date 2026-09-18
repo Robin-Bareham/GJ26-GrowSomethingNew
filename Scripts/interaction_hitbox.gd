@@ -4,6 +4,8 @@ var v_interractable_list = []
 var area_root
 var v_in_search = false
 
+
+
 @onready var v_dialogue_box = get_tree().current_scene.get_node("DialogueBox")
 
 signal dialogue_activation(type: String, dia: int)
@@ -11,6 +13,7 @@ signal send_object(type: Node2D)
 
 
 func _ready():
+	v_dialogue_box.change_node.connect(changeNode)
 	pass
 	
 func _process(delta):
