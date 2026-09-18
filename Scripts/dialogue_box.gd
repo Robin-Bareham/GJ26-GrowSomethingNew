@@ -23,6 +23,8 @@ var v_opt1 = false
 var v_opt2 = false
 var v_opt_active = false
 var v_dia_type
+#Piles
+var v_current_pile = ""
 
 #What it can receive from
 @onready var v_interaction_hb = get_tree().current_scene.get_node("Player").get_node("Interaction_HB")
@@ -63,6 +65,7 @@ func showBox(object: String):
 		v_current_dialogue = AllDia.dia_dic[object]
 	else:
 		v_current_dialogue = AllDia.pile_dic["pile"]
+		v_current_pile = object #Name of goal image
 	v_box_container.show()
 	v_currently_active = true
 	pass
@@ -89,6 +92,7 @@ func progressDialogue():
 					else:
 						hideBox()
 						GlobalScript.activating_minigame = true
+						GlobalScript.minigame_goal_image = v_current_pile
 						return
 				var indexJump
 				if(v_opt2):

@@ -12,10 +12,10 @@ func _ready():
 	#Gets all the rubbish into the array
 	v_rubbish_list = get_tree().get_nodes_in_group("rubbish")
 
-func resetMinigame():
+func resetMinigame(goalTexture: String):
 	#Set goal's position 
-	randi() % 4 #Random Number between 0 and 4
-	#randi() % 4 + 1 #random number between 1 and 4
+	var goalTxt_location = "res://Assets/TempAssets/" + goalTexture + ".png"
+	v_goal.texture = load(goalTxt_location)
 	v_goal.position.x = v_goal_positions[randi() % v_goal_positions.size()][0]
 	v_goal.position.y = v_goal_positions[randi() % v_goal_positions.size()][1]
 	#Run through list, set their position based on goal's position
@@ -26,6 +26,8 @@ func resetMinigame():
 		#Change sprite picture to random rubish
 		var texture_location = "res://Assets/TempAssets/" + v_rubbish_icons[randi() % v_rubbish_list.size()] + ".png"
 		v_rubbish_list[i].texture = load(texture_location)
+		
+		# MIGHT HAVE TO FIGURE OUT HOW TO CHANGE THE HITBOX BASED ON THE SPRITE CHOSEN
 		
 		pass
 	#Change rubbish image as well, random between rubbish images.

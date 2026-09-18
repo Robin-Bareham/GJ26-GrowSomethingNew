@@ -6,6 +6,7 @@ var currentState: gameState
 
 var minigame_active = false
 var activating_minigame = false
+var minigame_goal_image = "temp_obj"
 
 # Possible scenes: woods, grove
 var current_scene = "woods"
@@ -17,6 +18,8 @@ var game_end = false
 #Transition Positions
 var p_nobf_px = 1154.0
 var p_nobf_py = 133.0
+var p_exitg_px = 1164
+var p_exitg_py = 248
 
 #Camera limits per scene
 var cl_woods_l = -250
@@ -43,3 +46,4 @@ func change_scene():
 		previous_scene = current_scene
 		current_scene = next_scene
 		next_scene = ""
+		

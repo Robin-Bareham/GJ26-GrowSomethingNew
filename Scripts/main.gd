@@ -2,8 +2,8 @@ extends Node2D
 
 @onready var dia_ui = $DialogueBox
 @onready var mini_ui = $minigame
+@onready var const_ui = $ConstantUI
 @onready var player = $Player
-
 
 func _ready():
 	GlobalScript.currentState = GlobalScript.gameState.GAME
@@ -14,10 +14,14 @@ func _ready():
 	match curScn:
 		"woods":
 			player.changeCameraLimits(GlobalScript.cl_woods_l,GlobalScript.cl_woods_r,GlobalScript.cl_woods_b,GlobalScript.cl_woods_t)
+			player.position.x = GlobalScript.p_exitg_px
+			player.position.y = GlobalScript.p_exitg_py
 		"grove":
 			player.changeCameraLimits(GlobalScript.cl_grove_l,GlobalScript.cl_grove_r,GlobalScript.cl_grove_b,GlobalScript.cl_grove_t)
-	
-	
+			const_ui.resetTimer()
+			
+	#TImer
+
 func _process(delta):
 	keyInputs()
 	if(GlobalScript.activating_minigame):
@@ -25,6 +29,7 @@ func _process(delta):
 			activateMinigame()
 		else:
 			deactivateMinigame()
+
 
 func keyInputs():
 	GlobalScript.interact = 0
@@ -41,13 +46,18 @@ func keyInputs():
 	if(Input.is_action_just_pressed("walk_left")):
 		if(AllDia.dia_open):
 			GlobalScript.choose = 1
+	if(Input.is_action_just_pressed("test")):
+		GlobalScript.transition_scene = true
+		GlobalScript.next_scene = "woods"
+		GlobalScript.change_scene()
 
 func activateMinigame():
 	mini_ui.show()
 	GlobalScript.can_move = false
 	GlobalScript.activating_minigame = false
 	GlobalScript.minigame_active = true
-	mini_ui.resetMinigame()
+	#What is sent in is the image of what's being found.
+	mini_ui.resetMinigame(GlobalScript.minigame_goal_image) 
 
 func deactivateMinigame():
 	mini_ui.hide()
