@@ -6,7 +6,6 @@ extends Sprite2D
 func _on_button_button_down() -> void:
 	#If the object has nothing above it
 	if(v_area2d.get_overlapping_areas().size() == 0):
-		GlobalScript.energy -= 10
 		GlobalScript.activating_minigame = true
 
 func _on_button_button_up() -> void:

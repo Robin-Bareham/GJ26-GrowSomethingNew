@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="RPG Mechanics Template"
+config/name="GrowSmthNew"
 run/main_scene="uid://dt1jd6r8s7g8a"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Assets/icon.svg"

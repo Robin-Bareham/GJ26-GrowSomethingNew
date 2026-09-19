@@ -7,7 +7,16 @@ var currentState: gameState
 var minigame_active = false
 var activating_minigame = false
 var minigame_goal_image = "temp_obj"
-var energy = 100
+
+#Day Attribues
+var max_energy = 100
+var max_time = 60
+var current_energy = 100
+var day = 1
+var day_over = false
+var start_timer = false
+var timer_active = false
+
 # Possible scenes: woods, grove
 var current_scene = "woods"
 var transition_scene = false
@@ -31,11 +40,12 @@ var cl_grove_t = -234
 var cl_grove_r = 2403
 var cl_grove_b = 1120
 
+#Handling key inputs within main so it's not within tons of scripts
 var interact = 0 #0 = No interact, 1 = Object Interact, 2 = Dialogue Interact
 var choose = 0 #No choice, 1 = left, 2 = right, 3 = up, 4= down
 
 var items = {
-	"Blindfold": false
+	"Blindfold": true
 }
 
 func change_scene():
