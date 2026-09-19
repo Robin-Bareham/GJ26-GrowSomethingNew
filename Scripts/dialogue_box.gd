@@ -2,13 +2,13 @@ extends CanvasLayer
 
 @onready var v_root = $"."
 @onready var v_box_container = $BoxContainer
-@onready var v_text = $BoxContainer/AspectRatioContainer/TextContainer/HBoxContainer/Text
+@onready var v_text = $BoxContainer/TextContainer/HBoxContainer/Text
 @onready var v_image = $Image
-@onready var v_next = $BoxContainer/AspectRatioContainer/TextContainer/HBoxContainer/Next
+@onready var v_next = $BoxContainer/TextContainer/HBoxContainer/Next
 
-@onready var v_option_container = $BoxContainer/AspectRatioContainer/TextContainer/OptionContainer
-@onready var v_option1_panel = $BoxContainer/AspectRatioContainer/TextContainer/OptionContainer/HBoxContainer/Opt1 
-@onready var v_option2_panel = $BoxContainer/AspectRatioContainer/TextContainer/OptionContainer/HBoxContainer/Opt2
+@onready var v_option_container = $BoxContainer/TextContainer/OptionContainer
+@onready var v_option1_panel = $BoxContainer/TextContainer/OptionContainer/HBoxContainer/Opt1 
+@onready var v_option2_panel = $BoxContainer/TextContainer/OptionContainer/HBoxContainer/Opt2
 
 var optDeselected: StyleBoxFlat = load("res://Assets/Styles/option_deselected.tres")
 var optSelected: StyleBoxFlat = load("res://Assets/Styles/option_selected.tres")
@@ -187,11 +187,11 @@ func changingItem(item: String):
 func changeBoxType(version: bool):
 	#If it's a cutscene, no image, box centred
 	if(version):
-		v_box_container.position.x = 891
+		v_box_container.position.x = 195
 		v_image.hide()
 	#Else, box to side and image visible
 	else:
-		v_box_container.position.x = 1021.0
+		v_box_container.position.x = 337
 		v_image.show()
 
 #SIGNALS

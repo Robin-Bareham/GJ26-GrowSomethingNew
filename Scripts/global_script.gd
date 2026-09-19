@@ -26,10 +26,9 @@ var previous_scene = "woods"
 var game_end = false
 
 #Transition Positions
-var p_nobf_px = 1154.0
-var p_nobf_py = 133.0
-var p_exitg_px = 1164
-var p_exitg_py = 248
+var p_nobf_py = -1
+var p_exitg_px = 639
+var p_exitg_py = 271
 
 #Camera limits per scene
 var cl_woods_l = -250
@@ -46,7 +45,7 @@ var interact = 0 #0 = No interact, 1 = Object Interact, 2 = Dialogue Interact
 var choose = 0 #No choice, 1 = left, 2 = right, 3 = up, 4= down
 
 var items = {
-	"Blindfold": true
+	"Blindfold": false
 }
 
 func change_scene():

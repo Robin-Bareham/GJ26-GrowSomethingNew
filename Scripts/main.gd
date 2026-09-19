@@ -43,7 +43,6 @@ func _process(delta):
 				GlobalScript.first_pile = true
 				
 
-
 func keyInputs():
 	GlobalScript.interact = 0
 	GlobalScript.choose = 0
@@ -90,6 +89,7 @@ func deactivateMinigame():
 		print_debug("Deactivating Minigame leads to day over")
 		GlobalScript.day_over = true
 
+#Transition into Grove
 func _on_to_grove_body_entered(body: Node2D) -> void:
 	if(body.has_method("player")):
 		if(GlobalScript.items["Blindfold"]):
@@ -100,13 +100,15 @@ func _on_to_grove_body_entered(body: Node2D) -> void:
 		else:
 			AllDia.scripted = true
 			dia_ui.boxActivated("NoBF",0)
-			player.position.x = GlobalScript.p_nobf_px
 			player.position.y = GlobalScript.p_nobf_py
 			
 func transition(type: String):
 	GlobalScript.transition_scene = true
 	GlobalScript.next_scene = type
 	GlobalScript.change_scene()
+	
+	
+########## ALL THE SCRIPTED FUNCTIONS
 
 func activateScripted(startbg: String,diaOpt: String):
 	dia_ui.changeBoxType(true)
