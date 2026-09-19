@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @onready var label = $Label
+@onready var bg = $bg
 
 var timer = 0
 var timer_end
@@ -44,3 +45,11 @@ func resetTimer():
 	elif(GlobalScript.day == 4):
 		timer_end = GlobalScript.max_time/2
 		GlobalScript.current_energy = 10 #Can only do one search
+
+func changeBg(newBg: String):
+	bg.texture = load(newBg)
+
+func hideBg():
+	bg.hide()
+func showBg():
+	bg.show()

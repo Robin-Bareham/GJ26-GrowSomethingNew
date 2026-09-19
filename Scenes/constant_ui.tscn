@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3k4r1wr4q6uh"]
+[gd_scene load_steps=3 format=3 uid="uid://d3k4r1wr4q6uh"]
 
 [ext_resource type="Script" uid="uid://cxb7txtpum15t" path="res://Scripts/constant_ui.gd" id="1_uckm8"]
+[ext_resource type="Texture2D" uid="uid://x5b87t7k0opd" path="res://Assets/TempAssets/Temp_Cutscene1.png" id="2_ti640"]
 
 [node name="ConstantUI" type="CanvasLayer"]
 script = ExtResource("1_uckm8")
@@ -10,3 +11,11 @@ offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 50
 text = "100000"
+
+[node name="bg" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ti640")
