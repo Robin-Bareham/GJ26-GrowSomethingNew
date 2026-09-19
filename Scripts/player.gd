@@ -7,6 +7,7 @@ class_name Player
 const v_speed = 300
 var v_current_direction = "none" 
 var previous_end = "f"
+var has_moved = false
 
 
 func _ready():
@@ -17,6 +18,11 @@ func _ready():
 func _physics_process(delta):
 	if(GlobalScript.can_move):
 		playerMovement(delta)
+		has_moved = true
+	else:
+		if(has_moved):
+			playerAnimation(0)
+			has_moved = false
 
 func playerMovement(dt):
 	
