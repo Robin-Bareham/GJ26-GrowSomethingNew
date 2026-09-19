@@ -1,18 +1,69 @@
-[gd_scene load_steps=14 format=3 uid="uid://cqqgdlvutgwu7"]
+[gd_scene load_steps=22 format=3 uid="uid://cqqgdlvutgwu7"]
 
 [ext_resource type="Script" uid="uid://buru65n70a3sx" path="res://Scripts/minigame.gd" id="1_yx24v"]
 [ext_resource type="Script" uid="uid://kkfkpe72cogu" path="res://Scripts/minigame_rubbish.gd" id="2_5bepb"]
 [ext_resource type="Script" uid="uid://cbfhjnmggi3t2" path="res://Scripts/minigame_goal.gd" id="2_id8w1"]
 [ext_resource type="Texture2D" uid="uid://coal2nn81i4r" path="res://Assets/Minigame/G_Final.png" id="2_puep3"]
 [ext_resource type="Shape2D" uid="uid://blvmuayyyrspm" path="res://Assets/Styles/G_FinalCS2D.tres" id="4_pg0ql"]
-[ext_resource type="Texture2D" uid="uid://deirlpkpbjru0" path="res://Assets/Minigame/Rubbish01.png" id="4_puep3"]
+[ext_resource type="Texture2D" uid="uid://hgsgynym6nq6" path="res://Assets/Minigame/Rubbish01.png" id="4_puep3"]
+[ext_resource type="Shader" uid="uid://dhsrxase7cat" path="res://Assets/Shaders/S_Highlight.gdshader" id="5_pg0ql"]
 [ext_resource type="Shape2D" uid="uid://1d34j2dhy6qu" path="res://Assets/Styles/Rubbish01CS2D.tres" id="6_pg0ql"]
 [ext_resource type="Texture2D" uid="uid://cyckgfr0uog1p" path="res://Assets/Minigame/Rubbish02.png" id="7_ohqu1"]
 [ext_resource type="Shape2D" uid="uid://5ih2jp4holng" path="res://Assets/Styles/Rubbish02CS2D.tres" id="8_vwvd2"]
-[ext_resource type="Texture2D" uid="uid://dvx2k67gf5rlv" path="res://Assets/Minigame/Rubbish03.png" id="9_lx35w"]
+[ext_resource type="Texture2D" uid="uid://s3vdofd7g054" path="res://Assets/Minigame/Rubbish03.png" id="9_lx35w"]
 [ext_resource type="Shape2D" uid="uid://bvtlx7u62fsvy" path="res://Assets/Styles/Rubbish03CS2D.tres" id="10_r5mjw"]
-[ext_resource type="Texture2D" uid="uid://ih6pavch85r" path="res://Assets/Minigame/Rubbish04.png" id="11_vrsa3"]
+[ext_resource type="Texture2D" uid="uid://bxs2mjiv2elx" path="res://Assets/Minigame/Rubbish04.png" id="11_vrsa3"]
 [ext_resource type="Shape2D" uid="uid://cmo2nyllrqhue" path="res://Assets/Styles/Rubbish04CS2D.tres" id="12_7hunx"]
+[ext_resource type="Shader" uid="uid://c3om1pdmbq53g" path="res://Assets/Shaders/S_Blur.gdshader" id="15_ohqu1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lx35w"]
+shader = ExtResource("5_pg0ql")
+shader_parameter/line_color = Color(0.6, 0.6, 0.6, 1)
+shader_parameter/fill_color = Color(0, 0, 0, 1)
+shader_parameter/fill_intensity = 0.9
+shader_parameter/selected_intensity = 0.5
+shader_parameter/line_thickness = 2.0
+shader_parameter/highlighted = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_puep3"]
+shader = ExtResource("5_pg0ql")
+shader_parameter/line_color = Color(0.6, 0.6, 0.6, 1)
+shader_parameter/fill_color = Color(0, 0, 0, 1)
+shader_parameter/fill_intensity = 0.9
+shader_parameter/selected_intensity = 0.5
+shader_parameter/line_thickness = 2.0
+shader_parameter/highlighted = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pg0ql"]
+shader = ExtResource("5_pg0ql")
+shader_parameter/line_color = Color(0.6, 0.6, 0.6, 1)
+shader_parameter/fill_color = Color(0, 0, 0, 1)
+shader_parameter/fill_intensity = 0.9
+shader_parameter/selected_intensity = 0.5
+shader_parameter/line_thickness = 2.0
+shader_parameter/highlighted = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ohqu1"]
+shader = ExtResource("5_pg0ql")
+shader_parameter/line_color = Color(0.6, 0.6, 0.6, 1)
+shader_parameter/fill_color = Color(0, 0, 0, 1)
+shader_parameter/fill_intensity = 0.9
+shader_parameter/selected_intensity = 0.5
+shader_parameter/line_thickness = 2.0
+shader_parameter/highlighted = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vwvd2"]
+shader = ExtResource("5_pg0ql")
+shader_parameter/line_color = Color(0.6, 0.6, 0.6, 1)
+shader_parameter/fill_color = Color(0, 0, 0, 1)
+shader_parameter/fill_intensity = 0.9
+shader_parameter/selected_intensity = 0.5
+shader_parameter/line_thickness = 2.0
+shader_parameter/highlighted = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r5mjw"]
+shader = ExtResource("15_ohqu1")
+shader_parameter/blur_amount = 3.026
 
 [node name="minigame" type="CanvasLayer"]
 script = ExtResource("1_yx24v")
@@ -25,7 +76,17 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.302229, 0.364211, 0.181348, 1)
 
+[node name="overlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.52549)
+
 [node name="Goal" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_lx35w")
 position = Vector2(1526, 383)
 scale = Vector2(1.77642, 1.80081)
 texture = ExtResource("2_puep3")
@@ -52,10 +113,10 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal/Area2D"]
 position = Vector2(-0.562927, 1.66592)
-scale = Vector2(1, 1)
 shape = ExtResource("4_pg0ql")
 
 [node name="Rubbish" type="Sprite2D" parent="." groups=["rubbish"]]
+material = SubResource("ShaderMaterial_puep3")
 position = Vector2(212, 316)
 scale = Vector2(2.036, 2.11)
 texture = ExtResource("4_puep3")
@@ -68,10 +129,10 @@ anchor_left = -0.0105162
 anchor_top = -0.00133595
 anchor_right = 1.03077
 anchor_bottom = 1.00635
-offset_left = -59.7696
-offset_top = -126.658
-offset_right = -59.5996
-offset_bottom = -127.626
+offset_left = -88.554
+offset_top = -127.62
+offset_right = -88.384
+offset_bottom = -128.588
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
@@ -85,6 +146,7 @@ position = Vector2(1.96462, -3.31755)
 shape = ExtResource("6_pg0ql")
 
 [node name="Rubbish02" type="Sprite2D" parent="." groups=["rubbish"]]
+material = SubResource("ShaderMaterial_pg0ql")
 position = Vector2(598, 316)
 scale = Vector2(2.087, 2.11)
 texture = ExtResource("7_ohqu1")
@@ -113,6 +175,7 @@ position = Vector2(0.281494, -0.555389)
 shape = ExtResource("8_vwvd2")
 
 [node name="Rubbish03" type="Sprite2D" parent="." groups=["rubbish"]]
+material = SubResource("ShaderMaterial_ohqu1")
 position = Vector2(286, 849)
 scale = Vector2(2.005, 2.11)
 texture = ExtResource("9_lx35w")
@@ -124,10 +187,10 @@ anchors_preset = -1
 anchor_left = -0.089
 anchor_right = 1.016
 anchor_bottom = 1.008
-offset_left = -94.3252
-offset_top = -94.8433
-offset_right = -94.1552
-offset_bottom = -95.8113
+offset_left = -85.8499
+offset_top = -127.014
+offset_right = -85.6799
+offset_bottom = -127.982
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
@@ -141,6 +204,7 @@ position = Vector2(0.281494, -0.555389)
 shape = ExtResource("10_r5mjw")
 
 [node name="Rubbish04" type="Sprite2D" parent="." groups=["rubbish"]]
+material = SubResource("ShaderMaterial_vwvd2")
 position = Vector2(866, 846)
 scale = Vector2(2.005, 2.11)
 texture = ExtResource("11_vrsa3")
@@ -152,10 +216,10 @@ anchors_preset = -1
 anchor_left = -0.089
 anchor_right = 1.016
 anchor_bottom = 1.008
-offset_left = -67.1978
-offset_top = -114.218
-offset_right = -67.0277
-offset_bottom = -115.186
+offset_left = -85.8499
+offset_top = -127.962
+offset_right = -85.6798
+offset_bottom = -128.93
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
@@ -167,6 +231,16 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rubbish04/Area2D"]
 position = Vector2(0.281494, -0.555389)
 shape = ExtResource("12_7hunx")
+
+[node name="blurrect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_r5mjw")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.752941)
 
 [connection signal="button_down" from="Goal/Button" to="Goal" method="_on_button_button_down"]
 [connection signal="button_up" from="Goal/Button" to="Goal" method="_on_button_button_up"]

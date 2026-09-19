@@ -13,8 +13,10 @@ func _on_button_button_up() -> void:
 
 
 func _on_button_mouse_entered() -> void:
-	pass # Replace with function body.
+	if(v_area2d.get_overlapping_areas().size() == 0):
+		material.set_shader_parameter("highlighted", true)
 
 
 func _on_button_mouse_exited() -> void:
-	pass # Replace with function body.
+	if(v_area2d.get_overlapping_areas().size() == 0):
+		material.set_shader_parameter("highlighted", false)

@@ -23,8 +23,8 @@ func _on_button_button_up() -> void:
 
 
 func _on_button_mouse_entered() -> void:
-	pass #Highlight object
+	material.set_shader_parameter("highlighted", true)
 
 
 func _on_button_mouse_exited() -> void:
-	pass #Unhighlight object
+	material.set_shader_parameter("highlighted", false)

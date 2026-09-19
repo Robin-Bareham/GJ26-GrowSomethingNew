@@ -14,6 +14,7 @@ func _ready():
 	v_rubbish_list = get_tree().get_nodes_in_group("rubbish")
 
 func resetMinigame(goalTexture: String):
+	changeShaders()
 	#Set goal's position 
 	var goalTxt_location = "res://Assets/Minigame/" + goalTexture + ".png"
 	v_goal.texture = load(goalTxt_location)
@@ -38,4 +39,19 @@ func resetMinigame(goalTexture: String):
 		pass
 	#Change rubbish image as well, random between rubbish images.
 	
+	pass
+
+func changeShaders():
+	if(GlobalScript.day == 1):
+		#Dark Overlay, S_Highlight
+		pass
+	elif(GlobalScript.day == 2):
+		#Lighter Overlay, S_Blur
+		pass
+	elif(GlobalScript.day == 3):
+		#Doubles, S_blur, No darkness overlay
+		pass
+	elif(GlobalScript.day == 4):
+		#Slight distortion, no S_blur, no darkness.
+		pass
 	pass
