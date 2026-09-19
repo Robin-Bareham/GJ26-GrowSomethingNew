@@ -1,19 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqqgdlvutgwu7"]
+[gd_scene load_steps=14 format=3 uid="uid://cqqgdlvutgwu7"]
 
-[ext_resource type="Texture2D" uid="uid://b18sig8yvus7" path="res://Assets/TempAssets/temp_obj.png" id="1_iqey4"]
-[ext_resource type="Texture2D" uid="uid://ce7cv35qufisi" path="res://Assets/TempAssets/temp_leaf1.png" id="1_s7wve"]
-[ext_resource type="Script" uid="uid://buru65n70a3sx" path="res://Scenes/minigame.gd" id="1_yx24v"]
+[ext_resource type="Script" uid="uid://buru65n70a3sx" path="res://Scripts/minigame.gd" id="1_yx24v"]
 [ext_resource type="Script" uid="uid://kkfkpe72cogu" path="res://Scripts/minigame_rubbish.gd" id="2_5bepb"]
 [ext_resource type="Script" uid="uid://cbfhjnmggi3t2" path="res://Scripts/minigame_goal.gd" id="2_id8w1"]
-[ext_resource type="Texture2D" uid="uid://brn8h7p18rfwy" path="res://Assets/TempAssets/temp_leaf2.png" id="4_id8w1"]
-[ext_resource type="Texture2D" uid="uid://dfcps1tf8g2qu" path="res://Assets/TempAssets/temp_leaf3.png" id="5_yx24v"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_id8w1"]
-size = Vector2(247.126, 243.224)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yx24v"]
-radius = 107.788
-height = 217.471
+[ext_resource type="Texture2D" uid="uid://coal2nn81i4r" path="res://Assets/Minigame/G_Final.png" id="2_puep3"]
+[ext_resource type="Shape2D" uid="uid://blvmuayyyrspm" path="res://Assets/Styles/G_FinalCS2D.tres" id="4_pg0ql"]
+[ext_resource type="Texture2D" uid="uid://deirlpkpbjru0" path="res://Assets/Minigame/Rubbish01.png" id="4_puep3"]
+[ext_resource type="Shape2D" uid="uid://1d34j2dhy6qu" path="res://Assets/Styles/Rubbish01CS2D.tres" id="6_pg0ql"]
+[ext_resource type="Texture2D" uid="uid://cyckgfr0uog1p" path="res://Assets/Minigame/Rubbish02.png" id="7_ohqu1"]
+[ext_resource type="Shape2D" uid="uid://5ih2jp4holng" path="res://Assets/Styles/Rubbish02CS2D.tres" id="8_vwvd2"]
+[ext_resource type="Texture2D" uid="uid://dvx2k67gf5rlv" path="res://Assets/Minigame/Rubbish03.png" id="9_lx35w"]
+[ext_resource type="Shape2D" uid="uid://bvtlx7u62fsvy" path="res://Assets/Styles/Rubbish03CS2D.tres" id="10_r5mjw"]
+[ext_resource type="Texture2D" uid="uid://ih6pavch85r" path="res://Assets/Minigame/Rubbish04.png" id="11_vrsa3"]
+[ext_resource type="Shape2D" uid="uid://cmo2nyllrqhue" path="res://Assets/Styles/Rubbish04CS2D.tres" id="12_7hunx"]
 
 [node name="minigame" type="CanvasLayer"]
 script = ExtResource("1_yx24v")
@@ -27,21 +26,22 @@ grow_vertical = 2
 color = Color(0.302229, 0.364211, 0.181348, 1)
 
 [node name="Goal" type="Sprite2D" parent="."]
-position = Vector2(1400, 811)
+position = Vector2(1526, 383)
 scale = Vector2(1.77642, 1.80081)
-texture = ExtResource("1_iqey4")
+texture = ExtResource("2_puep3")
 script = ExtResource("2_id8w1")
 
 [node name="Button" type="Button" parent="Goal"]
 self_modulate = Color(1, 1, 1, 0)
 anchors_preset = -1
-anchor_left = 0.000430906
-anchor_right = 0.99161
-anchor_bottom = 1.008
-offset_left = -123.106
-offset_top = -122.0
-offset_right = -122.936
-offset_bottom = -122.968
+anchor_left = -0.089
+anchor_top = 0.018
+anchor_right = 1.08438
+anchor_bottom = 1.02356
+offset_left = -115.441
+offset_top = -97.51
+offset_right = -115.492
+offset_bottom = -97.595
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
@@ -51,106 +51,140 @@ collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal/Area2D"]
-position = Vector2(0.281494, -0.555389)
-shape = SubResource("RectangleShape2D_id8w1")
+position = Vector2(-0.562927, 1.66592)
+scale = Vector2(1, 1)
+shape = ExtResource("4_pg0ql")
 
-[node name="Leaf" type="Sprite2D" parent="." groups=["rubbish"]]
-position = Vector2(826, 474)
-scale = Vector2(2.10976, 2.18699)
-texture = ExtResource("1_s7wve")
+[node name="Rubbish" type="Sprite2D" parent="." groups=["rubbish"]]
+position = Vector2(212, 316)
+scale = Vector2(2.036, 2.11)
+texture = ExtResource("4_puep3")
 script = ExtResource("2_5bepb")
 
-[node name="Button" type="Button" parent="Leaf"]
+[node name="Button" type="Button" parent="Rubbish"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_left = -0.0105162
+anchor_top = -0.00133595
+anchor_right = 1.03077
+anchor_bottom = 1.00635
+offset_left = -59.7696
+offset_top = -126.658
+offset_right = -59.5996
+offset_bottom = -127.626
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="Rubbish"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rubbish/Area2D"]
+position = Vector2(1.96462, -3.31755)
+shape = ExtResource("6_pg0ql")
+
+[node name="Rubbish02" type="Sprite2D" parent="." groups=["rubbish"]]
+position = Vector2(598, 316)
+scale = Vector2(2.087, 2.11)
+texture = ExtResource("7_ohqu1")
+script = ExtResource("2_5bepb")
+
+[node name="Button" type="Button" parent="Rubbish02"]
 self_modulate = Color(1, 1, 1, 0)
 anchors_preset = -1
 anchor_left = -0.00769918
 anchor_right = 1.016
 anchor_bottom = 1.008
-offset_left = -123.106
-offset_top = -122.0
-offset_right = -122.936
-offset_bottom = -122.968
+offset_left = -88.2293
+offset_top = -126.868
+offset_right = -88.0593
+offset_bottom = -127.836
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Area2D" type="Area2D" parent="Leaf"]
+[node name="Area2D" type="Area2D" parent="Rubbish02"]
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Leaf/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rubbish02/Area2D"]
 position = Vector2(0.281494, -0.555389)
-shape = SubResource("CapsuleShape2D_yx24v")
+shape = ExtResource("8_vwvd2")
 
-[node name="Leaf2" type="Sprite2D" parent="." groups=["rubbish"]]
-position = Vector2(1281, 601)
-scale = Vector2(2.55691, 2.58537)
-texture = ExtResource("4_id8w1")
+[node name="Rubbish03" type="Sprite2D" parent="." groups=["rubbish"]]
+position = Vector2(286, 849)
+scale = Vector2(2.005, 2.11)
+texture = ExtResource("9_lx35w")
 script = ExtResource("2_5bepb")
 
-[node name="Button" type="Button" parent="Leaf2"]
-self_modulate = Color(1, 1, 1, 0)
-anchors_preset = -1
-anchor_left = -0.00769918
-anchor_right = 1.016
-anchor_bottom = 1.008
-offset_left = -123.106
-offset_top = -122.0
-offset_right = -122.936
-offset_bottom = -122.968
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="Area2D" type="Area2D" parent="Leaf2"]
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Leaf2/Area2D"]
-position = Vector2(0.281494, -0.555389)
-shape = SubResource("CapsuleShape2D_yx24v")
-
-[node name="Stick" type="Sprite2D" parent="." groups=["rubbish"]]
-position = Vector2(1596, 885)
-scale = Vector2(2.2439, 2.36179)
-texture = ExtResource("5_yx24v")
-script = ExtResource("2_5bepb")
-
-[node name="Button" type="Button" parent="Stick"]
+[node name="Button" type="Button" parent="Rubbish03"]
 self_modulate = Color(1, 1, 1, 0)
 anchors_preset = -1
 anchor_left = -0.089
 anchor_right = 1.016
 anchor_bottom = 1.008
-offset_left = -123.106
-offset_top = -122.0
-offset_right = -122.936
-offset_bottom = -122.968
+offset_left = -94.3252
+offset_top = -94.8433
+offset_right = -94.1552
+offset_bottom = -95.8113
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Area2D" type="Area2D" parent="Stick"]
+[node name="Area2D" type="Area2D" parent="Rubbish03"]
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stick/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rubbish03/Area2D"]
 position = Vector2(0.281494, -0.555389)
-shape = SubResource("CapsuleShape2D_yx24v")
+shape = ExtResource("10_r5mjw")
+
+[node name="Rubbish04" type="Sprite2D" parent="." groups=["rubbish"]]
+position = Vector2(866, 846)
+scale = Vector2(2.005, 2.11)
+texture = ExtResource("11_vrsa3")
+script = ExtResource("2_5bepb")
+
+[node name="Button" type="Button" parent="Rubbish04"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_left = -0.089
+anchor_right = 1.016
+anchor_bottom = 1.008
+offset_left = -67.1978
+offset_top = -114.218
+offset_right = -67.0277
+offset_bottom = -115.186
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="Rubbish04"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rubbish04/Area2D"]
+position = Vector2(0.281494, -0.555389)
+shape = ExtResource("12_7hunx")
 
 [connection signal="button_down" from="Goal/Button" to="Goal" method="_on_button_button_down"]
 [connection signal="button_up" from="Goal/Button" to="Goal" method="_on_button_button_up"]
 [connection signal="mouse_entered" from="Goal/Button" to="Goal" method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="Goal/Button" to="Goal" method="_on_button_mouse_exited"]
-[connection signal="button_down" from="Leaf/Button" to="Leaf" method="_on_button_button_down"]
-[connection signal="button_up" from="Leaf/Button" to="Leaf" method="_on_button_button_up"]
-[connection signal="mouse_entered" from="Leaf/Button" to="Leaf" method="_on_button_mouse_entered"]
-[connection signal="mouse_exited" from="Leaf/Button" to="Leaf" method="_on_button_mouse_exited"]
-[connection signal="button_down" from="Leaf2/Button" to="Leaf2" method="_on_button_button_down"]
-[connection signal="button_up" from="Leaf2/Button" to="Leaf2" method="_on_button_button_up"]
-[connection signal="mouse_entered" from="Leaf2/Button" to="Leaf2" method="_on_button_mouse_entered"]
-[connection signal="mouse_exited" from="Leaf2/Button" to="Leaf2" method="_on_button_mouse_exited"]
-[connection signal="button_down" from="Stick/Button" to="Stick" method="_on_button_button_down"]
-[connection signal="button_up" from="Stick/Button" to="Stick" method="_on_button_button_up"]
-[connection signal="mouse_entered" from="Stick/Button" to="Stick" method="_on_button_mouse_entered"]
-[connection signal="mouse_exited" from="Stick/Button" to="Stick" method="_on_button_mouse_exited"]
+[connection signal="button_down" from="Rubbish/Button" to="Rubbish" method="_on_button_button_down"]
+[connection signal="button_up" from="Rubbish/Button" to="Rubbish" method="_on_button_button_up"]
+[connection signal="mouse_entered" from="Rubbish/Button" to="Rubbish" method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Rubbish/Button" to="Rubbish" method="_on_button_mouse_exited"]
+[connection signal="button_down" from="Rubbish02/Button" to="Rubbish02" method="_on_button_button_down"]
+[connection signal="button_up" from="Rubbish02/Button" to="Rubbish02" method="_on_button_button_up"]
+[connection signal="mouse_entered" from="Rubbish02/Button" to="Rubbish02" method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Rubbish02/Button" to="Rubbish02" method="_on_button_mouse_exited"]
+[connection signal="button_down" from="Rubbish03/Button" to="Rubbish03" method="_on_button_button_down"]
+[connection signal="button_up" from="Rubbish03/Button" to="Rubbish03" method="_on_button_button_up"]
+[connection signal="mouse_entered" from="Rubbish03/Button" to="Rubbish03" method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Rubbish03/Button" to="Rubbish03" method="_on_button_mouse_exited"]
+[connection signal="button_down" from="Rubbish04/Button" to="Rubbish04" method="_on_button_button_down"]
+[connection signal="button_up" from="Rubbish04/Button" to="Rubbish04" method="_on_button_button_up"]
+[connection signal="mouse_entered" from="Rubbish04/Button" to="Rubbish04" method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Rubbish04/Button" to="Rubbish04" method="_on_button_mouse_exited"]
