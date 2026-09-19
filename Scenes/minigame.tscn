@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://coal2nn81i4r" path="res://Assets/Minigame/G_Final.png" id="2_puep3"]
 [ext_resource type="Shape2D" uid="uid://blvmuayyyrspm" path="res://Assets/Styles/G_FinalCS2D.tres" id="4_pg0ql"]
 [ext_resource type="Texture2D" uid="uid://hgsgynym6nq6" path="res://Assets/Minigame/Rubbish01.png" id="4_puep3"]
-[ext_resource type="Shader" uid="uid://dhsrxase7cat" path="res://Assets/Shaders/S_Highlight.gdshader" id="5_pg0ql"]
 [ext_resource type="Shape2D" uid="uid://1d34j2dhy6qu" path="res://Assets/Styles/Rubbish01CS2D.tres" id="6_pg0ql"]
 [ext_resource type="Texture2D" uid="uid://cyckgfr0uog1p" path="res://Assets/Minigame/Rubbish02.png" id="7_ohqu1"]
 [ext_resource type="Shape2D" uid="uid://5ih2jp4holng" path="res://Assets/Styles/Rubbish02CS2D.tres" id="8_vwvd2"]
@@ -16,8 +15,64 @@
 [ext_resource type="Shape2D" uid="uid://cmo2nyllrqhue" path="res://Assets/Styles/Rubbish04CS2D.tres" id="12_7hunx"]
 [ext_resource type="Shader" uid="uid://c3om1pdmbq53g" path="res://Assets/Shaders/S_Blur.gdshader" id="15_ohqu1"]
 
+[sub_resource type="Shader" id="Shader_pg0ql"]
+code = "shader_type canvas_item;
+
+uniform vec4 line_color: source_color = vec4(0.6,0.6,0.6,1.0);
+uniform vec4 fill_color: source_color = vec4(0.0,0.0,0.0,1.0);
+uniform float fill_intensity: hint_range(0.0,1.0) = 0.9;
+uniform float selected_intensity: hint_range(0.0,1.0) = 0.5;
+uniform float line_thickness = 2.0;
+uniform bool highlighted = false;
+
+void fragment()
+{
+	vec4 color = texture(TEXTURE, UV);
+	// If it's not highlighted
+	
+	
+	if(!highlighted)
+	{
+		if(color.a < 0.01)
+		{
+			discard;
+		}
+		else
+		{
+			vec4 new_color = mix(color,fill_color,fill_intensity);
+			new_color.a = color.a;
+			COLOR = new_color;
+		}
+	}
+	else
+	{
+		float alpha = 0.0;
+		vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+		
+		alpha += texture(TEXTURE,UV + vec2(size.x,0.0)).a;
+		alpha += texture(TEXTURE,UV + vec2(-size.x,0.0)).a;
+		alpha += texture(TEXTURE,UV + vec2(0.0,size.y)).a;
+		alpha += texture(TEXTURE,UV + vec2(0.0,-size.y)).a;
+		
+		//Outlines around sprite
+		if(color.a == 0.0 && alpha>0.0)
+		{
+			COLOR = line_color;
+		}
+		else
+		{
+			vec4 new_color = mix(color,fill_color,selected_intensity);
+			new_color.a = color.a;
+			COLOR = new_color;
+		}
+		
+	}
+}
+
+"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lx35w"]
-shader = ExtResource("5_pg0ql")
+shader = SubResource("Shader_pg0ql")
 shader_parameter/line_color = Color(0.6, 0.6, 0.6, 1)
 shader_parameter/fill_color = Color(0, 0, 0, 1)
 shader_parameter/fill_intensity = 0.9
@@ -26,7 +81,7 @@ shader_parameter/line_thickness = 2.0
 shader_parameter/highlighted = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_puep3"]
-shader = ExtResource("5_pg0ql")
+shader = SubResource("Shader_pg0ql")
 shader_parameter/line_color = Color(0.6, 0.6, 0.6, 1)
 shader_parameter/fill_color = Color(0, 0, 0, 1)
 shader_parameter/fill_intensity = 0.9
@@ -35,7 +90,7 @@ shader_parameter/line_thickness = 2.0
 shader_parameter/highlighted = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pg0ql"]
-shader = ExtResource("5_pg0ql")
+shader = SubResource("Shader_pg0ql")
 shader_parameter/line_color = Color(0.6, 0.6, 0.6, 1)
 shader_parameter/fill_color = Color(0, 0, 0, 1)
 shader_parameter/fill_intensity = 0.9
@@ -44,7 +99,7 @@ shader_parameter/line_thickness = 2.0
 shader_parameter/highlighted = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ohqu1"]
-shader = ExtResource("5_pg0ql")
+shader = SubResource("Shader_pg0ql")
 shader_parameter/line_color = Color(0.6, 0.6, 0.6, 1)
 shader_parameter/fill_color = Color(0, 0, 0, 1)
 shader_parameter/fill_intensity = 0.9
@@ -53,7 +108,7 @@ shader_parameter/line_thickness = 2.0
 shader_parameter/highlighted = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vwvd2"]
-shader = ExtResource("5_pg0ql")
+shader = SubResource("Shader_pg0ql")
 shader_parameter/line_color = Color(0.6, 0.6, 0.6, 1)
 shader_parameter/fill_color = Color(0, 0, 0, 1)
 shader_parameter/fill_intensity = 0.9
@@ -63,7 +118,6 @@ shader_parameter/highlighted = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r5mjw"]
 shader = ExtResource("15_ohqu1")
-shader_parameter/blur_amount = 3.026
 
 [node name="minigame" type="CanvasLayer"]
 script = ExtResource("1_yx24v")
@@ -240,7 +294,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0.752941)
 
 [connection signal="button_down" from="Goal/Button" to="Goal" method="_on_button_button_down"]
 [connection signal="button_up" from="Goal/Button" to="Goal" method="_on_button_button_up"]

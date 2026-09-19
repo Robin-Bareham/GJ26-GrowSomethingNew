@@ -3,6 +3,9 @@ extends CanvasLayer
 @onready var v_goal = $Goal
 @onready var v_goal_CS2D = $Goal/Area2D/CollisionShape2D
 
+@onready var v_overlay = $overlay
+@onready var v_blur = $blurrect
+
 @onready var v_rubbish_list = []
 
 var v_goal_positions = [[401,361],[982,528],[523,792],[1611,354],[1400,811]]
@@ -38,20 +41,36 @@ func resetMinigame(goalTexture: String):
 		
 		pass
 	#Change rubbish image as well, random between rubbish images.
-	
+	print_debug("BLUR AMOUN333333333wT:")
+	print_debug(v_blur.get_instance_shader_parameter("blur_amount"))
 	pass
 
 func changeShaders():
+	var shader_loc = ""
 	if(GlobalScript.day == 1):
-		#Dark Overlay, S_Highlight
-		pass
+		shader_loc = "res://Assets/Shaders/S_Highlight.gdshader"
+		v_overlay.color = Color(0,0,0,0.75) 
+		v_blur.set_instance_shader_parameter("blur_amount", 1.5)
 	elif(GlobalScript.day == 2):
-		#Lighter Overlay, S_Blur
-		pass
+		shader_loc = "res://Assets/Shaders/S_Highlight2.gdshader"
+		v_overlay.color = Color(0,0,0,0.50)
+		v_blur.set_instance_shader_parameter("blur_amount", 1.25)
 	elif(GlobalScript.day == 3):
+		shader_loc = "res://Assets/Shaders/S_Distort.gdshader"
+		v_overlay.color = Color(0,0,0,0.25)
+		v_blur.set_instance_shader_parameter("blur_amount", 1.0)
 		#Doubles, S_blur, No darkness overlay
-		pass
 	elif(GlobalScript.day == 4):
+		shader_loc = "res://Assets/Shaders/S_Distort2.gdshader"
+		v_overlay.color = Color(0,0,0,0)
+		v_blur.set_instance_shader_parameter("blur_amount", 0.5)
 		#Slight distortion, no S_blur, no darkness.
-		pass
-	pass
+		
+	iterateShaders(shader_loc)
+	print_debug("BLUR AMOUNT:")
+	print_debug(v_blur.get_instance_shader_parameter("blur_amount"))
+	
+func iterateShaders(type: String):
+	v_goal.material.shader = load(type)
+	for i in v_rubbish_list.size():
+		v_rubbish_list[i].material.shader = load(type)

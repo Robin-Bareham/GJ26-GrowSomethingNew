@@ -58,6 +58,8 @@ func keyInputs():
 	if(Input.is_action_just_pressed("walk_left")):
 		if(AllDia.dia_open):
 			GlobalScript.choose = 1
+	if(Input.is_action_just_pressed("test")):
+		GlobalScript.day_over = true
 
 func activateMinigame():
 	mini_ui.show()
