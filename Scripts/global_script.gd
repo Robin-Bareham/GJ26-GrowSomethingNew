@@ -6,7 +6,8 @@ var currentState: gameState
 
 var minigame_active = false
 var activating_minigame = false
-var minigame_goal_image = "temp_obj"
+var minigame_goal_image = ""
+var first_pile = true
 
 #Day Attribues
 var max_energy = 100

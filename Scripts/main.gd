@@ -40,6 +40,7 @@ func _process(delta):
 				GlobalScript.timer_active = false
 				GlobalScript.start_timer = false
 				GlobalScript.day += 1
+				GlobalScript.first_pile = true
 				
 
 
@@ -52,6 +53,9 @@ func keyInputs():
 				GlobalScript.interact = 2
 			else:
 				GlobalScript.interact = 1
+		else:
+			if(AllDia.dia_open):
+				GlobalScript.interact = 2
 	if(Input.is_action_just_pressed("walk_right")):
 		if(AllDia.dia_open):
 			GlobalScript.choose = 2
@@ -62,6 +66,10 @@ func keyInputs():
 		GlobalScript.day_over = true
 
 func activateMinigame():
+	if(GlobalScript.first_pile):
+		var name = "D" + str(GlobalScript.day) + "Pile"
+		dia_ui.boxActivated(name,2)	
+		GlobalScript.first_pile = false
 	mini_ui.show()
 	GlobalScript.can_move = false
 	GlobalScript.activating_minigame = false
@@ -71,9 +79,11 @@ func activateMinigame():
 
 func deactivateMinigame():
 	mini_ui.hide()
-	GlobalScript.can_move = true
 	GlobalScript.activating_minigame = false
 	GlobalScript.minigame_active = false
+	if(GlobalScript.minigame_goal_image != ""):
+		dia_ui.boxActivated(GlobalScript.minigame_goal_image,0)	
+	GlobalScript.minigame_goal_image = ""
 	#Adjust Energy
 	GlobalScript.current_energy -= 10
 	if(GlobalScript.current_energy <= 0):

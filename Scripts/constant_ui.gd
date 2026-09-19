@@ -25,14 +25,12 @@ func _process(delta):
 				label.text = str(second)
 			#Reset and activates the timer
 			if(GlobalScript.start_timer):
-				print_debug("HELLO")
 				resetTimer()
 				GlobalScript.start_timer = false
 				GlobalScript.timer_active = true
 
 func resetTimer():
 	#When the player enters the grove.
-	print_debug(GlobalScript.day)
 	timer = 0
 	if(GlobalScript.day == 1):
 		timer_end = GlobalScript.max_time

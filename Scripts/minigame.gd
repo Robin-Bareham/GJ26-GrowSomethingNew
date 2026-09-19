@@ -37,19 +37,13 @@ func resetMinigame(goalTexture: String):
 		v_rubbish_list[i].texture = load(texture_location)
 		var cs2d_loc = "res://Assets/Styles/" + v_rubbish_icons[rand_index] + "CS2D.tres"
 		v_rubbish_list[i].getCS2D().shape = load(cs2d_loc)
-		# MIGHT HAVE TO FIGURE OUT HOW TO CHANGE THE HITBOX BASED ON THE SPRITE CHOSEN
-		
-		pass
-	#Change rubbish image as well, random between rubbish images.
-	print_debug("BLUR AMOUN333333333wT:")
-	print_debug(v_blur.get_instance_shader_parameter("blur_amount"))
-	pass
+
 
 func changeShaders():
 	var shader_loc = ""
 	if(GlobalScript.day == 1):
 		shader_loc = "res://Assets/Shaders/S_Highlight.gdshader"
-		v_overlay.color = Color(0,0,0,0.75) 
+		v_overlay.color = Color(0,0,0,0.80) 
 		v_blur.set_instance_shader_parameter("blur_amount", 1.5)
 	elif(GlobalScript.day == 2):
 		shader_loc = "res://Assets/Shaders/S_Highlight2.gdshader"

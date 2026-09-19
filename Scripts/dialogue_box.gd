@@ -63,9 +63,11 @@ func showBox(object: String):
 	#Get the lines of dialogue related to the object
 	if(v_dia_type == 0):
 		v_current_dialogue = AllDia.dia_dic[object]
-	else:
+	elif(v_dia_type == 1):
 		v_current_dialogue = AllDia.pile_dic["pile"]
 		v_current_pile = object #Name of goal image
+	else:
+		v_current_dialogue = AllDia.scripted_dia[object]
 	v_box_container.show()
 	v_currently_active = true
 	pass
@@ -84,7 +86,7 @@ func progressDialogue():
 			if(v_opt1 || v_opt2 ):
 				v_option_container.hide()
 				#Show the current dialogue
-				#Jump to the line as stated in pos 6 (opt 1) and 7 (opt2)
+				#Choosing to search a pile or not
 				if(v_dia_type == 1):
 					if(v_opt2):
 						hideBox()
@@ -94,6 +96,7 @@ func progressDialogue():
 						GlobalScript.activating_minigame = true
 						GlobalScript.minigame_goal_image = v_current_pile
 						return
+				#Jump to the line as stated in pos 6 (opt 1) and 7 (opt2)
 				var indexJump
 				if(v_opt2):
 					indexJump = v_current_dialogue[v_current_line][7]
@@ -161,7 +164,6 @@ func alternateText():
 		if(v_current_dialogue[v_current_line][4] != "N/A"): #If there's an item to change
 			changingItem(v_current_dialogue[v_current_line][4])
 		if(v_current_dialogue[v_current_line][5] != "N/A"):
-			print_debug(v_current_dialogue[v_current_line][5])
 			v_new_node = v_current_dialogue[v_current_line][5]
 	#If the dialogue changes scene
 	elif(v_current_dialogue[v_current_line][1] == 3):
