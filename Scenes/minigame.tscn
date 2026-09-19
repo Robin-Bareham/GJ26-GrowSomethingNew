@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://cqqgdlvutgwu7"]
+[gd_scene load_steps=23 format=3 uid="uid://cqqgdlvutgwu7"]
 
 [ext_resource type="Script" uid="uid://buru65n70a3sx" path="res://Scripts/minigame.gd" id="1_yx24v"]
 [ext_resource type="Script" uid="uid://kkfkpe72cogu" path="res://Scripts/minigame_rubbish.gd" id="2_5bepb"]
 [ext_resource type="Script" uid="uid://cbfhjnmggi3t2" path="res://Scripts/minigame_goal.gd" id="2_id8w1"]
+[ext_resource type="Texture2D" uid="uid://ey7xch3gjndl" path="res://Assets/Sprites/MinigameBG.png" id="2_ohqu1"]
 [ext_resource type="Texture2D" uid="uid://coal2nn81i4r" path="res://Assets/Minigame/G_Final.png" id="2_puep3"]
 [ext_resource type="Shape2D" uid="uid://blvmuayyyrspm" path="res://Assets/Styles/G_FinalCS2D.tres" id="4_pg0ql"]
 [ext_resource type="Texture2D" uid="uid://hgsgynym6nq6" path="res://Assets/Minigame/Rubbish01.png" id="4_puep3"]
@@ -123,12 +124,18 @@ shader = ExtResource("15_ohqu1")
 script = ExtResource("1_yx24v")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.302229, 0.364211, 0.181348, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_ohqu1")
 
 [node name="overlay" type="ColorRect" parent="."]
 anchors_preset = 15

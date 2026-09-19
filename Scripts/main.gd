@@ -5,6 +5,8 @@ extends Node2D
 @onready var const_ui = $ConstantUI
 @onready var player = $Player
 
+var player_near_lake = false
+
 func _ready():
 	GlobalScript.currentState = GlobalScript.gameState.GAME
 	#Change Player's Camera limits when entering a scene
@@ -52,6 +54,8 @@ func keyInputs():
 				GlobalScript.interact = 2
 			else:
 				GlobalScript.interact = 1
+				if(player_near_lake):
+					activateScripted("Temp_Lake","Lake")
 		else:
 			if(AllDia.dia_open):
 				GlobalScript.interact = 2
@@ -102,6 +106,8 @@ func _on_to_grove_body_entered(body: Node2D) -> void:
 			dia_ui.boxActivated("NoBF",0)
 			player.position.y = GlobalScript.p_nobf_py
 			
+
+			
 func transition(type: String):
 	GlobalScript.transition_scene = true
 	GlobalScript.next_scene = type
@@ -116,3 +122,15 @@ func activateScripted(startbg: String,diaOpt: String):
 	const_ui.changeBg(startbg)
 	const_ui.showBg()
 	
+
+
+func _on_lake_body_entered(body: Node2D) -> void:
+	if(body.has_method("player")):
+		print_debug("Entered Lake")
+		player_near_lake = true
+
+
+func _on_lake_body_exited(body: Node2D) -> void:
+	if(body.has_method("player")):
+		print_debug("Exit Lake")
+		player_near_lake = false

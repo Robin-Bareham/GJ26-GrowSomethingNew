@@ -47,8 +47,16 @@ position = Vector2(764, 345)
 position = Vector2(1154.75, -62)
 shape = SubResource("RectangleShape2D_v1gob")
 
+[node name="Lake" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Lake"]
+polygon = PackedVector2Array(39, -6, 267, 373, 395, 506, 1080, 1037, 924, 1280, -303, 399)
+
 [node name="ConstantUI" parent="." instance=ExtResource("8_2opmi")]
 
 [node name="DialogueBox" parent="." instance=ExtResource("7_mdopd")]
+visible = false
 
 [connection signal="body_entered" from="ToGrove" to="." method="_on_to_grove_body_entered"]
+[connection signal="body_entered" from="Lake" to="." method="_on_lake_body_entered"]
+[connection signal="body_exited" from="Lake" to="." method="_on_lake_body_exited"]
