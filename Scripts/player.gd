@@ -6,6 +6,7 @@ class_name Player
 
 const v_speed = 300
 var v_current_direction = "none" 
+var previous_end = "f"
 
 
 func _ready():
@@ -16,8 +17,6 @@ func _ready():
 func _physics_process(delta):
 	if(GlobalScript.can_move):
 		playerMovement(delta)
-		playerInputs()
-	pass
 
 func playerMovement(dt):
 	
@@ -49,35 +48,38 @@ func playerMovement(dt):
 	move_and_slide()
 	pass
 	
-func playerInputs():
-	if(Input.is_action_pressed("interact")):
-		pass
-	pass
-	
 	
 func playerAnimation(action):
+	#"idle_1b
+	#"walking_1b
 	
 	var direction = v_current_direction
 	var animation_sprite = $AnimatedSprite2D
+	var animation_name = ""
 	
 	if(action == 0):
-		animation_sprite.play("idle")
+		animation_name += "idle_"
 	elif(action == 1):
-		animation_sprite.play("walking")
-		
+		animation_name += "walking_"
+	if(GlobalScript.day == 1 && !GlobalScript.items["Blindfold"]):
+		animation_name += "e"
+	else:
+		animation_name += str(GlobalScript.day)
+	
 	if(direction == "right"):
 		animation_sprite.flip_h = false
-		pass
 	elif(direction == "left"):
 		animation_sprite.flip_h = true
-		pass
-	elif(direction == "down"):
-		pass	
+		
+	if(direction == "down"):
+		animation_name += "f"
+		previous_end = "f"
 	elif(direction == "up"):
-		pass	
-	
-	
-	pass
+		animation_name += "b"
+		previous_end = "b"
+	else:
+		animation_name += previous_end
+	animation_sprite.play(animation_name)
 
 func changeCameraLimits(p_left:int,p_right: int, p_bottom: int, p_top: int):
 	v_camera.set_limit(SIDE_LEFT,p_left)
