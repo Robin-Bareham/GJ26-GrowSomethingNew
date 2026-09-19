@@ -47,7 +47,8 @@ func resetTimer():
 		GlobalScript.current_energy = 10 #Can only do one search
 
 func changeBg(newBg: String):
-	bg.texture = load(newBg)
+	var temp = "res://Assets/TempAssets/" + newBg + ".png"
+	bg.texture = load(temp)
 
 func hideBg():
 	bg.hide()

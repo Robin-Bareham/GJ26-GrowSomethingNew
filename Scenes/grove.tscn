@@ -46,5 +46,6 @@ position = Vector2(751, 211)
 visible = false
 
 [node name="ConstantUI" parent="." instance=ExtResource("7_3wb70")]
+visible = false
 
 [node name="DialogueBox" parent="." instance=ExtResource("2_0a58k")]

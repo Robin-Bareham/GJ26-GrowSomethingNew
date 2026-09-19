@@ -46,8 +46,8 @@ position = Vector2(1164, 248)
 position = Vector2(1154.75, -62)
 shape = SubResource("RectangleShape2D_v1gob")
 
-[node name="DialogueBox" parent="." instance=ExtResource("7_mdopd")]
-
 [node name="ConstantUI" parent="." instance=ExtResource("8_2opmi")]
+
+[node name="DialogueBox" parent="." instance=ExtResource("7_mdopd")]
 
 [connection signal="body_entered" from="ToGrove" to="." method="_on_to_grove_body_entered"]

@@ -63,7 +63,7 @@ func keyInputs():
 		if(AllDia.dia_open):
 			GlobalScript.choose = 1
 	if(Input.is_action_just_pressed("test")):
-		GlobalScript.day_over = true
+		activateScripted("Temp_Cutscene1","test")
 
 func activateMinigame():
 	if(GlobalScript.first_pile):
@@ -107,3 +107,10 @@ func transition(type: String):
 	GlobalScript.transition_scene = true
 	GlobalScript.next_scene = type
 	GlobalScript.change_scene()
+
+func activateScripted(startbg: String,diaOpt: String):
+	dia_ui.changeBoxType(true)
+	dia_ui.boxActivated(diaOpt,2)
+	const_ui.changeBg(startbg)
+	const_ui.showBg()
+	

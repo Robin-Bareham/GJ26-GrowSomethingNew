@@ -1,13 +1,14 @@
 extends CanvasLayer
 
-@onready var v_box_container = $"."
-@onready var v_text = $BoxContainer/TextContainer/HBoxContainer/Text
+@onready var v_root = $"."
+@onready var v_box_container = $BoxContainer
+@onready var v_text = $BoxContainer/AspectRatioContainer/TextContainer/HBoxContainer/Text
 @onready var v_image = $Image
-@onready var v_next = $BoxContainer/TextContainer/HBoxContainer/Next
+@onready var v_next = $BoxContainer/AspectRatioContainer/TextContainer/HBoxContainer/Next
 
-@onready var v_option_container = $BoxContainer/TextContainer/OptionContainer
-@onready var v_option1_panel = $BoxContainer/TextContainer/OptionContainer/HBoxContainer/Opt1 
-@onready var v_option2_panel = $BoxContainer/TextContainer/OptionContainer/HBoxContainer/Opt2
+@onready var v_option_container = $BoxContainer/AspectRatioContainer/TextContainer/OptionContainer
+@onready var v_option1_panel = $BoxContainer/AspectRatioContainer/TextContainer/OptionContainer/HBoxContainer/Opt1 
+@onready var v_option2_panel = $BoxContainer/AspectRatioContainer/TextContainer/OptionContainer/HBoxContainer/Opt2
 
 var optDeselected: StyleBoxFlat = load("res://Assets/Styles/option_deselected.tres")
 var optSelected: StyleBoxFlat = load("res://Assets/Styles/option_selected.tres")
@@ -28,6 +29,7 @@ var v_current_pile = ""
 
 #What it can receive from
 @onready var v_interaction_hb = get_tree().current_scene.get_node("Player").get_node("Interaction_HB")
+@onready var v_bg = get_tree().current_scene.get_node("ConstantUI")
 signal change_node(type: String)
 
 func _ready():
@@ -47,11 +49,13 @@ func hideBox():
 	v_text.text = ""
 	v_current_line = -1
 	v_current_dialogue = []
-	v_box_container.hide()
+	v_root.hide()
 	v_option_container.hide()
 	v_opt1 = false
 	v_opt2 = false
 	v_opt_active = false
+	v_bg.hideBg()
+	changeBoxType(false)
 	if(v_new_node!= ""):
 		change_node.emit(v_new_node)
 		v_new_node = ""
@@ -68,7 +72,7 @@ func showBox(object: String):
 		v_current_pile = object #Name of goal image
 	else:
 		v_current_dialogue = AllDia.scripted_dia[object]
-	v_box_container.show()
+	v_root.show()
 	v_currently_active = true
 	pass
 
@@ -169,6 +173,9 @@ func alternateText():
 	elif(v_current_dialogue[v_current_line][1] == 3):
 		GlobalScript.transition_scene = true
 		GlobalScript.next_scene = v_current_dialogue[v_current_line][5]
+	elif(v_current_dialogue[v_current_line][1] == 4):
+		#Change bg
+		v_bg.changeBg(v_current_dialogue[v_current_line][4])
 
 func changingItem(item: String):
 	if(GlobalScript.items[item]):
@@ -176,6 +183,16 @@ func changingItem(item: String):
 	else:
 		GlobalScript.items[item] = true
 	v_new_node = v_current_dialogue[v_current_line][5]
+
+func changeBoxType(version: bool):
+	#If it's a cutscene, no image, box centred
+	if(version):
+		v_box_container.position.x = 891
+		v_image.hide()
+	#Else, box to side and image visible
+	else:
+		v_box_container.position.x = 1021.0
+		v_image.show()
 
 #SIGNALS
 

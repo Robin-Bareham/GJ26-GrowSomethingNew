@@ -23,7 +23,9 @@ var scripted_dia = {
 	"D1Pile" : [["tempI",0,"Its a bit hard to see with this blindfold on.",">"],["tempI",0,"Though if I feel around I should be able to move the rubbish around to see whats underneath.","v"]],
 	"D2Pile" : [["tempI",0,"Huh, it's a bit easier to see? I wouldn't have thought anything's changed...","v"]],
 	"D3Pile" : [["tempI",0,"...",">"],["tempI",0,"Is it the flowers? Am I... seing through them?",">"],["tempI",0,"Weird.","v"]],
-	"D4Pile" : [["tempI",0,"It's surprisingly clear, though I don't feel up to this...",">"],["tempI",0,"I'll at least see what's under here.","v"]]
+	"D4Pile" : [["tempI",0,"It's surprisingly clear, though I don't feel up to this...",">"],["tempI",0,"I'll at least see what's under here.","v"]],
+	"test" : [["tempI",0,"Well this is weird.",">"],["tempI",4,"There's going to be a new image.",">","Temp_Cutscene2"],["tempI",0,"Cool new image!","v"]]
+
 }
 
 var pile_dic = {
