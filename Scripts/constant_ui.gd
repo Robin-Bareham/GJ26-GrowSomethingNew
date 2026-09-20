@@ -2,10 +2,14 @@ extends CanvasLayer
 
 @onready var label = $Label
 @onready var bg = $bg
+@onready var clock = $clock
 
 var timer = 0
 var timer_end
 var second = 0
+@onready var day_texture = load("res://Assets/Sprites/Clock00.png")
+@onready var noon_texture = load("res://Assets/Sprites/Clock01.png")
+@onready var evening_texture = load("res://Assets/Sprites/Clock02.png")
 
 @onready var pileScene = load("res://Prefabs/InteractingObjects/Pile.tscn")
 var d1_pilePOS = [[-1070,493],[-1175,-168],[-678,103],[-460,-284],[-151,-25],[15,-422],[607,-542],[466,-234],[530,468],[809,143],[971,-371],[1028,439],[1292,-55]]
@@ -17,25 +21,21 @@ var d3_pileOpts = ["G_Closed","G_Closed","G_Closed","G_Crown","G_Cloth"]
 var d4_pilePOS = [[79,132]]
 var d4_pileOpts = ["G_Final"]
 var pile_list = []
-var enrio_list = []
-
-
-
 
 var energy
 
 func _process(delta):
 	match GlobalScript.current_scene:
 		"grove":
-			#If the timer is active, start day.
-			if(GlobalScript.timer_active):
+			#If the timer is active, start day. (doesn't count down if there's dialogue
+			if(GlobalScript.timer_active && !AllDia.dia_open):
 				timer += 1 * delta
 				if(timer >= timer_end):
 					GlobalScript.day_over = true
 				elif(timer >= (timer_end/3)*2):
-					pass
+					clock.texture = evening_texture
 				elif(timer >= (timer_end/3)):
-					pass
+					clock.texture = noon_texture
 				#Visual change of shaders???
 				second = int(timer)
 				label.text = str(second)
@@ -44,11 +44,15 @@ func _process(delta):
 				resetTimer()
 				GlobalScript.start_timer = false
 				GlobalScript.timer_active = true
+		"woods":
+			clock.hide()
 
 ## WHEN THE PLAYER ENTERS THE GROVE
 func resetTimer():
 	#When the player enters the grove.
 	timer = 0
+	clock.texture = day_texture
+	clock.show()
 	var current_list = []
 	var current_pileOpts = []
 	match GlobalScript.day:
