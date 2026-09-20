@@ -36,44 +36,49 @@ position = Vector2(863, 546)
 scale = Vector2(0.431111, 0.44)
 
 [node name="Player" parent="Environment" instance=ExtResource("6_v6cek")]
-position = Vector2(-437, 46)
+position = Vector2(39, 182)
 
 [node name="Tree2" parent="Environment" instance=ExtResource("7_sgtcd")]
-position = Vector2(1248, 83)
+position = Vector2(1242, 242)
+nextImg = "tree02"
 
 [node name="Tree3" parent="Environment" instance=ExtResource("7_sgtcd")]
-position = Vector2(-394, -199)
+position = Vector2(-392, -168)
 
 [node name="Tree4" parent="Environment" instance=ExtResource("7_sgtcd")]
 position = Vector2(360, 974)
 
 [node name="Tree5" parent="Environment" instance=ExtResource("7_sgtcd")]
-position = Vector2(105, -65)
+position = Vector2(26, -35)
+nextImg = "tree02"
 
 [node name="bush" parent="Environment" instance=ExtResource("6_1kwb7")]
 position = Vector2(-364, -243)
 
 [node name="bush2" parent="Environment" instance=ExtResource("6_1kwb7")]
 position = Vector2(-95, -203)
+nextImg = "bushes02"
 
 [node name="bush3" parent="Environment" instance=ExtResource("6_1kwb7")]
 position = Vector2(-151, -342)
 type = "bushes03"
+nextImg = "bushes03"
 
 [node name="bush4" parent="Environment" instance=ExtResource("6_1kwb7")]
 position = Vector2(1207, 202)
 
 [node name="bush5" parent="Environment" instance=ExtResource("6_1kwb7")]
-position = Vector2(1343, 631)
+position = Vector2(1298, 675)
 
 [node name="bush6" parent="Environment" instance=ExtResource("6_1kwb7")]
-position = Vector2(1059, 825)
+position = Vector2(1007, 836)
 
 [node name="bush7" parent="Environment" instance=ExtResource("6_1kwb7")]
 position = Vector2(699, 855)
 
 [node name="bush8" parent="Environment" instance=ExtResource("6_1kwb7")]
 position = Vector2(381, 246)
+nextImg = "bushes02"
 
 [node name="bush9" parent="Environment" instance=ExtResource("6_1kwb7")]
 position = Vector2(531, 337)
@@ -98,6 +103,7 @@ polygon = PackedVector2Array(39, -6, 44, 203, 112, 203, 124, 323, 372, 529, 372,
 [node name="ConstantUI" parent="." instance=ExtResource("8_2opmi")]
 
 [node name="DialogueBox" parent="." instance=ExtResource("7_mdopd")]
+visible = false
 
 [node name="menu" parent="." instance=ExtResource("10_mqq3u")]
 visible = false

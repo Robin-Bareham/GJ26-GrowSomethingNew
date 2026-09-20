@@ -32,6 +32,7 @@ player=""
 search=""
 rubbish=""
 scripted=""
+enviro=""
 
 [input]
 

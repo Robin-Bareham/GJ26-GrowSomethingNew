@@ -9,6 +9,7 @@ var v_current_direction = "none"
 var previous_end = "f"
 var has_moved = false
 
+var lr_fix = "right"
 
 func _ready():
 	$AnimatedSprite2D.play("idle")
@@ -27,6 +28,7 @@ func _physics_process(delta):
 
 func playerMovement(dt):
 	
+	# Handles movement
 	if(Input.is_action_pressed("walk_right")):
 		v_current_direction = "right"
 		velocity.x = v_speed
@@ -44,6 +46,21 @@ func playerMovement(dt):
 		velocity.y = -v_speed
 	else:
 		velocity.y = 0
+	
+	# Which direction was inputted last?
+	if(Input.is_action_just_pressed("walk_right")):
+		lr_fix = "right"
+	elif(Input.is_action_just_pressed("walk_left")):
+		if(v_current_direction != "right"): #Right dominates
+			lr_fix = "left"
+	if(Input.is_action_just_released("walk_right")):
+		if(v_current_direction == "left"):
+			lr_fix = "left"	
+	elif(Input.is_action_just_released("walk_left")):
+		if(v_current_direction == "right"):
+			lr_fix = "right"	
+	
+	
 	
 	#Change player animation
 	if(velocity.y == 0 && velocity.x == 0):
@@ -73,9 +90,9 @@ func playerAnimation(action):
 	else:
 		animation_name += str(GlobalScript.day)
 	
-	if(direction == "right"):
+	if(lr_fix == "right"):
 		animation_sprite.flip_h = false
-	elif(direction == "left"):
+	elif(lr_fix == "left"):
 		animation_sprite.flip_h = true
 		
 	if(direction == "down"):
@@ -85,7 +102,7 @@ func playerAnimation(action):
 		animation_name += "b"
 		previous_end = "b"
 	else:
-		animation_name += previous_end
+		animation_name += "f"
 	animation_sprite.play(animation_name)
 
 func changeCameraLimits(p_left:int,p_right: int, p_bottom: int, p_top: int):

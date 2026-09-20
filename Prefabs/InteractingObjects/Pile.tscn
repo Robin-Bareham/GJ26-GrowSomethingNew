@@ -10,8 +10,9 @@ size = Vector2(60, 28)
 size = Vector2(81, 61)
 
 [node name="Pile" type="Node2D" node_paths=PackedStringArray("v_object_node") groups=["interactables", "search"]]
+scale = Vector2(1.28706, 1.27289)
 script = ExtResource("1_m8t62")
-v_object_name = "Pile"
+v_object_name = "G_Ash"
 v_object_node = NodePath(".")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

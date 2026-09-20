@@ -26,22 +26,25 @@ y_sort_enabled = true
 position = Vector2(939, 424)
 
 [node name="Pile" parent="Environment" instance=ExtResource("5_21kdw")]
-v_object_name = "G_Ash"
+position = Vector2(-1385, 974)
 
 [node name="Player" parent="Environment" instance=ExtResource("1_2fjvt")]
 position = Vector2(68, 409)
 
 [node name="Tree" parent="Environment" instance=ExtResource("5_pci75")]
-position = Vector2(-1088, -93)
+position = Vector2(-824, 35)
 type = "tree03"
+nextImg = "tree03"
 
 [node name="Tree2" parent="Environment" instance=ExtResource("5_pci75")]
-position = Vector2(-413, -579)
+position = Vector2(-610, -569)
 type = "tree03"
+nextImg = "tree03"
 
 [node name="Tree3" parent="Environment" instance=ExtResource("5_pci75")]
-position = Vector2(1375, 718)
+position = Vector2(1412, 856)
 type = "tree05"
+nextImg = "tree05"
 
 [node name="Tree4" parent="Environment" instance=ExtResource("5_pci75")]
 position = Vector2(209, -631)
@@ -49,57 +52,68 @@ position = Vector2(209, -631)
 [node name="Tree5" parent="Environment" instance=ExtResource("5_pci75")]
 position = Vector2(-103, -286)
 type = "tree05"
+nextImg = "tree05"
 
 [node name="Tree6" parent="Environment" instance=ExtResource("5_pci75")]
-position = Vector2(-1329, 782)
+position = Vector2(-1283, 663)
 type = "tree05"
+nextImg = "tree05"
 
 [node name="Tree7" parent="Environment" instance=ExtResource("5_pci75")]
-position = Vector2(-729, 803)
+position = Vector2(-662, 821)
 type = "tree03"
+nextImg = "tree03"
 
 [node name="Tree8" parent="Environment" instance=ExtResource("5_pci75")]
 position = Vector2(-1276, -444)
 
 [node name="Tree9" parent="Environment" instance=ExtResource("5_pci75")]
-position = Vector2(1436, -558)
+position = Vector2(1354, -415)
 
 [node name="Tree10" parent="Environment" instance=ExtResource("5_pci75")]
 position = Vector2(786, -489)
 type = "tree05"
+nextImg = "tree04"
 
 [node name="Tree11" parent="Environment" instance=ExtResource("5_pci75")]
 position = Vector2(1481, 105)
 type = "tree03"
+nextImg = "tree03"
 
 [node name="Tree12" parent="Environment" instance=ExtResource("5_pci75")]
-position = Vector2(476, 218)
+position = Vector2(579, 314)
 type = "tree05"
+nextImg = "tree04"
 
 [node name="bush" parent="Environment" instance=ExtResource("6_ljmod")]
 position = Vector2(-927, -672)
 
 [node name="bush2" parent="Environment" instance=ExtResource("6_ljmod")]
-position = Vector2(-665, -639)
+position = Vector2(-679, -589)
 
 [node name="bush3" parent="Environment" instance=ExtResource("6_ljmod")]
-position = Vector2(-365, -681)
+position = Vector2(-407, -647)
 type = "bushes03"
+nextImg = "bushes04"
 
 [node name="bush4" parent="Environment" instance=ExtResource("6_ljmod")]
 position = Vector2(-1392, -576)
 type = "bushes03"
+nextImg = "bushes04"
 
 [node name="bush5" parent="Environment" instance=ExtResource("6_ljmod")]
 position = Vector2(-991, 41)
+nextImg = "bushes02"
 
 [node name="bush6" parent="Environment" instance=ExtResource("6_ljmod")]
 position = Vector2(671, -372)
 type = "bushes03"
+nextImg = "bushes04"
 
 [node name="bush7" parent="Environment" instance=ExtResource("6_ljmod")]
-position = Vector2(1402, 235)
+position = Vector2(1399, 159)
 type = "bushes03"
+nextImg = "bushes03"
 
 [node name="bush8" parent="Environment" instance=ExtResource("6_ljmod")]
 position = Vector2(1291, -671)
@@ -113,14 +127,17 @@ position = Vector2(726, -651)
 [node name="bush11" parent="Environment" instance=ExtResource("6_ljmod")]
 position = Vector2(459, -677)
 type = "bushes03"
+nextImg = "bushes03"
 
 [node name="bush12" parent="Environment" instance=ExtResource("6_ljmod")]
-position = Vector2(-1154, 728)
+position = Vector2(-1104, 696)
 type = "bushes03"
+nextImg = "bushes03"
 
 [node name="bush13" parent="Environment" instance=ExtResource("6_ljmod")]
-position = Vector2(-897, 775)
+position = Vector2(-810, 764)
 type = "bushes03"
+nextImg = "bushes03"
 
 [node name="minigame" parent="." instance=ExtResource("6_hkomy")]
 visible = false

@@ -41,6 +41,7 @@ func _process(delta):
 				4:
 					GlobalScript.nextState = GlobalScript.gameState.GAME
 					GlobalScript.change_state = true
+					GlobalScript.previousState = false
 				5:
 					GlobalScript.nextState = GlobalScript.gameState.CONTROLS
 					GlobalScript.previousState = false

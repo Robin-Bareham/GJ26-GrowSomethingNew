@@ -38,8 +38,8 @@ var game_end = false
 var p_nobf_py = -165.0
 var p_exitg_px = 639
 var p_exitg_py = 271
-var p_start_px = -108.0
-var p_start_py = 36
+var p_start_px = 39.0
+var p_start_py = 182.0
 
 #Camera limits per scene
 var cl_woods_l = -250

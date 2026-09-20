@@ -72,22 +72,31 @@ func manageStates():
 		"woods":
 			if(GlobalScript.activate_cutscene):
 				if(GlobalScript.day_over):
+					#End of day scripts
 					match GlobalScript.day:
 						1:
 							dia_ui.eventActivated("D1End",2,"Temp_Cutscene1")
 						2:
 							dia_ui.eventActivated("D2End",2,"Temp_Cutscene1")
+							GlobalScript.day = 3
+							var tree_list = []
+							tree_list = get_tree().get_nodes_in_group("enviro")
+							for i in tree_list.size():
+								tree_list[i].reloadTextures()
+							GlobalScript.day = 2
 						3:
 							dia_ui.eventActivated("D3End",2,"Temp_Cutscene1")
 						4: 
 							dia_ui.eventActivated("D4End",2,"Temp_Cutscene1")
 					GlobalScript.day += 1
 					GlobalScript.day_over = false
+				#Starting Cutscene
 				elif(GlobalScript.day == 1 && GlobalScript.beginning):
 					dia_ui.eventActivated("Start",2,"Temp_Cutscene1")
 					GlobalScript.beginning = false
 				GlobalScript.activate_cutscene = false
 		"grove":
+			#First time player's in the grove
 			if(GlobalScript.activate_cutscene):
 				dia_ui.eventActivated("D1Grove",2,"Temp_Cutscene1")
 				GlobalScript.activate_cutscene = false
@@ -132,9 +141,8 @@ func resetGame():
 	GlobalScript.reset_values()
 	player.position.x = GlobalScript.p_start_px
 	player.position.y = GlobalScript.p_start_py
-	GlobalScript.activate_cutscene = true
-
-
+	GlobalScript.activate_cutscene = false
+	$Environment/blindfold.setVisib(true)
 func activateMinigame():
 	if(GlobalScript.first_pile):
 		var name = "D" + str(GlobalScript.day) + "Pile"

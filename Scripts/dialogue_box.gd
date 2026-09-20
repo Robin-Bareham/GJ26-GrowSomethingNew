@@ -108,6 +108,7 @@ func progressDialogue():
 						hideBox()
 						GlobalScript.activating_minigame = true
 						GlobalScript.minigame_goal_image = v_current_pile
+						v_new_node = "HIDE"
 						return
 				#Jump to the line as stated in pos 6 (opt 1) and 7 (opt2)
 				var indexJump

@@ -6,7 +6,21 @@ extends CanvasLayer
 var timer = 0
 var timer_end
 var second = 0
+
+@onready var pileScene = load("res://Prefabs/InteractingObjects/Pile.tscn")
+var d1_pilePOS = [[-1070,493],[-1175,-168],[-678,103],[-460,-284],[-151,-25],[15,-422],[607,-542],[466,-234],[530,468],[809,143],[971,-371],[1028,439],[1292,-55]]
+var d1_pileOpts = ["G_Ash","G_Ash","G_Ash","G_Bark","G_Cloth"]
+var d2_pilePOS = [[-1238,-139],[-631,153],[-418,590],[-294,-412],[216,-21],[466,-568],[759,526],[971,-157],[1386,274]]
+var d2_pileOpts = ["G_Ash","G_Ash","G_Crown","G_Cloth"]
+var d3_pilePOS = [[-749,245],[-507,-115],[137,-256],[450,189],[1031,28]]
+var d3_pileOpts = ["G_Closed","G_Closed","G_Closed","G_Crown","G_Cloth"]
+var d4_pilePOS = [[79,132]]
+var d4_pileOpts = ["G_Final"]
 var pile_list = []
+var enrio_list = []
+
+
+
 
 var energy
 
@@ -31,26 +45,43 @@ func _process(delta):
 				GlobalScript.start_timer = false
 				GlobalScript.timer_active = true
 
+## WHEN THE PLAYER ENTERS THE GROVE
 func resetTimer():
 	#When the player enters the grove.
 	timer = 0
-	if(GlobalScript.day == 1):
-		timer_end = GlobalScript.max_time
-		GlobalScript.current_energy = GlobalScript.max_energy
-	elif(GlobalScript.day == 2):
-		timer_end = GlobalScript.max_time
-		GlobalScript.current_energy = GlobalScript.max_energy - 20
-	elif(GlobalScript.day == 3):
-		timer_end = GlobalScript.max_time/2
-		GlobalScript.current_energy = GlobalScript.max_energy/2
-	elif(GlobalScript.day == 4):
-		timer_end = GlobalScript.max_time/2
-		GlobalScript.current_energy = 10 #Can only do one search
-
+	var current_list = []
+	var current_pileOpts = []
+	match GlobalScript.day:
+		1:
+			timer_end = GlobalScript.max_time
+			GlobalScript.current_energy = GlobalScript.max_energy
+			current_list = d1_pilePOS
+			current_pileOpts = d1_pileOpts
+		2:
+			timer_end = GlobalScript.max_time
+			GlobalScript.current_energy = GlobalScript.max_energy - 20
+			current_list = d2_pilePOS
+			current_pileOpts = d2_pileOpts
+		3:
+			timer_end = GlobalScript.max_time/2
+			GlobalScript.current_energy = GlobalScript.max_energy/2
+			current_list = d3_pilePOS
+			current_pileOpts = d3_pileOpts
+		4:
+			timer_end = GlobalScript.max_time/2
+			GlobalScript.current_energy = 10 #Can only do one search
+			current_list = d4_pilePOS
+			current_pileOpts = d4_pileOpts
+	for i in current_list.size():
+		var newPile = pileScene.instantiate()
+		newPile.setPosition(current_list[i][0],current_list[i][1])
+		newPile.setName(current_pileOpts[randi() % current_pileOpts.size()])
+		newPile.setImage()
+		get_tree().current_scene.get_node("Environment").add_child(newPile)
 	#Update Pile Images
-	pile_list = get_tree().get_nodes_in_group("search")
-	for i in pile_list.size():
-		pile_list[i].setImage()
+	#pile_list = get_tree().get_nodes_in_group("search")
+	#for i in pile_list.size():
+		#pile_list[i].setImage()
 	
 func changeBg(newBg: String):
 	var temp = "res://Assets/TempAssets/" + newBg + ".png"
@@ -59,4 +90,4 @@ func changeBg(newBg: String):
 func hideBg():
 	bg.hide()
 func showBg():
-	bg.show()
+	bg.show()	
