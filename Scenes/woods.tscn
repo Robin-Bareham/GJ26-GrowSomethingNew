@@ -1,13 +1,17 @@
-[gd_scene load_steps=10 format=4 uid="uid://dt1jd6r8s7g8a"]
+[gd_scene load_steps=14 format=4 uid="uid://dt1jd6r8s7g8a"]
 
 [ext_resource type="Script" uid="uid://q8xk1303vajw" path="res://Scripts/main.gd" id="1_1kwb7"]
 [ext_resource type="TileSet" uid="uid://dg5ratrdincof" path="res://Assets/Styles/temp_tiles.tres" id="2_bmgl1"]
 [ext_resource type="PackedScene" uid="uid://ik2o0bqkpr7d" path="res://Prefabs/bush.tscn" id="6_1kwb7"]
 [ext_resource type="PackedScene" uid="uid://bcysirtic5rqu" path="res://Prefabs/InteractingObjects/blindfold.tscn" id="6_bmgl1"]
 [ext_resource type="PackedScene" uid="uid://b4f1xuf74cag6" path="res://Scenes/player.tscn" id="6_v6cek"]
+[ext_resource type="Script" uid="uid://b22vccuw74igu" path="res://Scripts/scripted.gd" id="7_bmgl1"]
 [ext_resource type="PackedScene" uid="uid://ddftgguhn3vko" path="res://Scenes/dialogue_box.tscn" id="7_mdopd"]
 [ext_resource type="PackedScene" uid="uid://v4walcfe61nf" path="res://Prefabs/tree.tscn" id="7_sgtcd"]
 [ext_resource type="PackedScene" uid="uid://d3k4r1wr4q6uh" path="res://Scenes/constant_ui.tscn" id="8_2opmi"]
+[ext_resource type="PackedScene" uid="uid://bbwwmfpn0xp0b" path="res://Scenes/menu.tscn" id="10_mqq3u"]
+[ext_resource type="PackedScene" uid="uid://dww0mwgtu4li8" path="res://Scenes/controls.tscn" id="11_pwe2a"]
+[ext_resource type="PackedScene" uid="uid://d1kr0w51ahbsc" path="res://Scenes/pause.tscn" id="12_v6cek"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1gob"]
 size = Vector2(486.5, 144)
@@ -31,7 +35,7 @@ position = Vector2(863, 546)
 scale = Vector2(0.431111, 0.44)
 
 [node name="Player" parent="Environment" instance=ExtResource("6_v6cek")]
-position = Vector2(-108, 13)
+position = Vector2(-437, 46)
 
 [node name="Tree2" parent="Environment" instance=ExtResource("7_sgtcd")]
 position = Vector2(1248, 83)
@@ -73,20 +77,34 @@ position = Vector2(381, 246)
 [node name="bush9" parent="Environment" instance=ExtResource("6_1kwb7")]
 position = Vector2(531, 337)
 
-[node name="ToGrove" type="Area2D" parent="."]
+[node name="ToGrove" type="Area2D" parent="." groups=["scripted"]]
+script = ExtResource("7_bmgl1")
+event_name = "Grove"
+instant = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ToGrove"]
-position = Vector2(1154.75, -62)
+position = Vector2(1154, -149)
 shape = SubResource("RectangleShape2D_v1gob")
 
-[node name="Lake" type="Area2D" parent="."]
+[node name="Lake" type="Area2D" parent="." groups=["scripted"]]
+script = ExtResource("7_bmgl1")
+event_name = "Lake"
+starting_bg = "Temp_Lake"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Lake"]
-polygon = PackedVector2Array(39, -6, 267, 373, 395, 506, 1080, 1037, 924, 1280, -303, 399)
+polygon = PackedVector2Array(39, -6, 44, 203, 112, 203, 124, 323, 372, 529, 372, 649, 691, 916, 700, 1060, -303, 399)
 
 [node name="ConstantUI" parent="." instance=ExtResource("8_2opmi")]
 
 [node name="DialogueBox" parent="." instance=ExtResource("7_mdopd")]
+
+[node name="menu" parent="." instance=ExtResource("10_mqq3u")]
+visible = false
+
+[node name="controls" parent="." instance=ExtResource("11_pwe2a")]
+visible = false
+
+[node name="Pause" parent="." instance=ExtResource("12_v6cek")]
 visible = false
 
 [connection signal="body_entered" from="ToGrove" to="." method="_on_to_grove_body_entered"]

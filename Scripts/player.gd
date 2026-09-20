@@ -16,13 +16,14 @@ func _ready():
 
 # Update Function
 func _physics_process(delta):
-	if(GlobalScript.can_move):
-		playerMovement(delta)
-		has_moved = true
-	else:
-		if(has_moved):
-			playerAnimation(0)
-			has_moved = false
+	if(GlobalScript.currentState == GlobalScript.gameState.GAME):
+		if(GlobalScript.can_move):
+			playerMovement(delta)
+			has_moved = true
+		else:
+			if(has_moved):
+				playerAnimation(0)
+				has_moved = false
 
 func playerMovement(dt):
 	

@@ -1,0 +1,109 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1kr0w51ahbsc"]
+
+[ext_resource type="Script" uid="uid://b7yfvbsykgvci" path="res://Scripts/menu.gd" id="1_l2mpd"]
+[ext_resource type="StyleBox" uid="uid://dtk484ihyqfbi" path="res://Assets/Styles/SBF_deselected.tres" id="2_5a6ek"]
+
+[node name="Pause" type="CanvasLayer"]
+script = ExtResource("1_l2mpd")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.236784, 0.334107, 0.151257, 1)
+
+[node name="Title" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1212.0
+offset_bottom = 277.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 100
+text = "PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -380.0
+offset_right = 480.0
+offset_bottom = 380.0
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 40
+
+[node name="Continue" type="Panel" parent="MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_5a6ek")
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/GridContainer/Continue"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MarginContainer/GridContainer/Continue/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Resume"
+
+[node name="PControls" type="Panel" parent="MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_5a6ek")
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/GridContainer/PControls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MarginContainer/GridContainer/PControls/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Controls"
+
+[node name="Menu" type="Panel" parent="MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_5a6ek")
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/GridContainer/Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MarginContainer/GridContainer/Menu/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Menu"
+
+[connection signal="mouse_entered" from="MarginContainer/GridContainer/Continue" to="." method="_on_continue_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/GridContainer/Continue" to="." method="_on_continue_mouse_exited"]
+[connection signal="mouse_entered" from="MarginContainer/GridContainer/PControls" to="." method="_on_p_controls_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/GridContainer/PControls" to="." method="_on_p_controls_mouse_exited"]
+[connection signal="mouse_entered" from="MarginContainer/GridContainer/Menu" to="." method="_on_menu_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/GridContainer/Menu" to="." method="_on_menu_mouse_exited"]

@@ -3,7 +3,6 @@ extends CanvasLayer
 @onready var v_root = $"."
 @onready var v_box_container = $BoxContainer
 @onready var v_text = $BoxContainer/TextContainer/HBoxContainer/Text
-@onready var v_image = $Image
 @onready var v_next = $BoxContainer/TextContainer/HBoxContainer/Next
 @onready var v_name = $BoxContainer/MarginContainer/Name
 
@@ -19,6 +18,7 @@ var v_current_dialogue = []
 var v_current_line = -1
 var v_current_node #The object we're interacting with if applicable
 var v_new_node = ""
+var v_new_item = ""
 #Option Dialogues
 var v_current_question = 0
 var v_opt1 = false
@@ -32,9 +32,11 @@ var v_current_pile = ""
 @onready var v_interaction_hb = get_tree().current_scene.get_node("Environment").get_node("Player").get_node("Interaction_HB")
 @onready var v_bg = get_tree().current_scene.get_node("ConstantUI")
 signal change_node(type: String)
+signal change_item(type: String)
 
 func _ready():
 	v_interaction_hb.dialogue_activation.connect(boxActivated)
+	v_interaction_hb.script_activation.connect(eventActivated)
 	v_interaction_hb.send_object.connect(receiveNode)
 	hideBox()
 	pass
@@ -59,6 +61,9 @@ func hideBox():
 	if(v_new_node!= ""):
 		change_node.emit(v_new_node)
 		v_new_node = ""
+	if(v_new_item!= ""):
+		change_item.emit(v_new_item)
+		v_new_item = ""
 
 func showBox(object: String):
 	#Set statuses to true
@@ -130,19 +135,6 @@ func optActivated():
 	v_option1_panel.get_node("Opt1Text").text = v_current_dialogue[v_current_line][4]
 	v_option2_panel.get_node("Opt2Text").text = v_current_dialogue[v_current_line][5]
 	v_option_container.show()
-	
-	pass
-
-func editImages():
-	#Gets style box
-	var style_box = v_image.get_theme_stylebox("panel")
-	#Creats path to icon
-	var temp_path = "res://Assets/Icons/" + str(v_current_dialogue[v_current_line][0]) + ".png"
-	#Updates stylebox
-	if(style_box is StyleBoxTexture):
-		style_box.texture = load(temp_path)
-		v_image.add_theme_stylebox_override("panel",style_box) #Updates Image
-	pass
 
 func nextLine(jump: int):
 	if(jump > -1):
@@ -155,45 +147,52 @@ func nextLine(jump: int):
 	v_next.text = v_current_dialogue[v_current_line][3]
 	#Change Name
 	v_name.text = v_current_dialogue[v_current_line][0]
-	#Change Icon
-	#editImages()
 	#Checks for extra changes
 	alternateText()
 	
 func alternateText():
-	#If options are to be activated
+	## If options are to be activated ##
 	v_option_container.hide()
+	
+	## If it's going to be chosing an opition
 	if(v_current_dialogue[v_current_line][1] == 1):
 		optActivated()
-	#If the dialogue edits a node or item
+		
+	##If the dialogue edits a node or item
 	elif(v_current_dialogue[v_current_line][1] == 2):
-		if(v_current_dialogue[v_current_line][4] != "N/A"): #If there's an item to change
-			changingItem(v_current_dialogue[v_current_line][4])
+		## Changing an item
+		if(v_current_dialogue[v_current_line][4] != "N/A"):
+			v_new_item = v_current_dialogue[v_current_line][4]
+		## Changing node
 		if(v_current_dialogue[v_current_line][5] != "N/A"):
 			v_new_node = v_current_dialogue[v_current_line][5]
-	#If the dialogue changes scene
+			
+	##If the dialogue changes scene
 	elif(v_current_dialogue[v_current_line][1] == 3):
 		GlobalScript.transition_scene = true
 		GlobalScript.next_scene = v_current_dialogue[v_current_line][5]
+		
+	##Change background image
 	elif(v_current_dialogue[v_current_line][1] == 4):
 		#Change bg
 		v_bg.changeBg(v_current_dialogue[v_current_line][4])
-
-func changingItem(item: String):
-	if(GlobalScript.items[item]):
-		GlobalScript.items[item] = false
-	else:
-		GlobalScript.items[item] = true
-	v_new_node = v_current_dialogue[v_current_line][5]
 
 #SIGNALS
 
 func receiveNode(type: Node2D):
 	v_current_node = type
 
-func boxActivated(type: String, dia: int):
+func boxActivated(version: String, dia: int):
 	
 	if(!v_currently_active):
 		v_dia_type = dia
-		showBox(type)
+		showBox(version)
 		nextLine(-1)
+	
+func eventActivated(version: String, dia: int, bg: String ):
+	if(!v_currently_active):
+		v_dia_type = dia
+		showBox(version)
+		nextLine(-1)
+		v_bg.changeBg(bg)
+		v_bg.showBg()

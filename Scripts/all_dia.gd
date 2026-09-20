@@ -2,21 +2,21 @@ extends Node
 
 var dia_open = false
 var dia_closing = false
-var scripted = false
 
 var dia_dic = {
 	"NoBF": [["Elm",0,"The forest over there looks bright, it's giving me a headache even from here.",">"],["Elm",0,"I wonder if there's something around here that'll help.","v"]],
 	"Crate" : [["Elm",0,"Text",">"],["Elm",0,"Text 2","v"]],
 	"Lever" : [["Elm",1,"Option",">","Opt1","opt2",1,2],["Elm",0,"Option1","v"],["Elm",0,"Option2","v"]],
 	"Lake" : [["Elm",0,"This is a lake, I'm going to look into it.","v"]],
-	"Blindfold" : [["Elm",2,"This looks good, should protect my eyes nicely.","v","Blindfold","Blindfold2"]],
+	"Blindfold" : [["Elm",2,"This looks good, should protect my eyes nicely.","v","Blindfold","HIDE"]],
 	"Blindfold2" : [["Elm",0,"There's nothing there, trust.","v"]],
 	"G_Ash": [["Elm",0,"Nothing here but ash...","v"]],
 	"G_Bark": [["Elm",0,"Burnt bark- I know how painful that is...","v"]],
 	"G_Closed": [["Elm",0,"More of these things? They look... uncanny.","v"]],
 	"G_Cloth": [["Elm",0,"We would spent time together as a grove making clothes for travlers...","v"]],
 	"G_Crown": [["Elm",0,"A burned flowercrown, I can only hope the saplings got out safely.","v"]],
-	"G_Final": [["Elm",0,"It's... looking at me...",">"],["Elm",0,"...",">"],["Elm",0,"I can't keep doing this.","v"]]
+	"G_Final": [["Elm",0,"It's... looking at me...",">"],["Elm",0,"...",">"],["Elm",0,"I can't keep doing this.","v"]],
+	"Empty" : [["Elm",0,"Already searched it.","v"]]
 }
 
 var scripted_dia = {

@@ -1,8 +1,15 @@
 extends Node
 
+var just_started = true
+
 var can_move = true
-enum gameState{MENU,GAME,PAUSE,PUZZLE}
+enum gameState{MENU,GAME,PAUSE,CONTROLS}
 var currentState: gameState
+var nextState: gameState
+var previousState = true
+var change_state = false
+
+
 
 var minigame_active = false
 var activating_minigame = false
@@ -19,16 +26,19 @@ var start_timer = false
 var timer_active = false
 
 # Possible scenes: woods, grove
-var current_scene = "woods"
 var transition_scene = false
 var next_scene = ""
+var current_scene = "woods"
 var previous_scene = "woods"
 var game_end = false
 
+
 #Transition Positions
-var p_nobf_py = -168.0
+var p_nobf_py = -165.0
 var p_exitg_px = 639
 var p_exitg_py = 271
+var p_start_px = -108.0
+var p_start_py = 36
 
 #Camera limits per scene
 var cl_woods_l = -250
