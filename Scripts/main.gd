@@ -117,7 +117,6 @@ func transition(type: String):
 ########## ALL THE SCRIPTED FUNCTIONS
 
 func activateScripted(startbg: String,diaOpt: String):
-	dia_ui.changeBoxType(true)
 	dia_ui.boxActivated(diaOpt,2)
 	const_ui.changeBg(startbg)
 	const_ui.showBg()

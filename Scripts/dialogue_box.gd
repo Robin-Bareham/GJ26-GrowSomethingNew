@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var v_text = $BoxContainer/TextContainer/HBoxContainer/Text
 @onready var v_image = $Image
 @onready var v_next = $BoxContainer/TextContainer/HBoxContainer/Next
+@onready var v_name = $BoxContainer/MarginContainer/Name
 
 @onready var v_option_container = $BoxContainer/TextContainer/OptionContainer
 @onready var v_option1_panel = $BoxContainer/TextContainer/OptionContainer/HBoxContainer/Opt1 
@@ -55,7 +56,6 @@ func hideBox():
 	v_opt2 = false
 	v_opt_active = false
 	v_bg.hideBg()
-	changeBoxType(false)
 	if(v_new_node!= ""):
 		change_node.emit(v_new_node)
 		v_new_node = ""
@@ -153,8 +153,10 @@ func nextLine(jump: int):
 	v_text.text = v_current_dialogue[v_current_line][2]
 	#Change Next symbol
 	v_next.text = v_current_dialogue[v_current_line][3]
+	#Change Name
+	v_name.text = v_current_dialogue[v_current_line][0]
 	#Change Icon
-	editImages()
+	#editImages()
 	#Checks for extra changes
 	alternateText()
 	
@@ -183,16 +185,6 @@ func changingItem(item: String):
 	else:
 		GlobalScript.items[item] = true
 	v_new_node = v_current_dialogue[v_current_line][5]
-
-func changeBoxType(version: bool):
-	#If it's a cutscene, no image, box centred
-	if(version):
-		v_box_container.position.x = 195
-		v_image.hide()
-	#Else, box to side and image visible
-	else:
-		v_box_container.position.x = 337
-		v_image.show()
 
 #SIGNALS
 
