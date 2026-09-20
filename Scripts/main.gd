@@ -73,6 +73,7 @@ func manageStates():
 			if(GlobalScript.activate_cutscene):
 				if(GlobalScript.day_over):
 					#End of day scripts
+					AllDia.lake_interacted = false
 					match GlobalScript.day:
 						1:
 							dia_ui.eventActivated("D1End",2,"Temp_Cutscene1")
@@ -143,6 +144,12 @@ func resetGame():
 	player.position.y = GlobalScript.p_start_py
 	GlobalScript.activate_cutscene = false
 	$Environment/blindfold.setVisib(true)
+	var tree_list = []
+	tree_list = get_tree().get_nodes_in_group("enviro")
+	for i in tree_list.size():
+		tree_list[i].reloadTextures()
+	
+	
 func activateMinigame():
 	if(GlobalScript.first_pile):
 		var name = "D" + str(GlobalScript.day) + "Pile"

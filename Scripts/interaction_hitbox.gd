@@ -5,6 +5,7 @@ var area_root
 var v_in_search = false
 var v_in_scripted = false
 var v_bg = ""
+var v_lake_dia = ""
 
 
 @onready var v_dialogue_box = get_tree().current_scene.get_node("DialogueBox")
@@ -55,8 +56,9 @@ func _on_area_entered(area: Area2D) -> void:
 				#Change position of player
 				get_parent().position.y = GlobalScript.p_nobf_py
 		else:
-			v_interractable_list.append(area.getName())
-			v_bg = area.getBg()
+			# LAKE INTERACTIONS DIFFERENCECS
+			v_lake_dia = decidingLake()
+			v_interractable_list.append(v_lake_dia)
 			v_in_scripted = true
 	#Not a scripted AREA
 	else:
@@ -74,7 +76,7 @@ func _on_area_exited(area: Area2D) -> void:
 	var index = -1
 	if(area.is_in_group("scripted")):
 		v_in_scripted = false
-		index = v_interractable_list.find(area.getName())
+		index = v_interractable_list.find(v_lake_dia)
 		v_bg = ""
 	#NOT A SCRIPTED AREA
 	else:
@@ -86,6 +88,12 @@ func _on_area_exited(area: Area2D) -> void:
 		v_interractable_list.remove_at(index)
 		
 func changeNode(type:String):
+	if(type == "LAKE"):
+		
+		v_interractable_list.remove_at(v_interractable_list.find(v_lake_dia))
+		v_lake_dia = "LakeSil"
+		v_interractable_list.append(v_lake_dia)
+		return
 	var index = v_interractable_list.find(area_root.getName())
 	if(type == "HIDE"):
 		if index != -1:
@@ -98,6 +106,8 @@ func changeNode(type:String):
 		v_interractable_list.append(area_root.getName())
 	
 func changeItem(type: String):
+	if(type == "Blindfold"):
+		AllDia.lake_interacted = false
 	if(GlobalScript.items[type]):
 		GlobalScript.items[type] = false
 	else:
@@ -108,3 +118,26 @@ func transition(type: String):
 	GlobalScript.next_scene = type
 	GlobalScript.change_scene()
 	
+func decidingLake():
+	var p_name = "LakeSil"
+	match GlobalScript.day:
+		1:
+			if(GlobalScript.items["Blindfold"]):
+				p_name = "D1Lake2"
+				v_bg = "Lake02"
+			else:
+				p_name = "D1Lake"
+				v_bg = "Lake01"
+		2:
+			p_name = "D2Lake"
+			v_bg = "Lake03"
+		3:
+			p_name = "D3Lake"
+			v_bg = "Lake04"
+		4:
+			p_name = "D4Lake"
+			v_bg = "Lake05"
+	if(AllDia.lake_interacted):
+		p_name = "LakeSil"
+	AllDia.lake_interacted = true
+	return p_name				

@@ -148,7 +148,7 @@ color = Color(0, 0, 0, 0.52549)
 
 [node name="Goal" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_lx35w")
-position = Vector2(1526, 383)
+position = Vector2(983, 535)
 scale = Vector2(1.77642, 1.80081)
 texture = ExtResource("2_puep3")
 script = ExtResource("2_id8w1")

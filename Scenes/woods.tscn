@@ -105,7 +105,8 @@ event_name = "Lake"
 starting_bg = "Temp_Lake"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Lake"]
-polygon = PackedVector2Array(39, -6, 44, 203, 112, 203, 124, 323, 372, 529, 372, 649, 691, 916, 700, 1060, -303, 399)
+position = Vector2(-2, 1)
+polygon = PackedVector2Array(39, -6, 44, 203, 112, 203, 124, 323, 372, 529, 372, 649, 691, 916, 700, 1060, -303, 399, -124, -745, 2344, -391, 2110, 274, 1878, 176, 1828, 403, 1621, 444, 1619, 376, 1552, 364, 1555, 311, 1497, 298, 1490, 143, 1559, 139, 1555, 75, 2032, 86, 1858, -417, -58, -541)
 
 [node name="Lighting" type="Node2D" parent="."]
 

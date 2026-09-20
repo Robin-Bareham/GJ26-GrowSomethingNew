@@ -14,6 +14,20 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.236784, 0.334107, 0.151257, 1)
 
+[node name="Title2" type="Label" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 37.0
+offset_top = -259.0
+offset_right = 1249.0
+offset_bottom = 18.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 50
+text = "This game has no save data, returning to 
+the menu will reset your progress."
+vertical_alignment = 1
+
 [node name="Title" type="Label" parent="."]
 anchors_preset = 1
 anchor_left = 1.0

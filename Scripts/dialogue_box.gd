@@ -80,6 +80,11 @@ func showBox(object: String):
 		v_current_pile = object #reusing name specifically for end of game
 	v_root.show()
 	v_currently_active = true
+	
+	if(object == "LakeSil"):
+		v_root.hide()
+	
+	
 	pass
 
 func progressDialogue():

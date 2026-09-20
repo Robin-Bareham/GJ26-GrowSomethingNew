@@ -93,7 +93,7 @@ func resetTimer():
 		#pile_list[i].setImage()
 	
 func changeBg(newBg: String):
-	var temp = "res://Assets/TempAssets/" + newBg + ".png"
+	var temp = "res://Assets/Cutscenes/" + newBg + ".png"
 	bg.texture = load(temp)
 
 func hideBg():

@@ -3,6 +3,10 @@ extends Node
 var dia_open = false
 var dia_closing = false
 
+var lake_interacted = false
+
+
+
 var dia_dic = {
 	"NoBF": [["Elm",0,"That looks like the way to the grove though...",">"],["Elm",0,"My eyes feel weird from it's brightness.",">"],["Elm",0,"I wonder if there's something around here that'll help.","v"]],
 	"Crate" : [["Elm",0,"Text",">"],["Elm",0,"Text 2","v"]],
@@ -24,8 +28,6 @@ var scripted_dia = {
 	"D2Pile" : [["Elm",0,"Huh, it's a bit easier to see? I wouldn't have thought anything's changed...","v"]],
 	"D3Pile" : [["Elm",0,"...",">"],["Elm",0,"Is it the flowers? Am I... seing through them?",">"],["Elm",0,"Weird.","v"]],
 	"D4Pile" : [["Elm",0,"It's surprisingly clear, though I don't feel up to this...",">"],["Elm",0,"I'll at least see what's under here.","v"]],
-	"test" : [["Elm",0,"Well this is weird.",">"],["Elm",4,"There's going to be a new image.",">","Temp_Cutscene2"],["Elm",0,"Cool new image!","v"]],
-	"Lake" : [["Elm",0,"My reflection? Why... why are those flowers staring back at me?","v"]],
 	"D1End" : [["Elm",0,"Nothing... just piles of ash and remains.",">"],["Elm",0,"For seemingly nothing, I feel quite tired.",">"],["Elm",4,"I can continue searching later, a quick nap should be fine...",">","Temp_Cutscene2"],["",0,"...","v"]],
 	"D2End" : [["Elm",0,"I should stop, my eyes are starting to hurt.",">"],["Elm",4,"At least things were'nt as dark as last time,, but its still so blurry.",">","Temp_Cutscene2"],["Elm",0,"I guess I'll keep searching later...","v"]],
 	"D3End" : [["Elm",0,"There's so many of those flowers.",">"],["Elm",4,"They're all budding like the ones by my head...",">","Temp_Cutscene2"],["Elm",4,"No matter how I pull it, they seem to be attached to me...",">","Temp_Cutscene1"],["Elm",4,"Considering their growth, I should probably attempt to remove them.",">","Temp_Cutscene2"],["Elm",0,"Though- *yawn* maybe later I'm exhaused again...","v"]],
@@ -34,8 +36,13 @@ var scripted_dia = {
 	["",4,"Elm?",">","Temp_Cutscene1"],["Lavender",4,"What... what happened to you?","v","Temp_Cutscene2"]],
 	"D1Grove" : [["Elm",0,"No...",">"],["Elm",0,"The Grove it's...",">"],["Elm",4,"Empty...",">","Temp_Cutscene2"],["Elm",0,"...",">"],["Elm",4,"Piles of ash? Maybe...",">","Temp_Cutscene1"],["Elm",0,"I should search around, maybe I'll find things in the ash piles.","v"]],
 	"Start" : [["",0,"...",">"],["",4,"...?",">","Temp_Cutscene2"],["Elm",0,"What... where am I?",">"],["Elm",4,"Why is everyhing so blurry?",">","Temp_Cutscene1"],["Elm",4,"WHAT IS THAT?!",">","Temp_Cutscene2"],["Elm",0,"Get it off get it off get it off get it off get it-",">"],
-	["Elm",4,"It's not budging...",">","Temp_Cutscene1"],["Elm",4,"The grove! Oh no I've got to make sure everyone's okay.","v","Temp_Cutscene2"]]
-	
+	["Elm",4,"It's not budging...",">","Temp_Cutscene1"],["Elm",4,"The grove! Oh no I've got to make sure everyone's okay.","v","Temp_Cutscene2"]],
+	"D1Lake" : [["Elm",0,"Those scars... I'm sure I just got burned... how long have I been out for?",">"], ["Elm",0,"...",">"],["Elm",2,"Weird...","v","N/A","LAKE"]],
+	"D1Lake2" : [["Elm",2,"Ah, that's a bit easier to look through. The water's glare doesn't hurt as much.","v","N/A","LAKE"]],
+	"D2Lake" : [["Elm",0,"It's... grown? Are those vines?",">"],["Elm",0,"They feel like vines...",">"],["Elm",2,"Now it's staring at me through the reflection...","v","N/A","LAKE"]],
+	"D3Lake" : [["Elm",0,"Are these horns? Ow-",">"],["Elm",0,"They're thorny like those roots.",">"],["Elm",2,"Urgh- I'm just going to stop, this is giving me a headache.","v","N/A","LAKE"]],
+	"D4Lake" : [["Elm",0,"...",">"],["Elm",2,"Can this please be a bad dream...","v","N/A","LAKE"]],
+	"LakeSil" : [["Elm",0,"...","v"]]
 }
 
 var pile_dic = {
