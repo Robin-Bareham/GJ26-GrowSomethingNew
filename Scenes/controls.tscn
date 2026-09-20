@@ -14,6 +14,22 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.236784, 0.334107, 0.151257, 1)
 
+[node name="Title2" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 4.0
+offset_top = 184.0
+offset_right = 4.0
+offset_bottom = 741.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 100
+text = "WASD - Move / select option in dialogue
+E - Interact / Confirm option
+Q - pause
+mouse - drag items + select menu btns"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Title" type="Label" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
