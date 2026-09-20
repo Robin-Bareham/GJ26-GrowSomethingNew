@@ -4,6 +4,8 @@ extends CanvasLayer
 @onready var bg = $bg
 @onready var clock = $clock
 
+@onready var lighting = get_tree().current_scene.get_node("Lighting")
+
 var timer = 0
 var timer_end
 var second = 0
@@ -34,8 +36,10 @@ func _process(delta):
 					GlobalScript.day_over = true
 				elif(timer >= (timer_end/3)*2):
 					clock.texture = evening_texture
+					lighting.showLight("evening")
 				elif(timer >= (timer_end/3)):
 					clock.texture = noon_texture
+					lighting.showLight("noon")
 				#Visual change of shaders???
 				second = int(timer)
 				label.text = str(second)
@@ -53,6 +57,7 @@ func resetTimer():
 	timer = 0
 	clock.texture = day_texture
 	clock.show()
+	lighting.showLight("day")
 	var current_list = []
 	var current_pileOpts = []
 	match GlobalScript.day:

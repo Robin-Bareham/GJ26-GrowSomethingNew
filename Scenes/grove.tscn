@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dkkyfvqf35c0b"]
+[gd_scene load_steps=19 format=4 uid="uid://dkkyfvqf35c0b"]
 
 [ext_resource type="TileSet" uid="uid://dg5ratrdincof" path="res://Assets/Styles/temp_tiles.tres" id="1_0a58k"]
 [ext_resource type="PackedScene" uid="uid://b4f1xuf74cag6" path="res://Scenes/player.tscn" id="1_2fjvt"]
@@ -9,10 +9,18 @@
 [ext_resource type="PackedScene" uid="uid://cqqgdlvutgwu7" path="res://Scenes/minigame.tscn" id="6_hkomy"]
 [ext_resource type="PackedScene" uid="uid://ik2o0bqkpr7d" path="res://Prefabs/bush.tscn" id="6_ljmod"]
 [ext_resource type="PackedScene" uid="uid://d3k4r1wr4q6uh" path="res://Scenes/constant_ui.tscn" id="7_3wb70"]
+[ext_resource type="Script" uid="uid://cnu8pst5bt32g" path="res://Scenes/lighting.gd" id="7_lreth"]
+[ext_resource type="Texture2D" uid="uid://dixcgqwg7eair" path="res://Assets/Lighting/testLightShape.png" id="7_ofg1g"]
+[ext_resource type="Texture2D" uid="uid://djj7ndvs7r6l1" path="res://Assets/Lighting/spotlight.png" id="8_lreth"]
 [ext_resource type="PackedScene" uid="uid://bbwwmfpn0xp0b" path="res://Scenes/menu.tscn" id="10_w2feb"]
 [ext_resource type="PackedScene" uid="uid://d1kr0w51ahbsc" path="res://Scenes/pause.tscn" id="11_uqjfs"]
 [ext_resource type="PackedScene" uid="uid://dww0mwgtu4li8" path="res://Scenes/controls.tscn" id="12_nsnxl"]
 [ext_resource type="PackedScene" uid="uid://bwnhmpho68e5u" path="res://Scenes/end.tscn" id="13_nsnxl"]
+
+[sub_resource type="Gradient" id="Gradient_31wnx"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ebwqh"]
+gradient = SubResource("Gradient_31wnx")
 
 [node name="Grove" type="Node2D"]
 script = ExtResource("1_uwyuk")
@@ -138,6 +146,227 @@ nextImg = "bushes03"
 position = Vector2(-810, 764)
 type = "bushes03"
 nextImg = "bushes03"
+
+[node name="Lighting" type="Node2D" parent="."]
+script = ExtResource("7_lreth")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Lighting"]
+color = Color(0.571443, 0.702527, 0.687514, 1)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Lighting"]
+color = Color(0.658339, 0.65834, 0.65834, 1)
+energy = 0.43
+
+[node name="Noon" type="Node2D" parent="Lighting"]
+visible = false
+
+[node name="PointLight2D" type="PointLight2D" parent="Lighting/Noon"]
+position = Vector2(513, 643)
+scale = Vector2(2.67525, 1.73227)
+color = Color(0.711572, 0.909289, 0.954666, 1)
+energy = 0.15
+shadow_enabled = true
+texture = ExtResource("7_ofg1g")
+texture_scale = 1.2
+height = 71.0
+
+[node name="PointLight2D4" type="PointLight2D" parent="Lighting/Noon"]
+position = Vector2(1127, 230)
+scale = Vector2(2.67525, 1.73227)
+color = Color(0.479464, 0.910904, 0.936851, 1)
+energy = 1.46
+shadow_enabled = true
+texture = ExtResource("7_ofg1g")
+texture_scale = 1.2
+height = 71.0
+
+[node name="PointLight2D2" type="PointLight2D" parent="Lighting/Noon"]
+position = Vector2(1406, 929)
+scale = Vector2(2.67525, 1.73227)
+color = Color(0.538873, 0.899211, 0.939697, 1)
+energy = 0.15
+shadow_enabled = true
+texture = ExtResource("7_ofg1g")
+texture_scale = 1.2
+height = 71.0
+
+[node name="PointLight2D3" type="PointLight2D" parent="Lighting/Noon"]
+position = Vector2(1857, 668)
+scale = Vector2(2.67525, 1.73227)
+color = Color(0.656456, 0.881218, 0.872501, 1)
+energy = 1.01
+shadow_enabled = true
+texture = ExtResource("7_ofg1g")
+texture_scale = 1.2
+height = 71.0
+
+[node name="Spotlight" type="PointLight2D" parent="Lighting/Noon"]
+position = Vector2(1855, -211)
+rotation = -0.125114
+scale = Vector2(0.366174, 0.683843)
+color = Color(0.560254, 0.899974, 0.904043, 1)
+energy = 0.28
+shadow_enabled = true
+texture = ExtResource("8_lreth")
+texture_scale = 1.2
+height = 71.0
+
+[node name="Spotlight2" type="PointLight2D" parent="Lighting/Noon"]
+position = Vector2(494, 9)
+rotation = -0.0541101
+scale = Vector2(0.366174, 0.683843)
+color = Color(0.610319, 0.885643, 0.962408, 1)
+energy = 0.28
+shadow_enabled = true
+texture = ExtResource("8_lreth")
+texture_scale = 1.2
+height = 71.0
+
+[node name="Fade" type="PointLight2D" parent="Lighting/Noon"]
+position = Vector2(1088.38, 369.151)
+rotation = 4.70663
+scale = Vector2(34.7276, 57.766)
+color = Color(0.0708263, 0.183757, 0.265559, 1)
+energy = 1.54
+texture = SubResource("GradientTexture2D_ebwqh")
+
+[node name="Day" type="Node2D" parent="Lighting"]
+visible = false
+
+[node name="PointLight2D" type="PointLight2D" parent="Lighting/Day"]
+position = Vector2(78, 616)
+scale = Vector2(2.67525, 1.73227)
+color = Color(0.895232, 0.873094, 0.758224, 1)
+energy = 1.46
+shadow_enabled = true
+texture = ExtResource("7_ofg1g")
+texture_scale = 1.2
+height = 71.0
+
+[node name="PointLight2D4" type="PointLight2D" parent="Lighting/Day"]
+position = Vector2(975, 218)
+scale = Vector2(2.67525, 1.73227)
+color = Color(0.927435, 0.825208, 0.500201, 1)
+energy = 1.46
+shadow_enabled = true
+texture = ExtResource("7_ofg1g")
+texture_scale = 1.2
+height = 71.0
+
+[node name="PointLight2D2" type="PointLight2D" parent="Lighting/Day"]
+position = Vector2(1176, 935)
+scale = Vector2(2.67525, 1.73227)
+color = Color(0.927435, 0.825208, 0.500201, 1)
+energy = 1.46
+shadow_enabled = true
+texture = ExtResource("7_ofg1g")
+texture_scale = 1.2
+height = 71.0
+
+[node name="PointLight2D3" type="PointLight2D" parent="Lighting/Day"]
+position = Vector2(1709, 668)
+scale = Vector2(2.67525, 1.73227)
+color = Color(0.927435, 0.825208, 0.500201, 1)
+energy = 1.46
+shadow_enabled = true
+texture = ExtResource("7_ofg1g")
+texture_scale = 1.2
+height = 71.0
+
+[node name="Spotlight" type="PointLight2D" parent="Lighting/Day"]
+position = Vector2(2087, -221)
+rotation = 0.328259
+scale = Vector2(0.366174, 0.683843)
+color = Color(0.927435, 0.825208, 0.500201, 1)
+energy = 0.28
+shadow_enabled = true
+texture = ExtResource("8_lreth")
+texture_scale = 1.2
+height = 71.0
+
+[node name="Spotlight2" type="PointLight2D" parent="Lighting/Day"]
+position = Vector2(556, 3)
+rotation = 0.328259
+scale = Vector2(0.366174, 0.683843)
+color = Color(0.927435, 0.825208, 0.500201, 1)
+energy = 0.28
+shadow_enabled = true
+texture = ExtResource("8_lreth")
+texture_scale = 1.2
+height = 71.0
+
+[node name="Fade" type="PointLight2D" parent="Lighting/Day"]
+position = Vector2(1088.38, 369.151)
+rotation = 4.70663
+scale = Vector2(34.7276, 57.766)
+color = Color(0.321555, 0.0699817, 0.0455737, 1)
+energy = 1.54
+texture = SubResource("GradientTexture2D_ebwqh")
+
+[node name="Evening" type="Node2D" parent="Lighting"]
+visible = false
+
+[node name="PointLight2D" type="PointLight2D" parent="Lighting/Evening"]
+position = Vector2(669, 643)
+scale = Vector2(2.67525, 1.73227)
+color = Color(0.921569, 0.54902, 0.737255, 1)
+energy = 0.15
+shadow_enabled = true
+texture = ExtResource("7_ofg1g")
+texture_scale = 1.2
+height = 71.0
+
+[node name="PointLight2D4" type="PointLight2D" parent="Lighting/Evening"]
+position = Vector2(1215, 230)
+scale = Vector2(2.67525, 1.73227)
+color = Color(0.921569, 0.54902, 0.737255, 1)
+energy = 1.46
+shadow_enabled = true
+texture = ExtResource("7_ofg1g")
+texture_scale = 1.2
+height = 71.0
+
+[node name="PointLight2D2" type="PointLight2D" parent="Lighting/Evening"]
+position = Vector2(1543, 911)
+scale = Vector2(2.67525, 1.73227)
+color = Color(0.921569, 0.54902, 0.737255, 1)
+energy = 0.15
+shadow_enabled = true
+texture = ExtResource("7_ofg1g")
+texture_scale = 1.2
+height = 71.0
+
+[node name="PointLight2D3" type="PointLight2D" parent="Lighting/Evening"]
+position = Vector2(1919, 668)
+scale = Vector2(2.67525, 1.73227)
+color = Color(0.923431, 0.550295, 0.7366, 1)
+energy = 1.01
+shadow_enabled = true
+texture = ExtResource("7_ofg1g")
+texture_scale = 1.2
+height = 71.0
+
+[node name="Spotlight" type="PointLight2D" parent="Lighting/Evening"]
+position = Vector2(1673, -154)
+rotation = -0.510493
+scale = Vector2(0.366174, 0.683843)
+color = Color(0.797052, 0.342366, 0.588384, 1)
+energy = 0.28
+shadow_enabled = true
+texture = ExtResource("8_lreth")
+texture_scale = 1.2
+height = 71.0
+
+[node name="Spotlight2" type="PointLight2D" parent="Lighting/Evening"]
+position = Vector2(398, 25)
+rotation = -0.314536
+scale = Vector2(0.366174, 0.683843)
+color = Color(0.887282, 0.399482, 0.485984, 1)
+energy = 0.28
+shadow_enabled = true
+texture = ExtResource("8_lreth")
+texture_scale = 1.2
+height = 71.0
 
 [node name="minigame" parent="." instance=ExtResource("6_hkomy")]
 visible = false

@@ -1,6 +1,7 @@
-[gd_scene load_steps=88 format=3 uid="uid://b4f1xuf74cag6"]
+[gd_scene load_steps=89 format=3 uid="uid://b4f1xuf74cag6"]
 
 [ext_resource type="Script" uid="uid://hsm6mjhwgl07" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://c5ttd3jahll5l" path="res://Assets/Sprites/shadow.png" id="2_fkybt"]
 [ext_resource type="Texture2D" uid="uid://fbh4o54sasjw" path="res://Assets/Sprites/ElmSpriteIdle.png" id="2_vgqql"]
 [ext_resource type="Script" uid="uid://br26ci6lpjcup" path="res://Scripts/interaction_hitbox.gd" id="3_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://c8obhogoyoe6v" path="res://Assets/Sprites/ElmSpriteWalking.png" id="3_fkybt"]
@@ -680,6 +681,13 @@ y_sort_enabled = true
 collision_mask = 3
 script = ExtResource("1_cvnsp")
 
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.501961)
+self_modulate = Color(0.136174, 0.289228, 0.145024, 1)
+position = Vector2(-9.53674e-07, -3)
+scale = Vector2(0.115079, 0.171687)
+texture = ExtResource("2_fkybt")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tx1dd")
 animation = &"walking_ef"
@@ -687,11 +695,13 @@ frame_progress = 0.130308
 offset = Vector2(0, -64)
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
+visible = false
 visibility_layer = 2
 position = Vector2(0, -19.25)
 shape = SubResource("RectangleShape2D_cvnsp")
 
 [node name="Interaction_HB" type="Area2D" parent="."]
+visible = false
 collision_mask = 3
 script = ExtResource("3_6t5aa")
 

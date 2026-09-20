@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://v4walcfe61nf"]
+[gd_scene load_steps=4 format=3 uid="uid://v4walcfe61nf"]
 
 [ext_resource type="Script" uid="uid://cqu3myi6i3pi3" path="res://Scripts/tree.gd" id="1_otjp7"]
 [ext_resource type="Texture2D" uid="uid://bx3fbab0xn7hd" path="res://Assets/Sprites/tree01.png" id="1_ws0ei"]
+[ext_resource type="Texture2D" uid="uid://c5ttd3jahll5l" path="res://Assets/Sprites/shadow.png" id="2_h7mbi"]
 
 [node name="Tree" type="Node2D" groups=["enviro"]]
 y_sort_enabled = true
@@ -11,6 +12,14 @@ nextImg = "tree01"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 y_sort_enabled = true
+
+[node name="Shadow" type="Sprite2D" parent="StaticBody2D"]
+modulate = Color(1, 1, 1, 0.337255)
+self_modulate = Color(0.240972, 0.473372, 0.383408, 1)
+position = Vector2(10, -7)
+scale = Vector2(0.636905, 1.27108)
+texture = ExtResource("2_h7mbi")
+offset = Vector2(0, 40)
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 texture = ExtResource("1_ws0ei")

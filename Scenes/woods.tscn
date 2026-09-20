@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dt1jd6r8s7g8a"]
+[gd_scene load_steps=19 format=4 uid="uid://dt1jd6r8s7g8a"]
 
 [ext_resource type="Script" uid="uid://q8xk1303vajw" path="res://Scripts/main.gd" id="1_1kwb7"]
 [ext_resource type="TileSet" uid="uid://dg5ratrdincof" path="res://Assets/Styles/temp_tiles.tres" id="2_bmgl1"]
@@ -9,13 +9,20 @@
 [ext_resource type="PackedScene" uid="uid://ddftgguhn3vko" path="res://Scenes/dialogue_box.tscn" id="7_mdopd"]
 [ext_resource type="PackedScene" uid="uid://v4walcfe61nf" path="res://Prefabs/tree.tscn" id="7_sgtcd"]
 [ext_resource type="PackedScene" uid="uid://d3k4r1wr4q6uh" path="res://Scenes/constant_ui.tscn" id="8_2opmi"]
+[ext_resource type="Texture2D" uid="uid://djj7ndvs7r6l1" path="res://Assets/Lighting/spotlight.png" id="9_2opmi"]
 [ext_resource type="PackedScene" uid="uid://bbwwmfpn0xp0b" path="res://Scenes/menu.tscn" id="10_mqq3u"]
 [ext_resource type="PackedScene" uid="uid://dww0mwgtu4li8" path="res://Scenes/controls.tscn" id="11_pwe2a"]
 [ext_resource type="PackedScene" uid="uid://d1kr0w51ahbsc" path="res://Scenes/pause.tscn" id="12_v6cek"]
 [ext_resource type="PackedScene" uid="uid://bwnhmpho68e5u" path="res://Scenes/end.tscn" id="13_v6cek"]
+[ext_resource type="Texture2D" uid="uid://dixcgqwg7eair" path="res://Assets/Lighting/testLightShape.png" id="14_mdopd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1gob"]
 size = Vector2(486.5, 144)
+
+[sub_resource type="Gradient" id="Gradient_2opmi"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s4hh2"]
+gradient = SubResource("Gradient_2opmi")
 
 [node name="woods" type="Node2D"]
 script = ExtResource("1_1kwb7")
@@ -99,6 +106,83 @@ starting_bg = "Temp_Lake"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Lake"]
 polygon = PackedVector2Array(39, -6, 44, 203, 112, 203, 124, 323, 372, 529, 372, 649, 691, 916, 700, 1060, -303, 399)
+
+[node name="Lighting" type="Node2D" parent="."]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Lighting"]
+color = Color(0.28691, 0.39096, 0.379651, 1)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Lighting"]
+color = Color(0.899258, 0.899258, 0.899258, 1)
+energy = 0.43
+
+[node name="PointLight2D" type="PointLight2D" parent="Lighting"]
+position = Vector2(307, 484)
+scale = Vector2(2.67525, 1.73227)
+color = Color(0.895232, 0.873094, 0.758224, 1)
+energy = 1.46
+shadow_enabled = true
+texture = ExtResource("14_mdopd")
+texture_scale = 1.2
+height = 71.0
+
+[node name="PointLight2D4" type="PointLight2D" parent="Lighting"]
+position = Vector2(975, 218)
+scale = Vector2(2.67525, 1.73227)
+color = Color(0.927435, 0.825208, 0.500201, 1)
+energy = 1.46
+shadow_enabled = true
+texture = ExtResource("14_mdopd")
+texture_scale = 1.2
+height = 71.0
+
+[node name="PointLight2D2" type="PointLight2D" parent="Lighting"]
+position = Vector2(1431, 798)
+scale = Vector2(2.67525, 1.73227)
+color = Color(0.927435, 0.825208, 0.500201, 1)
+energy = 1.46
+shadow_enabled = true
+texture = ExtResource("14_mdopd")
+texture_scale = 1.2
+height = 71.0
+
+[node name="PointLight2D3" type="PointLight2D" parent="Lighting"]
+position = Vector2(1175, 43)
+scale = Vector2(2.67525, 1.73227)
+color = Color(0.927435, 0.825208, 0.500201, 1)
+energy = 1.46
+shadow_enabled = true
+texture = ExtResource("14_mdopd")
+texture_scale = 1.2
+height = 71.0
+
+[node name="Spotlight" type="PointLight2D" parent="Lighting"]
+position = Vector2(1501, 261)
+rotation = 0.328259
+scale = Vector2(0.366174, 0.683843)
+color = Color(0.927435, 0.825208, 0.500201, 1)
+energy = 0.67
+shadow_enabled = true
+texture = ExtResource("9_2opmi")
+texture_scale = 1.2
+height = 71.0
+
+[node name="Spotlight2" type="PointLight2D" parent="Lighting"]
+position = Vector2(382, 21)
+rotation = 0.328259
+scale = Vector2(0.366174, 0.683843)
+color = Color(0.927435, 0.825208, 0.500201, 1)
+energy = 0.48
+shadow_enabled = true
+texture = ExtResource("9_2opmi")
+texture_scale = 1.2
+height = 71.0
+
+[node name="Fade" type="PointLight2D" parent="Lighting"]
+position = Vector2(-159, 779)
+rotation = 2.67801
+scale = Vector2(11.4219, 38.608)
+texture = SubResource("GradientTexture2D_s4hh2")
 
 [node name="ConstantUI" parent="." instance=ExtResource("8_2opmi")]
 

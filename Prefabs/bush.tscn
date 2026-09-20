@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ik2o0bqkpr7d"]
+[gd_scene load_steps=4 format=3 uid="uid://ik2o0bqkpr7d"]
 
 [ext_resource type="Texture2D" uid="uid://dbb5n4sqyr2c1" path="res://Assets/Sprites/bushes01.png" id="1_hdk14"]
 [ext_resource type="Script" uid="uid://cqu3myi6i3pi3" path="res://Scripts/tree.gd" id="1_v43lg"]
+[ext_resource type="Texture2D" uid="uid://c5ttd3jahll5l" path="res://Assets/Sprites/shadow.png" id="3_q4k51"]
 
 [node name="bush" type="Node2D" groups=["enviro"]]
 y_sort_enabled = true
@@ -21,3 +22,11 @@ offset = Vector2(0, -30)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 y_sort_enabled = true
 polygon = PackedVector2Array(-253, 69, 249, 67, 280, 50, 236, -4, -250, -3, -261, 17, -275, 43)
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.447059)
+self_modulate = Color(0.0783883, 0.236801, 0.159642, 1)
+position = Vector2(-5.50001, -10)
+scale = Vector2(0.950397, 1)
+texture = ExtResource("3_q4k51")
+offset = Vector2(0, 60)
