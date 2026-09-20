@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://dkkyfvqf35c0b"]
+[gd_scene load_steps=10 format=4 uid="uid://dkkyfvqf35c0b"]
 
 [ext_resource type="TileSet" uid="uid://dg5ratrdincof" path="res://Assets/Styles/temp_tiles.tres" id="1_0a58k"]
 [ext_resource type="PackedScene" uid="uid://b4f1xuf74cag6" path="res://Scenes/player.tscn" id="1_2fjvt"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cmemw2wsuy5ug" path="res://Prefabs/InteractingObjects/Pile.tscn" id="5_21kdw"]
 [ext_resource type="PackedScene" uid="uid://v4walcfe61nf" path="res://Prefabs/tree.tscn" id="5_pci75"]
 [ext_resource type="PackedScene" uid="uid://cqqgdlvutgwu7" path="res://Scenes/minigame.tscn" id="6_hkomy"]
+[ext_resource type="PackedScene" uid="uid://ik2o0bqkpr7d" path="res://Prefabs/bush.tscn" id="6_ljmod"]
 [ext_resource type="PackedScene" uid="uid://d3k4r1wr4q6uh" path="res://Scenes/constant_ui.tscn" id="7_3wb70"]
 
 [node name="Grove" type="Node2D"]
@@ -28,28 +29,30 @@ position = Vector2(68, 409)
 
 [node name="Tree" parent="Environment" instance=ExtResource("5_pci75")]
 position = Vector2(-1088, -93)
-tree_type = "tree03"
+type = "tree03"
 
 [node name="Tree2" parent="Environment" instance=ExtResource("5_pci75")]
 position = Vector2(-413, -579)
+type = "tree03"
 
 [node name="Tree3" parent="Environment" instance=ExtResource("5_pci75")]
 position = Vector2(1375, 718)
+type = "tree05"
 
 [node name="Tree4" parent="Environment" instance=ExtResource("5_pci75")]
 position = Vector2(209, -631)
 
 [node name="Tree5" parent="Environment" instance=ExtResource("5_pci75")]
 position = Vector2(-103, -286)
-tree_type = "tree05"
+type = "tree05"
 
 [node name="Tree6" parent="Environment" instance=ExtResource("5_pci75")]
 position = Vector2(-1329, 782)
-tree_type = "tree03"
+type = "tree05"
 
 [node name="Tree7" parent="Environment" instance=ExtResource("5_pci75")]
 position = Vector2(-729, 803)
-tree_type = "tree04"
+type = "tree03"
 
 [node name="Tree8" parent="Environment" instance=ExtResource("5_pci75")]
 position = Vector2(-1276, -444)
@@ -59,15 +62,61 @@ position = Vector2(1436, -558)
 
 [node name="Tree10" parent="Environment" instance=ExtResource("5_pci75")]
 position = Vector2(786, -489)
-tree_type = "tree03"
+type = "tree05"
 
 [node name="Tree11" parent="Environment" instance=ExtResource("5_pci75")]
 position = Vector2(1481, 105)
-tree_type = "tree05"
+type = "tree03"
 
 [node name="Tree12" parent="Environment" instance=ExtResource("5_pci75")]
 position = Vector2(476, 218)
-tree_type = "tree05"
+type = "tree05"
+
+[node name="bush" parent="Environment" instance=ExtResource("6_ljmod")]
+position = Vector2(-927, -672)
+
+[node name="bush2" parent="Environment" instance=ExtResource("6_ljmod")]
+position = Vector2(-665, -639)
+
+[node name="bush3" parent="Environment" instance=ExtResource("6_ljmod")]
+position = Vector2(-365, -681)
+type = "bushes03"
+
+[node name="bush4" parent="Environment" instance=ExtResource("6_ljmod")]
+position = Vector2(-1392, -576)
+type = "bushes03"
+
+[node name="bush5" parent="Environment" instance=ExtResource("6_ljmod")]
+position = Vector2(-991, 41)
+
+[node name="bush6" parent="Environment" instance=ExtResource("6_ljmod")]
+position = Vector2(671, -372)
+type = "bushes03"
+
+[node name="bush7" parent="Environment" instance=ExtResource("6_ljmod")]
+position = Vector2(1402, 235)
+type = "bushes03"
+
+[node name="bush8" parent="Environment" instance=ExtResource("6_ljmod")]
+position = Vector2(1291, -671)
+
+[node name="bush9" parent="Environment" instance=ExtResource("6_ljmod")]
+position = Vector2(1030, -702)
+
+[node name="bush10" parent="Environment" instance=ExtResource("6_ljmod")]
+position = Vector2(726, -651)
+
+[node name="bush11" parent="Environment" instance=ExtResource("6_ljmod")]
+position = Vector2(459, -677)
+type = "bushes03"
+
+[node name="bush12" parent="Environment" instance=ExtResource("6_ljmod")]
+position = Vector2(-1154, 728)
+type = "bushes03"
+
+[node name="bush13" parent="Environment" instance=ExtResource("6_ljmod")]
+position = Vector2(-897, 775)
+type = "bushes03"
 
 [node name="minigame" parent="." instance=ExtResource("6_hkomy")]
 visible = false

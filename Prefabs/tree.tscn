@@ -6,7 +6,7 @@
 [node name="Tree" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_otjp7")
-tree_type = "tree01"
+type = "tree01"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 y_sort_enabled = true
