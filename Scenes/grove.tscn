@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://dkkyfvqf35c0b"]
+[gd_scene load_steps=14 format=4 uid="uid://dkkyfvqf35c0b"]
 
 [ext_resource type="TileSet" uid="uid://dg5ratrdincof" path="res://Assets/Styles/temp_tiles.tres" id="1_0a58k"]
 [ext_resource type="PackedScene" uid="uid://b4f1xuf74cag6" path="res://Scenes/player.tscn" id="1_2fjvt"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bbwwmfpn0xp0b" path="res://Scenes/menu.tscn" id="10_w2feb"]
 [ext_resource type="PackedScene" uid="uid://d1kr0w51ahbsc" path="res://Scenes/pause.tscn" id="11_uqjfs"]
 [ext_resource type="PackedScene" uid="uid://dww0mwgtu4li8" path="res://Scenes/controls.tscn" id="12_nsnxl"]
+[ext_resource type="PackedScene" uid="uid://bwnhmpho68e5u" path="res://Scenes/end.tscn" id="13_nsnxl"]
 
 [node name="Grove" type="Node2D"]
 script = ExtResource("1_uwyuk")
@@ -136,4 +137,7 @@ visible = false
 visible = false
 
 [node name="controls" parent="." instance=ExtResource("12_nsnxl")]
+visible = false
+
+[node name="End" parent="." instance=ExtResource("13_nsnxl")]
 visible = false

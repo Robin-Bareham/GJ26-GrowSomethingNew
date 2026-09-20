@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dt1jd6r8s7g8a"]
+[gd_scene load_steps=15 format=4 uid="uid://dt1jd6r8s7g8a"]
 
 [ext_resource type="Script" uid="uid://q8xk1303vajw" path="res://Scripts/main.gd" id="1_1kwb7"]
 [ext_resource type="TileSet" uid="uid://dg5ratrdincof" path="res://Assets/Styles/temp_tiles.tres" id="2_bmgl1"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bbwwmfpn0xp0b" path="res://Scenes/menu.tscn" id="10_mqq3u"]
 [ext_resource type="PackedScene" uid="uid://dww0mwgtu4li8" path="res://Scenes/controls.tscn" id="11_pwe2a"]
 [ext_resource type="PackedScene" uid="uid://d1kr0w51ahbsc" path="res://Scenes/pause.tscn" id="12_v6cek"]
+[ext_resource type="PackedScene" uid="uid://bwnhmpho68e5u" path="res://Scenes/end.tscn" id="13_v6cek"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1gob"]
 size = Vector2(486.5, 144)
@@ -105,6 +106,9 @@ visible = false
 visible = false
 
 [node name="Pause" parent="." instance=ExtResource("12_v6cek")]
+visible = false
+
+[node name="End" parent="." instance=ExtResource("13_v6cek")]
 visible = false
 
 [connection signal="body_entered" from="ToGrove" to="." method="_on_to_grove_body_entered"]

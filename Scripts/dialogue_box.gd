@@ -77,6 +77,7 @@ func showBox(object: String):
 		v_current_pile = object #Name of goal image
 	else:
 		v_current_dialogue = AllDia.scripted_dia[object]
+		v_current_pile = object #reusing name specifically for end of game
 	v_root.show()
 	v_currently_active = true
 	pass
@@ -87,6 +88,9 @@ func progressDialogue():
 		if(!v_option_container.visible ):
 			# does this line have a v on it?
 			if(v_next.text == "v"):
+				if(v_current_pile == "D4End"):
+					GlobalScript.nextState = GlobalScript.gameState.END
+					GlobalScript.change_state = true
 				hideBox() #end the dialogue
 				return
 			nextLine(-1)

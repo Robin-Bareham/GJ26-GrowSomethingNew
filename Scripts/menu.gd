@@ -16,6 +16,7 @@ func _ready():
 	list.append($MarginContainer/GridContainer/Continue)
 	list.append($MarginContainer/GridContainer/PControls)
 	list.append($MarginContainer/GridContainer/Menu)
+	list.append($MarginContainer/GridContainer/returntotitle)
 
 func _process(delta):
 	if(GlobalScript.currentState != GlobalScript.gameState.GAME):
@@ -45,6 +46,9 @@ func _process(delta):
 					GlobalScript.previousState = false
 					GlobalScript.change_state = true
 				6:
+					GlobalScript.nextState = GlobalScript.gameState.MENU
+					GlobalScript.change_state = true
+				7:
 					GlobalScript.nextState = GlobalScript.gameState.MENU
 					GlobalScript.change_state = true
 
@@ -116,4 +120,15 @@ func _on_menu_mouse_entered() -> void:
 	selected_box = 6
 func _on_menu_mouse_exited() -> void:
 	changeStyle(6,false)
+	selected_box = -1
+
+
+
+# RETURN TO TITLE FROM END
+
+func _on_returntotitle_mouse_entered() -> void:
+	changeStyle(7,true)
+	selected_box = 7
+func _on_returntotitle_mouse_exited() -> void:
+	changeStyle(7,false)
 	selected_box = -1

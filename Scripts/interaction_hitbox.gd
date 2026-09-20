@@ -46,6 +46,8 @@ func _on_area_entered(area: Area2D) -> void:
 		if(area.getInst()):
 			##Going into grove
 			if(GlobalScript.items["Blindfold"]):
+				if(GlobalScript.day == 1):
+					GlobalScript.activate_cutscene = true
 				transition("grove")
 				GlobalScript.start_timer = true
 			else:

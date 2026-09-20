@@ -6,6 +6,7 @@ extends Node2D
 @onready var menu_ui = $menu
 @onready var control_ui = $controls
 @onready var pause_ui = $Pause
+@onready var end_ui = $End
 @onready var player = $Environment/Player
 
 func _ready():
@@ -49,7 +50,8 @@ func keyInputs():
 		GlobalScript.nextState = GlobalScript.gameState.PAUSE
 		GlobalScript.change_state = true
 	if(Input.is_action_just_pressed("test")):
-		dia_ui.eventActivated("test",2,"Temp_Cutscene1")
+		GlobalScript.day_over = true
+		#dia_ui.eventActivated("test",2,"Temp_Cutscene1")
 	if(Input.is_action_just_pressed("mouse_click")):
 		GlobalScript.interact = 3
 
@@ -68,33 +70,50 @@ func manageStates():
 	
 	match GlobalScript.current_scene:
 		"woods":
-			pass
+			if(GlobalScript.activate_cutscene):
+				if(GlobalScript.day_over):
+					match GlobalScript.day:
+						1:
+							dia_ui.eventActivated("D1End",2,"Temp_Cutscene1")
+						2:
+							dia_ui.eventActivated("D2End",2,"Temp_Cutscene1")
+						3:
+							dia_ui.eventActivated("D3End",2,"Temp_Cutscene1")
+						4: 
+							dia_ui.eventActivated("D4End",2,"Temp_Cutscene1")
+					GlobalScript.day += 1
+					GlobalScript.day_over = false
+				elif(GlobalScript.day == 1 && GlobalScript.beginning):
+					dia_ui.eventActivated("Start",2,"Temp_Cutscene1")
+					GlobalScript.beginning = false
+				GlobalScript.activate_cutscene = false
 		"grove":
+			if(GlobalScript.activate_cutscene):
+				dia_ui.eventActivated("D1Grove",2,"Temp_Cutscene1")
+				GlobalScript.activate_cutscene = false
+			
 			if(GlobalScript.day_over):
-				if(GlobalScript.day == 4):
-					#Initate end of game, quits for now
-					get_tree().quit()
 				transition("woods")
-				GlobalScript.day_over = false
-				GlobalScript.minigame_active = false
-				GlobalScript.activating_minigame = false
+				GlobalScript.activate_cutscene = true
+				
 				GlobalScript.timer_active = false
 				GlobalScript.start_timer = false
-				GlobalScript.day += 1
+				GlobalScript.minigame_active = false
+				GlobalScript.activating_minigame = false
 				GlobalScript.first_pile = true
 
 func updateUI():
 	match GlobalScript.currentState:
 		GlobalScript.gameState.GAME:
 			if(GlobalScript.previousState):
-				#Reset Values
-				pass
+				resetGame()
 			menu_ui.hide()
 			pause_ui.hide()
 		GlobalScript.gameState.MENU:
 			menu_ui.show()
 			pause_ui.hide()
 			control_ui.hide()
+			end_ui.hide()
 		GlobalScript.gameState.CONTROLS:
 			control_ui.show()
 			menu_ui.hide()
@@ -102,6 +121,19 @@ func updateUI():
 		GlobalScript.gameState.PAUSE:
 			pause_ui.show()
 			control_ui.hide()
+		GlobalScript.gameState.END:
+			end_ui.show()
+			menu_ui.hide()
+			pause_ui.hide()
+			control_ui.hide()
+
+func resetGame():
+	#Make sure it's starting scene
+	GlobalScript.reset_values()
+	player.position.x = GlobalScript.p_start_px
+	player.position.y = GlobalScript.p_start_py
+	GlobalScript.activate_cutscene = true
+
 
 func activateMinigame():
 	if(GlobalScript.first_pile):
