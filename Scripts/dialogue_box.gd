@@ -29,7 +29,7 @@ var v_dia_type
 var v_current_pile = ""
 
 #What it can receive from
-@onready var v_interaction_hb = get_tree().current_scene.get_node("Player").get_node("Interaction_HB")
+@onready var v_interaction_hb = get_tree().current_scene.get_node("Environment").get_node("Player").get_node("Interaction_HB")
 @onready var v_bg = get_tree().current_scene.get_node("ConstantUI")
 signal change_node(type: String)
 

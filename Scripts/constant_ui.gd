@@ -6,6 +6,7 @@ extends CanvasLayer
 var timer = 0
 var timer_end
 var second = 0
+var pile_list = []
 
 var energy
 
@@ -46,6 +47,11 @@ func resetTimer():
 		timer_end = GlobalScript.max_time/2
 		GlobalScript.current_energy = 10 #Can only do one search
 
+	#Update Pile Images
+	pile_list = get_tree().get_nodes_in_group("search")
+	for i in pile_list.size():
+		pile_list[i].setImage()
+	
 func changeBg(newBg: String):
 	var temp = "res://Assets/TempAssets/" + newBg + ".png"
 	bg.texture = load(temp)

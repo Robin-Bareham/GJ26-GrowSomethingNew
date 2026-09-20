@@ -10,12 +10,12 @@ void fragment()
 	// If it's not highlighted
 	float alpha = 0.0;
 	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
-		
+
 	alpha += texture(TEXTURE,UV + vec2(size.x,0.0)).a;
 	alpha += texture(TEXTURE,UV + vec2(-size.x,0.0)).a;
 	alpha += texture(TEXTURE,UV + vec2(0.0,size.y)).a;
 	alpha += texture(TEXTURE,UV + vec2(0.0,-size.y)).a;
-		
+
 		//Outlines around sprite
 		if(color.a == 0.0 && alpha>0.0)
 		{
@@ -27,12 +27,11 @@ void fragment()
 			{
 				COLOR = line_color2;
 			}
-			
-			
+
+
 		}
 		else
 		{
 			COLOR = color;
 		}
 }
-

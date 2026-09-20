@@ -3,7 +3,7 @@ extends Node2D
 @onready var dia_ui = $DialogueBox
 @onready var mini_ui = $minigame
 @onready var const_ui = $ConstantUI
-@onready var player = $Player
+@onready var player = $Environment/Player
 
 var player_near_lake = false
 
@@ -17,7 +17,6 @@ func _ready():
 			player.position.y = GlobalScript.p_exitg_py
 		"grove":
 			player.changeCameraLimits(GlobalScript.cl_grove_l,GlobalScript.cl_grove_r,GlobalScript.cl_grove_b,GlobalScript.cl_grove_t)
-			
 	#TImer
 
 func _process(delta):
@@ -90,17 +89,14 @@ func deactivateMinigame():
 	#Adjust Energy
 	GlobalScript.current_energy -= 10
 	if(GlobalScript.current_energy <= 0):
-		print_debug("Deactivating Minigame leads to day over")
 		GlobalScript.day_over = true
 
 #Transition into Grove
 func _on_to_grove_body_entered(body: Node2D) -> void:
 	if(body.has_method("player")):
 		if(GlobalScript.items["Blindfold"]):
-			print_debug("transitioning to grove")
 			transition("grove")
 			GlobalScript.start_timer = true
-			print_debug(GlobalScript.start_timer)
 		else:
 			AllDia.scripted = true
 			dia_ui.boxActivated("NoBF",0)

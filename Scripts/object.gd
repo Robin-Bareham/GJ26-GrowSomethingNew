@@ -16,3 +16,9 @@ func getNode():
 
 func setInteractable(status: bool):
 	v_object_interactable = status
+
+func setImage():
+	var texture_location = "res://Assets/Sprites/RubbishPile_" + v_object_name + ".png"
+	if(v_object_name == "G_Final"):
+		texture_location = "res://Assets/Sprites/RubbishPile_G_Closed.png"
+	$StaticBody2D/Sprite2D.texture = load(texture_location)

@@ -26,7 +26,7 @@ var previous_scene = "woods"
 var game_end = false
 
 #Transition Positions
-var p_nobf_py = -1
+var p_nobf_py = -168.0
 var p_exitg_px = 639
 var p_exitg_py = 271
 
