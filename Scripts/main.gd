@@ -116,7 +116,7 @@ func manageStates():
 							dia_ui.eventActivated("D1End",2,"D1End01")
 							GlobalScript.completed_events["D1End"] = true
 						2:
-							dia_ui.eventActivated("D2End",2,"Temp_Cutscene1")
+							dia_ui.eventActivated("D2End",2,"D2End01")
 							GlobalScript.completed_events["D2End"] = true
 						3:
 							dia_ui.eventActivated("D3End",2,"Temp_Cutscene1")

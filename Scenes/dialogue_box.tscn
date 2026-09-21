@@ -131,3 +131,7 @@ theme_override_font_sizes/font_size = 25
 text = "ESSSSSSSS"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="sfxplayer" type="AudioStreamPlayer2D" parent="."]
+max_distance = 9795.0
+attenuation = 0.03983

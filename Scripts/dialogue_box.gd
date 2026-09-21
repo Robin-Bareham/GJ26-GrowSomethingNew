@@ -5,6 +5,8 @@ extends CanvasLayer
 @onready var v_text = $BoxContainer/TextContainer/HBoxContainer/Text
 @onready var v_next = $BoxContainer/TextContainer/HBoxContainer/Next
 @onready var v_name = $BoxContainer/MarginContainer/Name
+@onready var v_sfx_player = $sfxplayer
+
 
 @onready var v_option_container = $BoxContainer/TextContainer/OptionContainer
 @onready var v_option1_panel = $BoxContainer/TextContainer/OptionContainer/HBoxContainer/Opt1 
@@ -199,6 +201,11 @@ func alternateText():
 	elif(v_current_dialogue[v_current_line][1] == 4):
 		#Change bg
 		v_bg.changeBg(v_current_dialogue[v_current_line][4])
+	
+	## Call sound effect
+	elif (v_current_dialogue[v_current_line][1] == 5):
+		v_sfx_player.stream = load("res://Audio/" + v_current_dialogue[v_current_line][4] + ".mp3")
+		v_sfx_player.play()
 
 #SIGNALS
 
