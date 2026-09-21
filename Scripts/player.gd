@@ -4,7 +4,6 @@ class_name Player
 @onready var v_area = $Hitbox
 @onready var v_camera = $Camera2D
 @onready var v_audio = $Interaction_HB/AudioStreamPlayer2D
-@onready var v_bg_mus = $BackgroundMus
 
 @onready var s_feet = [load("res://Audio/SFX_Foot01.mp3"),load("res://Audio/SFX_Foot02.mp3"),load("res://Audio/SFX_Foot03.mp3"),load("res://Audio/SFX_Foot04.mp3")]
 
@@ -104,10 +103,6 @@ func changeCameraLimits(p_left:int,p_right: int, p_bottom: int, p_top: int):
 	v_camera.set_limit(SIDE_RIGHT,p_right)
 	v_camera.set_limit(SIDE_BOTTOM,p_bottom)
 	v_camera.set_limit(SIDE_TOP,p_top)
-	
-func playBgMus(name: String):
-	v_bg_mus.stream = load(name)
-	v_bg_mus.play()
 
 func player():
 	#Used for checking transitions between scenes

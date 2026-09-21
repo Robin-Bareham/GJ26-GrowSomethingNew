@@ -14,6 +14,7 @@ var end_mus =  "res://Audio/B_End_LostInTime.mp3"
 var woods_mus = "res://Audio/B_End_LostInTime.mp3"
 
 func _ready():
+	
 	if(GlobalScript.just_started):
 		GlobalScript.currentState = GlobalScript.gameState.MENU
 		menu_ui.show()
@@ -26,7 +27,7 @@ func _ready():
 			player.position.y = GlobalScript.p_start_py
 			if(GlobalScript.currentState == GlobalScript.gameState.GAME):
 				const_ui.hideBg()
-				player.playBgMus(woods_mus)
+				playBg(woods_mus)
 			else:
 				pass #if its one of the other states( Menus) play smthign else
 				#If it's the end of the game
@@ -34,7 +35,8 @@ func _ready():
 			const_ui.hideBg()
 			player.changeCameraLimits(GlobalScript.cl_grove_l,GlobalScript.cl_grove_r,GlobalScript.cl_grove_b,GlobalScript.cl_grove_t)
 			if(GlobalScript.day != 1):
-				player.playBgMus(grove_mus)
+				playBg(grove_mus)
+				
 func _process(delta):
 	keyInputs()
 	manageStates()
@@ -94,7 +96,7 @@ func manageStates():
 					elif(!GlobalScript.completed_events["D1Grove"]):
 						GlobalScript.trans_cutscene = true
 						dia_ui.eventActivated("D1Grove",2,"Grove01")
-						player.playBgMus(grove_mus)
+						playBg(grove_mus)
 						GlobalScript.completed_events["D1Grove"] = true
 						AllDia.dia_closing = false
 						
@@ -175,7 +177,7 @@ func resetGame():
 	tree_list = get_tree().get_nodes_in_group("enviro")
 	for i in tree_list.size():
 		tree_list[i].reloadTextures()
-	player.playBgMus(woods_mus)
+	playBg(woods_mus)
 	
 	
 func activateMinigame():
@@ -208,3 +210,6 @@ func transition(type: String):
 	GlobalScript.next_scene = type
 	GlobalScript.change_scene()
 	
+func playBg(type: String):
+	BackgroundMus.stream = load(type)
+	BackgroundMus.play()

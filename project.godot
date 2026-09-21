@@ -19,6 +19,7 @@ config/icon="res://Prefabs/InteractingObjects/icon.svg"
 
 GlobalScript="*res://Scripts/global_script.gd"
 AllDia="*res://Scripts/all_dia.gd"
+BackgroundMus="*res://Scenes/background_mus.tscn"
 
 [display]
 

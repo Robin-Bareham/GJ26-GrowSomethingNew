@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://qrbdfm8i4ud4"]
+
+[ext_resource type="AudioStream" uid="uid://cqo1set06bkxa" path="res://Audio/B_End_LostInTime.mp3" id="1_nfkfm"]
+
+[node name="BackgroundMus" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_nfkfm")
+max_distance = 4096.0
+attenuation = 0.00195312
+panning_strength = 0.0
+parameters/looping = true
