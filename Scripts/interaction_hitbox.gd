@@ -7,7 +7,6 @@ var v_in_scripted = false
 var v_bg = ""
 var v_lake_dia = ""
 
-
 @onready var v_dialogue_box = get_tree().current_scene.get_node("DialogueBox")
 
 signal dialogue_activation(version: String, dia: int)

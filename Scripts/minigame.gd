@@ -8,6 +8,9 @@ extends CanvasLayer
 
 @onready var v_rubbish_list = []
 
+@onready var v_audio = GlobalScript.get_audio_player()
+@onready var s_leaf = load("res://Audio/SFX_Leaves.mp3")
+
 var v_goal_positions = [[401,361],[982,535],[523,792],[1611,354],[1400,811]]
 var v_rubbish_icons = ["Rubbish01","Rubbish02","Rubbish03","Rubbish04"]
 
@@ -17,6 +20,9 @@ func _ready():
 	v_rubbish_list = get_tree().get_nodes_in_group("rubbish")
 
 func resetMinigame(goalTexture: String):
+	if(!v_audio.is_playing()):
+		v_audio.stream = s_leaf
+		v_audio.play()
 	changeShaders()
 	#Set goal's position 
 	var goalTxt_location = "res://Assets/Minigame/" + goalTexture + ".png"

@@ -34,6 +34,7 @@ func _process(delta):
 				timer += 1 * delta
 				if(timer >= timer_end):
 					GlobalScript.day_over = true
+					GlobalScript.activate_cutscene = true
 				elif(timer >= (timer_end/3)*2):
 					clock.texture = evening_texture
 					lighting.showLight("evening")

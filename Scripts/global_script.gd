@@ -11,6 +11,7 @@ var change_state = false
 
 var activate_cutscene = false
 var beginning = true
+var first_grove = true
 
 var minigame_active = false
 var activating_minigame = false
@@ -88,3 +89,7 @@ func reset_values():
 		change_scene()
 	game_end = false
 	beginning = true
+	first_grove = true
+
+func get_audio_player():
+	return get_tree().current_scene.get_node("Environment").get_node("Player").get_node("Interaction_HB").get_node("AudioStreamPlayer2D")

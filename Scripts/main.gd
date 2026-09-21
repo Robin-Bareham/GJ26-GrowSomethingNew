@@ -51,6 +51,7 @@ func keyInputs():
 		GlobalScript.change_state = true
 	if(Input.is_action_just_pressed("test")):
 		GlobalScript.day_over = true
+		GlobalScript.activate_cutscene = true
 		#dia_ui.eventActivated("test",2,"Temp_Cutscene1")
 	if(Input.is_action_just_pressed("mouse_click")):
 		GlobalScript.interact = 3
@@ -73,24 +74,24 @@ func manageStates():
 			if(GlobalScript.activate_cutscene):
 				if(GlobalScript.day_over):
 					#End of day scripts
-					AllDia.lake_interacted = false
-					match GlobalScript.day:
-						1:
-							dia_ui.eventActivated("D1End",2,"Temp_Cutscene1")
-						2:
-							dia_ui.eventActivated("D2End",2,"Temp_Cutscene1")
-							GlobalScript.day = 3
-							var tree_list = []
-							tree_list = get_tree().get_nodes_in_group("enviro")
-							for i in tree_list.size():
-								tree_list[i].reloadTextures()
-							GlobalScript.day = 2
-						3:
-							dia_ui.eventActivated("D3End",2,"Temp_Cutscene1")
-						4: 
-							dia_ui.eventActivated("D4End",2,"Temp_Cutscene1")
-					GlobalScript.day += 1
-					GlobalScript.day_over = false
+					pass
+					#match GlobalScript.day:
+						#1:
+							#dia_ui.eventActivated("D1End",2,"Temp_Cutscene1")
+						#2:
+							#dia_ui.eventActivated("D2End",2,"Temp_Cutscene1")
+							#GlobalScript.day = 3
+							#var tree_list = []
+							#tree_list = get_tree().get_nodes_in_group("enviro")
+							#for i in tree_list.size():
+								#tree_list[i].reloadTextures()
+							#GlobalScript.day = 2
+						#3:
+							#dia_ui.eventActivated("D3End",2,"Temp_Cutscene1")
+						#4: 
+							#dia_ui.eventActivated("D4End",2,"Temp_Cutscene1")
+					#GlobalScript.day += 1
+					#GlobalScript.day_over = false
 				#Starting Cutscene
 				elif(GlobalScript.day == 1 && GlobalScript.beginning):
 					dia_ui.eventActivated("Start",2,"Temp_Cutscene1")
@@ -98,19 +99,36 @@ func manageStates():
 				GlobalScript.activate_cutscene = false
 		"grove":
 			#First time player's in the grove
-			if(GlobalScript.activate_cutscene):
+			if(GlobalScript.activate_cutscene && GlobalScript.first_grove):
 				dia_ui.eventActivated("D1Grove",2,"Temp_Cutscene1")
 				GlobalScript.activate_cutscene = false
-			
-			if(GlobalScript.day_over):
-				transition("woods")
-				GlobalScript.activate_cutscene = true
+				GlobalScript.first_grove = false
 				
-				GlobalScript.timer_active = false
-				GlobalScript.start_timer = false
-				GlobalScript.minigame_active = false
-				GlobalScript.activating_minigame = false
-				GlobalScript.first_pile = true
+			if(GlobalScript.day_over):
+				#print_debug("Day over")
+				if(GlobalScript.activate_cutscene):
+					print_debug(GlobalScript.day)
+					match GlobalScript.day:
+						1:
+							dia_ui.eventActivated("D1End",2,"Temp_Cutscene1")
+						2:
+							dia_ui.eventActivated("D2End",2,"Temp_Cutscene1")
+						3:
+							dia_ui.eventActivated("D3End",2,"Temp_Cutscene1")
+						4: 
+							dia_ui.eventActivated("D4End",2,"Temp_Cutscene1")
+				GlobalScript.activate_cutscene = false
+				#GlobalScript.activate_cutscene = false
+				if(!AllDia.dia_open):
+					GlobalScript.day += 1
+					GlobalScript.day_over = false
+					transition("woods")
+					GlobalScript.timer_active = false
+					GlobalScript.start_timer = false
+					GlobalScript.minigame_active = false
+					GlobalScript.activating_minigame = false
+					GlobalScript.first_pile = true
+					AllDia.lake_interacted = false
 
 func updateUI():
 	match GlobalScript.currentState:
@@ -173,6 +191,7 @@ func deactivateMinigame():
 	GlobalScript.current_energy -= 10
 	if(GlobalScript.current_energy <= 0):
 		GlobalScript.day_over = true
+		GlobalScript.activate_cutscene = true
 			
 func transition(type: String):
 	GlobalScript.transition_scene = true

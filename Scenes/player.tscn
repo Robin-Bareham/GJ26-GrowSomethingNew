@@ -1,10 +1,12 @@
-[gd_scene load_steps=89 format=3 uid="uid://b4f1xuf74cag6"]
+[gd_scene load_steps=91 format=3 uid="uid://b4f1xuf74cag6"]
 
 [ext_resource type="Script" uid="uid://hsm6mjhwgl07" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://c5ttd3jahll5l" path="res://Assets/Sprites/shadow.png" id="2_fkybt"]
 [ext_resource type="Texture2D" uid="uid://fbh4o54sasjw" path="res://Assets/Sprites/ElmSpriteIdle.png" id="2_vgqql"]
+[ext_resource type="AudioStream" uid="uid://cj04w7xwaaoe2" path="res://Audio/SFX_FootSingle.mp3" id="2_x3wgy"]
 [ext_resource type="Script" uid="uid://br26ci6lpjcup" path="res://Scripts/interaction_hitbox.gd" id="3_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://c8obhogoyoe6v" path="res://Assets/Sprites/ElmSpriteWalking.png" id="3_fkybt"]
+[ext_resource type="AudioStream" uid="uid://m6pehypxel12" path="res://Audio/Grove_A9.mp3" id="7_3smsa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x3wgy"]
 atlas = ExtResource("2_vgqql")
@@ -709,12 +711,22 @@ script = ExtResource("3_6t5aa")
 position = Vector2(0, -60)
 shape = SubResource("CapsuleShape2D_cvnsp")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Interaction_HB"]
+stream = ExtResource("2_x3wgy")
+volume_db = -7.326
+pitch_scale = 0.9
+attenuation = 3.36358
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
 limit_left = -250
 limit_top = 0
 limit_right = 1900
 limit_bottom = 1080
+
+[node name="BackgroundMus" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_3smsa")
+parameters/looping = true
 
 [connection signal="area_entered" from="Interaction_HB" to="Interaction_HB" method="_on_area_entered"]
 [connection signal="area_exited" from="Interaction_HB" to="Interaction_HB" method="_on_area_exited"]

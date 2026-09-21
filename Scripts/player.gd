@@ -3,22 +3,31 @@ class_name Player
 
 @onready var v_area = $Hitbox
 @onready var v_camera = $Camera2D
+@onready var v_audio = $Interaction_HB/AudioStreamPlayer2D
+@onready var v_bg_mus = $BackgroundMus
 
+@onready var s_feet = [load("res://Audio/SFX_Foot01.mp3"),load("res://Audio/SFX_Foot02.mp3"),load("res://Audio/SFX_Foot03.mp3"),load("res://Audio/SFX_Foot04.mp3")]
+
+@onready var s_footstep = load("res://Audio/SFX_FootSingle.mp3")
 const v_speed = 300
-var v_current_direction = "none" 
+var y_current_direction = "none" 
+var x_current_direction = "none"
 var previous_end = "f"
 var has_moved = false
+
+var new_area = true
 
 var lr_fix = "right"
 
 func _ready():
 	$AnimatedSprite2D.play("idle")
-	
+	if(GlobalScript.current_scene == "grove"):
+		v_bg_mus.play()
 
 # Update Function
 func _physics_process(delta):
-	if(GlobalScript.currentState == GlobalScript.gameState.GAME):
-		if(GlobalScript.can_move):
+	if(GlobalScript.currentState == GlobalScript.gameState.GAME) :
+		if(GlobalScript.can_move && !GlobalScript.minigame_active):
 			playerMovement(delta)
 			has_moved = true
 		else:
@@ -30,43 +39,32 @@ func playerMovement(dt):
 	
 	# Handles movement
 	if(Input.is_action_pressed("walk_right")):
-		v_current_direction = "right"
+		x_current_direction = "right"
 		velocity.x = v_speed
 	elif(Input.is_action_pressed("walk_left")):
-		v_current_direction = "left"
+		x_current_direction = "left"
 		velocity.x = -v_speed
 	else:
 		velocity.x = 0
 		
 	if(Input.is_action_pressed("walk_down")):
-		v_current_direction = "down"
+		y_current_direction = "down"
 		velocity.y = v_speed
 	elif(Input.is_action_pressed("walk_up")):
-		v_current_direction = "up"
+		y_current_direction = "up"
 		velocity.y = -v_speed
 	else:
 		velocity.y = 0
-	
-	# Which direction was inputted last?
-	if(Input.is_action_just_pressed("walk_right")):
-		lr_fix = "right"
-	elif(Input.is_action_just_pressed("walk_left")):
-		if(v_current_direction != "right"): #Right dominates
-			lr_fix = "left"
-	if(Input.is_action_just_released("walk_right")):
-		if(v_current_direction == "left"):
-			lr_fix = "left"	
-	elif(Input.is_action_just_released("walk_left")):
-		if(v_current_direction == "right"):
-			lr_fix = "right"	
-	
-	
-	
 	#Change player animation
 	if(velocity.y == 0 && velocity.x == 0):
 		playerAnimation(0)
+		if(v_audio.is_playing()):
+			v_audio.stop()
 	else:
 		playerAnimation(1)
+		if(!v_audio.is_playing()):
+			v_audio.stream = s_feet[randi() % s_feet.size()]
+			v_audio.play()
 	
 	
 	move_and_slide()
@@ -76,8 +74,6 @@ func playerMovement(dt):
 func playerAnimation(action):
 	#"idle_1b
 	#"walking_1b
-	
-	var direction = v_current_direction
 	var animation_sprite = $AnimatedSprite2D
 	var animation_name = ""
 	
@@ -90,15 +86,15 @@ func playerAnimation(action):
 	else:
 		animation_name += str(GlobalScript.day)
 	
-	if(lr_fix == "right"):
+	if(x_current_direction == "right"):
 		animation_sprite.flip_h = false
-	elif(lr_fix == "left"):
+	elif(x_current_direction == "left"):
 		animation_sprite.flip_h = true
 		
-	if(direction == "down"):
+	if(y_current_direction == "down"):
 		animation_name += "f"
 		previous_end = "f"
-	elif(direction == "up"):
+	elif(y_current_direction == "up"):
 		animation_name += "b"
 		previous_end = "b"
 	else:
@@ -110,9 +106,6 @@ func changeCameraLimits(p_left:int,p_right: int, p_bottom: int, p_top: int):
 	v_camera.set_limit(SIDE_RIGHT,p_right)
 	v_camera.set_limit(SIDE_BOTTOM,p_bottom)
 	v_camera.set_limit(SIDE_TOP,p_top)
-
-
-
 func player():
 	#Used for checking transitions between scenes
 	pass
