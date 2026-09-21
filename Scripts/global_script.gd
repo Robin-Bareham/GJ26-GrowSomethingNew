@@ -10,8 +10,6 @@ var previousState = true
 var change_state = false
 
 var activate_cutscene = false
-var beginning = true
-var first_grove = true
 
 var minigame_active = false
 var activating_minigame = false
@@ -34,6 +32,7 @@ var current_scene = "woods"
 var previous_scene = "woods"
 var game_end = false
 
+var trans_cutscene = false
 
 #Transition Positions
 var p_nobf_py = -165.0
@@ -58,6 +57,15 @@ var choose = 0 #No choice, 1 = left, 2 = right, 3 = up, 4= down
 
 var items = {
 	"Blindfold": false
+}
+
+var completed_events = {
+	"Start" : false,
+	"D1Grove" : false,
+	"D1End" : false,
+	"D2End" : false,
+	"D3End" : false,
+	"D4End" : false
 }
 
 func change_scene():
@@ -88,8 +96,7 @@ func reset_values():
 		next_scene = "woods"
 		change_scene()
 	game_end = false
-	beginning = true
-	first_grove = true
+
 
 func get_audio_player():
 	return get_tree().current_scene.get_node("Environment").get_node("Player").get_node("Interaction_HB").get_node("AudioStreamPlayer2D")

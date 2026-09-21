@@ -158,7 +158,6 @@ color = Color(0.658339, 0.65834, 0.65834, 1)
 energy = 0.43
 
 [node name="Noon" type="Node2D" parent="Lighting"]
-visible = false
 
 [node name="PointLight2D" type="PointLight2D" parent="Lighting/Noon"]
 position = Vector2(513, 643)
@@ -304,7 +303,6 @@ energy = 1.54
 texture = SubResource("GradientTexture2D_ebwqh")
 
 [node name="Evening" type="Node2D" parent="Lighting"]
-visible = false
 
 [node name="PointLight2D" type="PointLight2D" parent="Lighting/Evening"]
 position = Vector2(669, 643)

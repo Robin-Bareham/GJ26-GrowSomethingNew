@@ -9,6 +9,10 @@ extends Node2D
 @onready var end_ui = $End
 @onready var player = $Environment/Player
 
+var grove_mus = "res://Audio/B_Grove_A9.mp3"
+var end_mus =  "res://Audio/B_End_LostInTime.mp3"
+var woods_mus = "res://Audio/B_End_LostInTime.mp3"
+
 func _ready():
 	if(GlobalScript.just_started):
 		GlobalScript.currentState = GlobalScript.gameState.MENU
@@ -20,9 +24,17 @@ func _ready():
 			player.changeCameraLimits(GlobalScript.cl_woods_l,GlobalScript.cl_woods_r,GlobalScript.cl_woods_b,GlobalScript.cl_woods_t)
 			player.position.x = GlobalScript.p_start_px
 			player.position.y = GlobalScript.p_start_py
+			if(GlobalScript.currentState == GlobalScript.gameState.GAME):
+				const_ui.hideBg()
+				player.playBgMus(woods_mus)
+			else:
+				pass #if its one of the other states( Menus) play smthign else
+				#If it's the end of the game
 		"grove":
+			const_ui.hideBg()
 			player.changeCameraLimits(GlobalScript.cl_grove_l,GlobalScript.cl_grove_r,GlobalScript.cl_grove_b,GlobalScript.cl_grove_t)
-
+			if(GlobalScript.day != 1):
+				player.playBgMus(grove_mus)
 func _process(delta):
 	keyInputs()
 	manageStates()
@@ -72,54 +84,51 @@ func manageStates():
 	match GlobalScript.current_scene:
 		"woods":
 			if(GlobalScript.activate_cutscene):
-				if(GlobalScript.day_over):
-					#End of day scripts
-					pass
-					#match GlobalScript.day:
-						#1:
-							#dia_ui.eventActivated("D1End",2,"Temp_Cutscene1")
-						#2:
-							#dia_ui.eventActivated("D2End",2,"Temp_Cutscene1")
-							#GlobalScript.day = 3
-							#var tree_list = []
-							#tree_list = get_tree().get_nodes_in_group("enviro")
-							#for i in tree_list.size():
-								#tree_list[i].reloadTextures()
-							#GlobalScript.day = 2
-						#3:
-							#dia_ui.eventActivated("D3End",2,"Temp_Cutscene1")
-						#4: 
-							#dia_ui.eventActivated("D4End",2,"Temp_Cutscene1")
-					#GlobalScript.day += 1
-					#GlobalScript.day_over = false
 				#Starting Cutscene
-				elif(GlobalScript.day == 1 && GlobalScript.beginning):
-					dia_ui.eventActivated("Start",2,"Temp_Cutscene1")
-					GlobalScript.beginning = false
+				if(GlobalScript.day == 1):
+					#Starting Cutscene
+					if(!GlobalScript.completed_events["Start"]):
+						dia_ui.eventActivated("Start",2,"Start01")
+						GlobalScript.completed_events["Start"] = true
+					#Grove d1 cutscene
+					elif(!GlobalScript.completed_events["D1Grove"]):
+						GlobalScript.trans_cutscene = true
+						dia_ui.eventActivated("D1Grove",2,"Grove01")
+						player.playBgMus(grove_mus)
+						GlobalScript.completed_events["D1Grove"] = true
+						AllDia.dia_closing = false
+						
 				GlobalScript.activate_cutscene = false
-		"grove":
-			#First time player's in the grove
-			if(GlobalScript.activate_cutscene && GlobalScript.first_grove):
-				dia_ui.eventActivated("D1Grove",2,"Temp_Cutscene1")
-				GlobalScript.activate_cutscene = false
-				GlobalScript.first_grove = false
 				
+			if(GlobalScript.trans_cutscene && AllDia.dia_closing):
+				GlobalScript.trans_cutscene = false
+				AllDia.dia_closing = false
+				transition("grove")
+				GlobalScript.start_timer = true
+		"grove":				
 			if(GlobalScript.day_over):
 				#print_debug("Day over")
 				if(GlobalScript.activate_cutscene):
-					print_debug(GlobalScript.day)
 					match GlobalScript.day:
 						1:
-							dia_ui.eventActivated("D1End",2,"Temp_Cutscene1")
+							dia_ui.eventActivated("D1End",2,"D1End01")
+							GlobalScript.completed_events["D1End"] = true
 						2:
 							dia_ui.eventActivated("D2End",2,"Temp_Cutscene1")
+							GlobalScript.completed_events["D2End"] = true
 						3:
 							dia_ui.eventActivated("D3End",2,"Temp_Cutscene1")
+							GlobalScript.completed_events["D3End"] = true
 						4: 
 							dia_ui.eventActivated("D4End",2,"Temp_Cutscene1")
-				GlobalScript.activate_cutscene = false
-				#GlobalScript.activate_cutscene = false
-				if(!AllDia.dia_open):
+							GlobalScript.completed_events["D4End"] = true
+					GlobalScript.trans_cutscene = true
+					AllDia.dia_closing = false
+					GlobalScript.activate_cutscene = false
+				#Changing to woods
+				if(GlobalScript.trans_cutscene && AllDia.dia_closing):
+					GlobalScript.trans_cutscene = false
+					AllDia.dia_closing = false
 					GlobalScript.day += 1
 					GlobalScript.day_over = false
 					transition("woods")
@@ -160,12 +169,13 @@ func resetGame():
 	GlobalScript.reset_values()
 	player.position.x = GlobalScript.p_start_px
 	player.position.y = GlobalScript.p_start_py
-	GlobalScript.activate_cutscene = false
+	GlobalScript.activate_cutscene = true
 	$Environment/blindfold.setVisib(true)
 	var tree_list = []
 	tree_list = get_tree().get_nodes_in_group("enviro")
 	for i in tree_list.size():
 		tree_list[i].reloadTextures()
+	player.playBgMus(woods_mus)
 	
 	
 func activateMinigame():

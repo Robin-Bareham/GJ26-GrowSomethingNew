@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://cj04w7xwaaoe2" path="res://Audio/SFX_FootSingle.mp3" id="2_x3wgy"]
 [ext_resource type="Script" uid="uid://br26ci6lpjcup" path="res://Scripts/interaction_hitbox.gd" id="3_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://c8obhogoyoe6v" path="res://Assets/Sprites/ElmSpriteWalking.png" id="3_fkybt"]
-[ext_resource type="AudioStream" uid="uid://m6pehypxel12" path="res://Audio/Grove_A9.mp3" id="7_3smsa"]
+[ext_resource type="AudioStream" uid="uid://hc5lfcrw4gd6" path="res://Audio/B_Grove_A9.mp3" id="7_3smsa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x3wgy"]
 atlas = ExtResource("2_vgqql")

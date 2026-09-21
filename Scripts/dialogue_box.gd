@@ -45,18 +45,22 @@ func _process(delta):
 	progressDialogue()
 	pass
 
-func hideBox():
+func endBox():
+	#Ending it without hiding it used for cutscenes
 	AllDia.dia_open = false
 	GlobalScript.can_move = true
 	v_currently_active = false
+	v_opt1 = false
+	v_opt2 = false
+	v_opt_active = false
+	
+func hideBox():
+	endBox()
 	v_text.text = ""
 	v_current_line = -1
 	v_current_dialogue = []
 	v_root.hide()
 	v_option_container.hide()
-	v_opt1 = false
-	v_opt2 = false
-	v_opt_active = false
 	v_bg.hideBg()
 	if(v_new_node!= ""):
 		change_node.emit(v_new_node)
@@ -92,11 +96,16 @@ func progressDialogue():
 		# NORMAL dialogue Box		
 		if(!v_option_container.visible ):
 			# does this line have a v on it?
+			AllDia.dia_closing = false
 			if(v_next.text == "v"):
+				AllDia.dia_closing = true
 				if(v_current_pile == "D4End"):
 					GlobalScript.nextState = GlobalScript.gameState.END
 					GlobalScript.change_state = true
-				hideBox() #end the dialogue
+				if(GlobalScript.trans_cutscene):
+					endBox()
+				else:
+					hideBox() #end the dialogue
 				return
 			nextLine(-1)
 		# Option Box
@@ -153,6 +162,10 @@ func nextLine(jump: int):
 		v_current_line += 1
 	#Change text
 	v_text.text = v_current_dialogue[v_current_line][2]
+	if(v_text.text == ""):
+		v_root.hide()
+	else:
+		v_root.show()
 	#Change Next symbol
 	v_next.text = v_current_dialogue[v_current_line][3]
 	#Change Name

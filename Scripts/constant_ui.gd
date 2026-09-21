@@ -3,6 +3,7 @@ extends CanvasLayer
 @onready var label = $Label
 @onready var bg = $bg
 @onready var clock = $clock
+@onready var wall = $wall
 
 @onready var lighting = get_tree().current_scene.get_node("Lighting")
 
@@ -101,3 +102,8 @@ func hideBg():
 	bg.hide()
 func showBg():
 	bg.show()	
+	
+func hideWall():
+	wall.hide()
+func showWall():
+	wall.show()

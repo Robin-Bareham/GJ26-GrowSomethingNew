@@ -21,9 +21,7 @@ var lr_fix = "right"
 
 func _ready():
 	$AnimatedSprite2D.play("idle")
-	if(GlobalScript.current_scene == "grove"):
-		v_bg_mus.play()
-
+		
 # Update Function
 func _physics_process(delta):
 	if(GlobalScript.currentState == GlobalScript.gameState.GAME) :
@@ -106,6 +104,11 @@ func changeCameraLimits(p_left:int,p_right: int, p_bottom: int, p_top: int):
 	v_camera.set_limit(SIDE_RIGHT,p_right)
 	v_camera.set_limit(SIDE_BOTTOM,p_bottom)
 	v_camera.set_limit(SIDE_TOP,p_top)
+	
+func playBgMus(name: String):
+	v_bg_mus.stream = load(name)
+	v_bg_mus.play()
+
 func player():
 	#Used for checking transitions between scenes
 	pass
