@@ -7,13 +7,6 @@
 [node name="ConstantUI" type="CanvasLayer"]
 script = ExtResource("1_uckm8")
 
-[node name="Label" type="Label" parent="."]
-visible = false
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 50
-text = "100000"
-
 [node name="clock" type="TextureRect" parent="."]
 visible = false
 anchors_preset = -1

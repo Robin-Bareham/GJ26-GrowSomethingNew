@@ -78,6 +78,8 @@ func change_scene():
 		next_scene = ""
 		
 func reset_values():
+	next_scene = "woods"
+	change_scene()
 	previousState = true
 	change_state = false
 	minigame_active = false
@@ -85,16 +87,14 @@ func reset_values():
 	minigame_goal_image = ""
 	first_pile = true
 	items["Blindfold"] = false
-	
+		
 	current_energy = 100
 	day = 1
 	day_over = false
 	start_timer = false
 	timer_active = false
 	transition_scene = false
-	if(current_scene != "woods"):
-		next_scene = "woods"
-		change_scene()
+
 	game_end = false
 
 

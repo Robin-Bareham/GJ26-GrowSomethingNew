@@ -1,9 +1,7 @@
 extends CanvasLayer
 
-@onready var label = $Label
 @onready var bg = $bg
 @onready var clock = $clock
-@onready var wall = $wall
 
 @onready var lighting = get_tree().current_scene.get_node("Lighting")
 
@@ -30,21 +28,7 @@ var energy
 func _process(delta):
 	match GlobalScript.current_scene:
 		"grove":
-			#If the timer is active, start day. (doesn't count down if there's dialogue
-			if(GlobalScript.timer_active && !AllDia.dia_open):
-				timer += 1 * delta
-				if(timer >= timer_end):
-					GlobalScript.day_over = true
-					GlobalScript.activate_cutscene = true
-				elif(timer >= (timer_end/3)*2):
-					clock.texture = evening_texture
-					lighting.showLight("evening")
-				elif(timer >= (timer_end/3)):
-					clock.texture = noon_texture
-					lighting.showLight("noon")
-				#Visual change of shaders???
-				second = int(timer)
-				label.text = str(second)
+			progressTime(delta)
 			#Reset and activates the timer
 			if(GlobalScript.start_timer):
 				resetTimer()
@@ -52,6 +36,22 @@ func _process(delta):
 				GlobalScript.timer_active = true
 		"woods":
 			clock.hide()
+
+func progressTime(delta):
+	if(GlobalScript.timer_active && !AllDia.dia_open):
+				timer += 1 * delta
+				if(timer >= timer_end):
+					GlobalScript.day_over = true
+					GlobalScript.activate_cutscene = true
+				elif(timer >= (timer_end/3)*2):
+					if(GlobalScript.day == 3):
+						GlobalScript.day_over = true
+						GlobalScript.activate_cutscene = true
+					clock.texture = evening_texture
+					lighting.showLight("evening")
+				elif(timer >= (timer_end/3)):
+					clock.texture = noon_texture
+					lighting.showLight("noon")
 
 ## WHEN THE PLAYER ENTERS THE GROVE
 func resetTimer():
@@ -62,24 +62,23 @@ func resetTimer():
 	lighting.showLight("day")
 	var current_list = []
 	var current_pileOpts = []
+	timer_end = GlobalScript.max_time
 	match GlobalScript.day:
 		1:
-			timer_end = GlobalScript.max_time
 			GlobalScript.current_energy = GlobalScript.max_energy
 			current_list = d1_pilePOS
 			current_pileOpts = d1_pileOpts
 		2:
-			timer_end = GlobalScript.max_time
 			GlobalScript.current_energy = GlobalScript.max_energy - 20
 			current_list = d2_pilePOS
 			current_pileOpts = d2_pileOpts
 		3:
-			timer_end = GlobalScript.max_time/2
+			timer_end = GlobalScript.max_time / 0.8
 			GlobalScript.current_energy = GlobalScript.max_energy/2
 			current_list = d3_pilePOS
 			current_pileOpts = d3_pileOpts
 		4:
-			timer_end = GlobalScript.max_time/2
+			timer_end = GlobalScript.max_time * 30
 			GlobalScript.current_energy = 10 #Can only do one search
 			current_list = d4_pilePOS
 			current_pileOpts = d4_pileOpts
@@ -102,8 +101,3 @@ func hideBg():
 	bg.hide()
 func showBg():
 	bg.show()	
-	
-func hideWall():
-	wall.hide()
-func showWall():
-	wall.show()

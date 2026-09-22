@@ -98,6 +98,7 @@ func progressDialogue():
 		# NORMAL dialogue Box		
 		if(!v_option_container.visible ):
 			# does this line have a v on it?
+			
 			AllDia.dia_closing = false
 			if(v_next.text == "v"):
 				AllDia.dia_closing = true

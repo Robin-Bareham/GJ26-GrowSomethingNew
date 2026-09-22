@@ -119,7 +119,7 @@ func manageStates():
 							dia_ui.eventActivated("D2End",2,"D2End01")
 							GlobalScript.completed_events["D2End"] = true
 						3:
-							dia_ui.eventActivated("D3End",2,"Temp_Cutscene1")
+							dia_ui.eventActivated("D3End",2,"D3End01")
 							GlobalScript.completed_events["D3End"] = true
 						4: 
 							dia_ui.eventActivated("D4End",2,"Temp_Cutscene1")
@@ -131,15 +131,18 @@ func manageStates():
 				if(GlobalScript.trans_cutscene && AllDia.dia_closing):
 					GlobalScript.trans_cutscene = false
 					AllDia.dia_closing = false
-					GlobalScript.day += 1
+					
 					GlobalScript.day_over = false
-					transition("woods")
 					GlobalScript.timer_active = false
 					GlobalScript.start_timer = false
 					GlobalScript.minigame_active = false
 					GlobalScript.activating_minigame = false
-					GlobalScript.first_pile = true
-					AllDia.lake_interacted = false
+					if(GlobalScript.day != 4):
+						GlobalScript.first_pile = true
+						AllDia.lake_interacted = false
+						GlobalScript.day += 1
+						transition("woods")
+					
 
 func updateUI():
 	match GlobalScript.currentState:
@@ -166,13 +169,13 @@ func updateUI():
 			pause_ui.hide()
 			control_ui.hide()
 
+### MAKE SURE THIS IS WORKING< ITS NOT WORKING ATM
 func resetGame():
 	#Make sure it's starting scene
 	GlobalScript.reset_values()
 	player.position.x = GlobalScript.p_start_px
 	player.position.y = GlobalScript.p_start_py
 	GlobalScript.activate_cutscene = true
-	$Environment/blindfold.setVisib(true)
 	var tree_list = []
 	tree_list = get_tree().get_nodes_in_group("enviro")
 	for i in tree_list.size():
@@ -196,14 +199,16 @@ func deactivateMinigame():
 	mini_ui.hide()
 	GlobalScript.activating_minigame = false
 	GlobalScript.minigame_active = false
-	if(GlobalScript.minigame_goal_image != ""):
-		dia_ui.boxActivated(GlobalScript.minigame_goal_image,0)	
-	GlobalScript.minigame_goal_image = ""
-	#Adjust Energy
 	GlobalScript.current_energy -= 10
 	if(GlobalScript.current_energy <= 0):
 		GlobalScript.day_over = true
 		GlobalScript.activate_cutscene = true
+		return
+	if(GlobalScript.minigame_goal_image != ""):
+		dia_ui.boxActivated(GlobalScript.minigame_goal_image,0)	
+	GlobalScript.minigame_goal_image = ""
+	#Adjust Energy
+	
 			
 func transition(type: String):
 	GlobalScript.transition_scene = true

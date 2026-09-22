@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cqqgdlvutgwu7" path="res://Scenes/minigame.tscn" id="6_hkomy"]
 [ext_resource type="PackedScene" uid="uid://ik2o0bqkpr7d" path="res://Prefabs/bush.tscn" id="6_ljmod"]
 [ext_resource type="PackedScene" uid="uid://d3k4r1wr4q6uh" path="res://Scenes/constant_ui.tscn" id="7_3wb70"]
-[ext_resource type="Script" uid="uid://cnu8pst5bt32g" path="res://Scenes/lighting.gd" id="7_lreth"]
+[ext_resource type="Script" uid="uid://cnu8pst5bt32g" path="res://Scripts/lighting.gd" id="7_lreth"]
 [ext_resource type="Texture2D" uid="uid://dixcgqwg7eair" path="res://Assets/Lighting/testLightShape.png" id="7_ofg1g"]
 [ext_resource type="Texture2D" uid="uid://djj7ndvs7r6l1" path="res://Assets/Lighting/spotlight.png" id="8_lreth"]
 [ext_resource type="PackedScene" uid="uid://bbwwmfpn0xp0b" path="res://Scenes/menu.tscn" id="10_w2feb"]

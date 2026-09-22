@@ -12,6 +12,8 @@ var v_visible = true
 func _ready():
 	if(v_object_name == "Blindfold" && GlobalScript.items["Blindfold"]):
 		setVisib(false)
+	else:
+		setVisib(true)
 
 func getName():
 	return v_object_name

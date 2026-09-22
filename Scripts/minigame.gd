@@ -71,8 +71,6 @@ func changeShaders():
 		#Slight distortion, no S_blur, no darkness.
 		
 	iterateShaders(shader_loc)
-	print_debug("BLUR AMOUNT:")
-	print_debug(v_blur.get_instance_shader_parameter("blur_amount"))
 	
 func iterateShaders(type: String):
 	v_goal.material.shader = load(type)
