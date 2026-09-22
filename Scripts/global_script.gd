@@ -89,7 +89,7 @@ func reset_values():
 	items["Blindfold"] = false
 		
 	current_energy = 100
-	day = 1
+	day = 5
 	day_over = false
 	start_timer = false
 	timer_active = false

@@ -122,7 +122,7 @@ func manageStates():
 							dia_ui.eventActivated("D3End",2,"D3End01")
 							GlobalScript.completed_events["D3End"] = true
 						4: 
-							dia_ui.eventActivated("D4End",2,"Temp_Cutscene1")
+							dia_ui.eventActivated("D4End",2,"D4End01")
 							GlobalScript.completed_events["D4End"] = true
 					GlobalScript.trans_cutscene = true
 					AllDia.dia_closing = false

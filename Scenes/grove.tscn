@@ -34,7 +34,7 @@ y_sort_enabled = true
 position = Vector2(939, 424)
 
 [node name="Pile" parent="Environment" instance=ExtResource("5_21kdw")]
-position = Vector2(-1385, 974)
+position = Vector2(-1477, 1040)
 
 [node name="Player" parent="Environment" instance=ExtResource("1_2fjvt")]
 position = Vector2(68, 409)
@@ -231,7 +231,6 @@ energy = 1.54
 texture = SubResource("GradientTexture2D_ebwqh")
 
 [node name="Day" type="Node2D" parent="Lighting"]
-visible = false
 
 [node name="PointLight2D" type="PointLight2D" parent="Lighting/Day"]
 position = Vector2(78, 616)
@@ -304,6 +303,7 @@ energy = 1.54
 texture = SubResource("GradientTexture2D_ebwqh")
 
 [node name="Evening" type="Node2D" parent="Lighting"]
+visible = false
 
 [node name="PointLight2D" type="PointLight2D" parent="Lighting/Evening"]
 position = Vector2(669, 643)

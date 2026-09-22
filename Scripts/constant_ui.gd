@@ -19,7 +19,7 @@ var d2_pilePOS = [[-1238,-139],[-631,153],[-418,590],[-294,-412],[216,-21],[466,
 var d2_pileOpts = ["G_Ash","G_Ash","G_Crown","G_Cloth"]
 var d3_pilePOS = [[-749,245],[-507,-115],[137,-256],[450,189],[1031,28]]
 var d3_pileOpts = ["G_Closed","G_Closed","G_Closed","G_Crown","G_Cloth"]
-var d4_pilePOS = [[79,132]]
+var d4_pilePOS = [[348,335]]
 var d4_pileOpts = ["G_Final"]
 var pile_list = []
 
