@@ -1,12 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwnhmpho68e5u"]
+[gd_scene load_steps=4 format=3 uid="uid://bwnhmpho68e5u"]
 
 [ext_resource type="StyleBox" uid="uid://dtk484ihyqfbi" path="res://Assets/Styles/SBF_deselected.tres" id="1_5j2cu"]
 [ext_resource type="Script" uid="uid://b7yfvbsykgvci" path="res://Scripts/menu.gd" id="1_xmt8n"]
+[ext_resource type="Texture2D" uid="uid://jwb6wmea5oqo" path="res://Assets/Cutscenes/EndPng.png" id="2_02kpm"]
 
 [node name="End" type="CanvasLayer"]
 script = ExtResource("1_xmt8n")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_02kpm")
+
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,10 +24,12 @@ color = Color(0.236784, 0.334107, 0.151257, 1)
 [node name="Title" type="Label" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
+offset_left = 915.0
+offset_right = 1.0
 offset_bottom = 137.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 100
-text = "Game end"
+theme_override_font_sizes/font_size = 80
+text = "Thank you for playing"
 horizontal_alignment = 1
 vertical_alignment = 1
 

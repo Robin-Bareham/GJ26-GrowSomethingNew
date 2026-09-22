@@ -68,6 +68,14 @@ var completed_events = {
 	"D4End" : false
 }
 
+var found_goals = {
+	"G_Ash" : false,
+	"G_Bark" : false,
+	"G_Closed" : false,
+	"G_Cloth" : false,
+	"G_Crown" : false,
+}
+
 func change_scene():
 	if(transition_scene):
 		var temp_path = "res://Scenes/" + next_scene + ".tscn"
@@ -89,7 +97,7 @@ func reset_values():
 	items["Blindfold"] = false
 		
 	current_energy = 100
-	day = 5
+	day = 1
 	day_over = false
 	start_timer = false
 	timer_active = false

@@ -11,7 +11,7 @@ var v_dragging = false
 var v_offset = Vector2(0,0)
 
 func _process(delta):
-	if(v_dragging):
+	if(v_dragging && !AllDia.dia_open):
 		position = get_global_mouse_position() - v_offset
 
 func getCS2D():

@@ -95,7 +95,7 @@ func playerAnimation(action):
 		animation_name += "b"
 		previous_end = "b"
 	else:
-		animation_name += "f"
+		animation_name += previous_end
 	animation_sprite.play(animation_name)
 
 func changeCameraLimits(p_left:int,p_right: int, p_bottom: int, p_top: int):

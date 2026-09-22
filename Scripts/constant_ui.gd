@@ -73,7 +73,7 @@ func resetTimer():
 			current_list = d2_pilePOS
 			current_pileOpts = d2_pileOpts
 		3:
-			timer_end = GlobalScript.max_time / 0.8
+			timer_end = GlobalScript.max_time
 			GlobalScript.current_energy = GlobalScript.max_energy/2
 			current_list = d3_pilePOS
 			current_pileOpts = d3_pileOpts
