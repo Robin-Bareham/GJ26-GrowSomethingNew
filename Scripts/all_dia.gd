@@ -5,17 +5,17 @@ var dia_closing = false
 
 var lake_interacted = false
 
-
+var randomPileMax = 2
 
 var dia_dic = {
 	"NoBF": [["Elm",0,"That looks like the way to the grove though...",">"],["Elm",0,"My eyes feel weird from it's brightness.",">"],["Elm",0,"I wonder if there's something around here that'll help.","v"]],
 	"Blindfold" : [["Elm",2,"This looks good, should protect my eyes nicely.","v","Blindfold","HIDE"]],
-	"G_Ash": [["Elm",0,"Nothing here but ash...","v"]],
-	"G_Bark": [["Elm",0,"Burnt bark- I know how painful that is...","v"]],
-	"G_Closed": [["Elm",0,"More of these things? They look... uncanny.","v"]],
-	"G_Cloth": [["Elm",0,"We would spent time together as a grove making clothes for travlers...","v"]],
-	"G_Crown": [["Elm",0,"A burned flowercrown, I can only hope the saplings got out safely.","v"]],
-	"G_Final": [["Elm",0,"It's... looking at me...",">"],["Elm",0,"...",">"],["Elm",0,"I can't keep doing this.","v"]]
+	"G_Ash": [["Elm",0,"Nothing here but ash...","v"],["Elm",0,"Ash...","v"],["Elm",0,"...","v"]],
+	"G_Bark": [["Elm",0,"Burnt bark- I know how painful that is...","v"],["Elm",0,"The bark's been ripped off before it could heal.","v"],["Elm",0,"...","v"]],
+	"G_Closed": [["Elm",0,"More of these things? They look... uncanny.","v"],["Elm",0,"They're closed up, don't they need the light?","v"],["Elm",0,"...","v"]],
+	"G_Cloth": [["Elm",0,"We would spent time together as a grove making clothes for travlers...","v"],["Elm",0,"The cloth look ragged, I hope they were fine.","v"],["Elm",0,"...","v"]],
+	"G_Crown": [["Elm",0,"A burned flowercrown, I can only hope the saplings got out safely.","v"],["Elm",0,"More flowercrowns...","v"],["Elm",0,"...","v"]],
+	"G_Final": [["Elm",0,"It's... looking at me...",">"],["Elm",0,"...",">"],["Elm",0,"I can't keep doing this.","v"],["Elm",0,"2","v"]]
 }
 
 var scripted_dia = {

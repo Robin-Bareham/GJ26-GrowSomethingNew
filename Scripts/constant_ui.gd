@@ -82,6 +82,8 @@ func resetTimer():
 			GlobalScript.current_energy = 10 #Can only do one search
 			current_list = d4_pilePOS
 			current_pileOpts = d4_pileOpts
+			
+	#Inits piles + whats in them.
 	for i in current_list.size():
 		var newPile = pileScene.instantiate()
 		newPile.setPosition(current_list[i][0],current_list[i][1])

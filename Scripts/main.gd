@@ -80,7 +80,7 @@ func keyInputs():
 		GlobalScript.day_over = true
 		GlobalScript.activate_cutscene = true
 		#dia_ui.eventActivated("test",2,"Temp_Cutscene1")
-	if(Input.is_action_just_pressed("mouse_click")):
+	if(Input.is_action_just_pressed("mouse_click") && GlobalScript.currentState != GlobalScript.gameState.GAME):
 		GlobalScript.interact = 3
 
 func manageStates():

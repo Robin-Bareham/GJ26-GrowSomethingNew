@@ -48,7 +48,7 @@ func _process(delta):
 	pass
 
 func endBox():
-	#Ending it without hiding it used for cutscenes
+	#Ending it without hiding it used for cutscenes transitions
 	AllDia.dia_open = false
 	GlobalScript.can_move = true
 	v_currently_active = false
@@ -78,6 +78,14 @@ func showBox(object: String):
 	#Get the lines of dialogue related to the object
 	if(v_dia_type == 0):
 		v_current_dialogue = AllDia.dia_dic[object]
+		if(object != "NoBF" && object != "Blindfold" && object != "G_Final"):
+			##  RANDOMISING DIALOGUE
+			## IF IT'S THE FIRST TIME SEEING IT
+			if(GlobalScript.items[object]):
+				v_current_line += randi() % AllDia.randomPileMax + 1 #randomise pile response 1 ~ 2
+			else:
+				GlobalScript.items[object] = true
+			
 	elif(v_dia_type == 1):
 		v_current_dialogue = AllDia.pile_dic["pile"]
 		v_current_pile = object #Name of goal image

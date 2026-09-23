@@ -51,6 +51,7 @@ func playerMovement(dt):
 		y_current_direction = "up"
 		velocity.y = -v_speed
 	else:
+		y_current_direction = "none"
 		velocity.y = 0
 	#Change player animation
 	if(velocity.y == 0 && velocity.x == 0):
@@ -95,7 +96,12 @@ func playerAnimation(action):
 		animation_name += "b"
 		previous_end = "b"
 	else:
-		animation_name += previous_end
+		if(action == 1):
+			animation_name += "f"
+			previous_end = "f"
+		else:
+			animation_name += previous_end
+			
 	animation_sprite.play(animation_name)
 
 func changeCameraLimits(p_left:int,p_right: int, p_bottom: int, p_top: int):
