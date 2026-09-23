@@ -96,13 +96,7 @@ func reset_values():
 	can_move = true
 	minigame_active = false
 	activating_minigame = false
-	#minigame_goal_image = ""
-	#first_pile = true
-		#
-	#current_energy = 100
-	#start_timer = false
-	
-	#game_end = false
+	game_end = false
 
 
 func get_audio_player():

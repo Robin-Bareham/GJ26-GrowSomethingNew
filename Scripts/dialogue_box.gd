@@ -113,7 +113,9 @@ func progressDialogue():
 				if(v_current_pile == "D4End"):
 					GlobalScript.nextState = GlobalScript.gameState.END
 					GlobalScript.change_state = true
-				if(GlobalScript.trans_cutscene):
+					BackgroundMus.stream = load("res://Audio/B_ShatteredDreams.mp3")
+					BackgroundMus.play()
+				if(GlobalScript.trans_cutscene && GlobalScript.day != 4):
 					endBox()
 				else:
 					hideBox() #end the dialogue

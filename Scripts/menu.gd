@@ -49,9 +49,16 @@ func _process(delta):
 				6:
 					GlobalScript.nextState = GlobalScript.gameState.MENU
 					GlobalScript.change_state = true
+					GlobalScript.previousState = true
+					BackgroundMus.stream = load("res://Audio/B_ShatteredDreams.mp3")
+					BackgroundMus.play()
 				7:
 					GlobalScript.nextState = GlobalScript.gameState.MENU
 					GlobalScript.change_state = true
+					GlobalScript.next_scene = "woods"
+					GlobalScript.transition_scene = true
+					GlobalScript.previousState = false
+					GlobalScript.change_scene()	
 
 func changeStyle(pos: int, active: bool):
 	if(active):

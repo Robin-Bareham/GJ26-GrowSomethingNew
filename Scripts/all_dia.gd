@@ -32,7 +32,7 @@ var scripted_dia = {
 	"D4End" : [["Elm",0,"",">"],["",4,"",">","D4End02"],["",4,"",">","D4End03"],["Elm",0,"Alright. I'm done.",">"],["Elm",0,"I doubt there's anything left here.",">"],
 	["Elm",4,"It does help that I can see better now.",">","D4End04"],["Elm",4,"I can only hope there were some survivors.",">","D4End05"],
 	["Elm",0,"Maybe I'll find them someday...",">"],["",4,"",">","D4End06"],["Elm",0,"Is this going to be perminant?",">"],["Elm",0,"Although most of the aches and pains are gone, things just don't...",">"],["Elm",0,"They just don't feel that same...",">"],
-	["Elm",4,"I would blame these pettles if I knew what they were.",">","D4End07"],["Elm",0,"I guess I could-",">"],["",4,"Elm?",">","D4End08"],["Lavender",4,"What happened to you?","v","D4End09"]],
+	["Elm",4,"I would blame these petals if I knew what they were.",">","D4End07"],["Elm",0,"I guess I could-",">"],["",4,"Elm?",">","D4End08"],["Lavender",4,"What happened to you?","v","D4End09"]],
 	"D1Grove" : [["Elm",0,"...",">"],["Elm",0,"",">"],["Elm",0,"It can't be...",">"],["Elm",4,"Did it... how could it all be gone?",">","Grove02"],["Elm",0,"",">"],["Elm",4,"What's this? There's stuff under the clumps of ash.",">","Grove03"],["Elm",0,"I should search them, maybe I'll find...",">"],["Elm",0,"... Hopefully something good.","v"]],
 	"Start" : [["",0,"",">"],["",4,"...?",">","Start02"],["Elm",0,"What... where am I?",">"],["Elm",4,"Why is everything so bright?",">","Start03"],["Elm",0,"...",">"],["Elm",4,"WHAT IS THAT?!",">","Start04"],["Elm",0,"Get it off get it off get it off get it off get it-",">"],
 	["Elm",4,"It's stuck to my bark!",">","Start06"],["Elm",0,"...",">"],["Elm",4,"The grove!",">","Start05"],["Elm",0,"Oh no I need to see if everyone's okay.","v",]],

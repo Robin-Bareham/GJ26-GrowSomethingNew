@@ -10,9 +10,10 @@ extends Node2D
 @onready var player = $Environment/Player
 
 @onready var blindfold = $Environment/blindfold
+@onready var waterpools = $WaterSplash
 
 var grove_mus = "res://Audio/B_Grove_A9.mp3"
-var end_mus =  "res://Audio/B_End_LostInTime.mp3"
+var menu_mus =  "res://Audio/B_ShatteredDreams.mp3"
 var woods_mus = "res://Audio/B_End_LostInTime.mp3"
 
 func _ready():
@@ -21,6 +22,7 @@ func _ready():
 		GlobalScript.currentState = GlobalScript.gameState.MENU
 		menu_ui.show()
 		GlobalScript.just_started = false
+		
 	#Change Player's Camera limits when entering a scene
 	match GlobalScript.current_scene:
 		"woods":
@@ -31,6 +33,8 @@ func _ready():
 				const_ui.hideBg()
 				playBg(woods_mus)
 			else:
+				if(GlobalScript.previousState):
+					playBg(menu_mus)
 				pass #if its one of the other states( Menus) play smthign else
 				#If it's the end of the game
 		"grove":
@@ -49,7 +53,8 @@ func _process(delta):
 		for i in tree_list.size():
 			tree_list[i].reloadTextures()
 		dia_ui.eventActivated("Start",2,"Start01")
-			
+		waterpools.show()
+		waterpools.play("default")
 		print_debug(str(GlobalScript.activate_cutscene) + " End of Woods Loading")
 	keyInputs()
 	manageStates()
@@ -95,8 +100,11 @@ func manageStates():
 		GlobalScript.currentState = GlobalScript.nextState
 		GlobalScript.change_state = false
 		updateUI()
-	#Changing Scenes Woods and Grove
 	
+	if(!GlobalScript.resetting_game && GlobalScript.current_scene == "woods"):
+		waterpools.play("default")
+	
+	#Changing Scenes Woods and Grove
 	match GlobalScript.current_scene:
 		"woods":
 			if(GlobalScript.activate_cutscene):
@@ -127,6 +135,10 @@ func manageStates():
 			elif(AllDia.dia_closing):
 				GlobalScript.trans_cutscene = false
 				AllDia.dia_closing = false
+				if(AllDia.lake_interacted):
+					waterpools.hide()
+				else:
+					waterpools.show()
 		"grove":				
 			if(GlobalScript.day_over):
 				#print_debug("Day over")
@@ -208,13 +220,8 @@ func resetGame():
 	#Activates Start Cutscene
 	GlobalScript.activate_cutscene = true
 	GlobalScript.resetting_game = true
-	print_debug(str(GlobalScript.activate_cutscene) + " End of resetGame")
-	#var tree_list = []
-	#print_debug(get_tree())
-	#tree_list = get_tree().get_nodes_in_group("enviro")
-	#for i in tree_list.size():
-		#tree_list[i].reloadTextures()
-	#playBg(woods_mus)
+	playBg(woods_mus)
+
 	
 	
 func activateMinigame():

@@ -89,7 +89,6 @@ func _on_area_exited(area: Area2D) -> void:
 		
 func changeNode(type:String):
 	if(type == "LAKE"):
-		
 		v_interractable_list.remove_at(v_interractable_list.find(v_lake_dia))
 		v_lake_dia = "LakeSil"
 		v_interractable_list.append(v_lake_dia)
