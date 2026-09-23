@@ -9,6 +9,7 @@ func _ready():
 
 func reloadTextures():
 	var texture_location
+	
 	if(GlobalScript.day >= 3):
 		texture_location = "res://Assets/Sprites/" + nextImg + ".png"
 	else:

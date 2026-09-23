@@ -33,6 +33,7 @@ var previous_scene = "woods"
 var game_end = false
 
 var trans_cutscene = false
+var resetting_game = false
 
 #Transition Positions
 var p_nobf_py = -165.0
@@ -56,7 +57,12 @@ var interact = 0 #0 = No interact, 1 = Object Interact, 2 = Dialogue Interact
 var choose = 0 #No choice, 1 = left, 2 = right, 3 = up, 4= down
 
 var items = {
-	"Blindfold": false
+	"Blindfold": false,
+	"G_Ash" : false,
+	"G_Bark" : false,
+	"G_Closed" : false,
+	"G_Cloth" : false,
+	"G_Crown" : false,
 }
 
 var completed_events = {
@@ -66,14 +72,6 @@ var completed_events = {
 	"D2End" : false,
 	"D3End" : false,
 	"D4End" : false
-}
-
-var found_goals = {
-	"G_Ash" : false,
-	"G_Bark" : false,
-	"G_Closed" : false,
-	"G_Cloth" : false,
-	"G_Crown" : false,
 }
 
 func change_scene():
@@ -86,24 +84,25 @@ func change_scene():
 		next_scene = ""
 		
 func reset_values():
-	next_scene = "woods"
-	change_scene()
-	previousState = true
-	change_state = false
-	minigame_active = false
-	activating_minigame = false
-	minigame_goal_image = ""
-	first_pile = true
-	items["Blindfold"] = false
-		
-	current_energy = 100
 	day = 1
 	day_over = false
-	start_timer = false
+	##Resets dictionaries
+	for key in items.keys():
+		items[key] = false
+	for key2 in completed_events.keys():
+		completed_events[key2] = false
+	
 	timer_active = false
-	transition_scene = false
-
-	game_end = false
+	can_move = true
+	minigame_active = false
+	activating_minigame = false
+	#minigame_goal_image = ""
+	#first_pile = true
+		#
+	#current_energy = 100
+	#start_timer = false
+	
+	#game_end = false
 
 
 func get_audio_player():

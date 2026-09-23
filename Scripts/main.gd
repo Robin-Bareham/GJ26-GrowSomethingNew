@@ -9,6 +9,8 @@ extends Node2D
 @onready var end_ui = $End
 @onready var player = $Environment/Player
 
+@onready var blindfold = $Environment/blindfold
+
 var grove_mus = "res://Audio/B_Grove_A9.mp3"
 var end_mus =  "res://Audio/B_End_LostInTime.mp3"
 var woods_mus = "res://Audio/B_End_LostInTime.mp3"
@@ -38,6 +40,17 @@ func _ready():
 				playBg(grove_mus)
 				
 func _process(delta):
+	#For resetting certain nodes only available in the wood's scene
+	if(GlobalScript.resetting_game && get_tree().get_current_scene().name == "woods"):
+		blindfold.setVisib(true)
+		GlobalScript.resetting_game = false
+		var tree_list = []
+		tree_list = get_tree().get_nodes_in_group("enviro")
+		for i in tree_list.size():
+			tree_list[i].reloadTextures()
+		dia_ui.eventActivated("Start",2,"Start01")
+			
+		print_debug(str(GlobalScript.activate_cutscene) + " End of Woods Loading")
 	keyInputs()
 	manageStates()
 	
@@ -82,18 +95,22 @@ func manageStates():
 		GlobalScript.currentState = GlobalScript.nextState
 		GlobalScript.change_state = false
 		updateUI()
+	#Changing Scenes Woods and Grove
 	
 	match GlobalScript.current_scene:
 		"woods":
 			if(GlobalScript.activate_cutscene):
+				print_debug(str(GlobalScript.activate_cutscene) + " ManageStates")
 				#Starting Cutscene
 				if(GlobalScript.day == 1):
 					#Starting Cutscene
 					if(!GlobalScript.completed_events["Start"]):
 						dia_ui.eventActivated("Start",2,"Start01")
 						GlobalScript.completed_events["Start"] = true
+						AllDia.dia_closing = false
+						GlobalScript.trans_cutscene = false
 					#Grove d1 cutscene
-					elif(!GlobalScript.completed_events["D1Grove"]):
+					elif(!GlobalScript.completed_events["D1Grove"] && GlobalScript.completed_events["Start"]):
 						GlobalScript.trans_cutscene = true
 						dia_ui.eventActivated("D1Grove",2,"Grove01")
 						playBg(grove_mus)
@@ -101,12 +118,15 @@ func manageStates():
 						AllDia.dia_closing = false
 						
 				GlobalScript.activate_cutscene = false
-				
-			if(GlobalScript.trans_cutscene && AllDia.dia_closing):
+			
+			if(GlobalScript.trans_cutscene && AllDia.dia_closing && GlobalScript.completed_events["D1Grove"]):
 				GlobalScript.trans_cutscene = false
 				AllDia.dia_closing = false
 				transition("grove")
 				GlobalScript.start_timer = true
+			elif(AllDia.dia_closing):
+				GlobalScript.trans_cutscene = false
+				AllDia.dia_closing = false
 		"grove":				
 			if(GlobalScript.day_over):
 				#print_debug("Day over")
@@ -171,16 +191,30 @@ func updateUI():
 
 ### MAKE SURE THIS IS WORKING< ITS NOT WORKING ATM
 func resetGame():
+	#If current scene is grove, go to woods
+	if(GlobalScript.current_scene == "grove"):
+		GlobalScript.next_scene = "woods"
+		GlobalScript.transition_scene = true
+		GlobalScript.change_scene()	
+	#If a dialogue was open, close it
+	if(AllDia.dia_open):
+		dia_ui.hideBox()
 	#Make sure it's starting scene
 	GlobalScript.reset_values()
+	AllDia.lake_interacted = false
 	player.position.x = GlobalScript.p_start_px
 	player.position.y = GlobalScript.p_start_py
+	#Sets Blindfold to visible.
+	#Activates Start Cutscene
 	GlobalScript.activate_cutscene = true
-	var tree_list = []
-	tree_list = get_tree().get_nodes_in_group("enviro")
-	for i in tree_list.size():
-		tree_list[i].reloadTextures()
-	playBg(woods_mus)
+	GlobalScript.resetting_game = true
+	print_debug(str(GlobalScript.activate_cutscene) + " End of resetGame")
+	#var tree_list = []
+	#print_debug(get_tree())
+	#tree_list = get_tree().get_nodes_in_group("enviro")
+	#for i in tree_list.size():
+		#tree_list[i].reloadTextures()
+	#playBg(woods_mus)
 	
 	
 func activateMinigame():
