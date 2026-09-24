@@ -1,18 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbwwmfpn0xp0b"]
+[gd_scene load_steps=4 format=3 uid="uid://bbwwmfpn0xp0b"]
 
 [ext_resource type="StyleBox" uid="uid://dtk484ihyqfbi" path="res://Assets/Styles/SBF_deselected.tres" id="1_1rerr"]
 [ext_resource type="Script" uid="uid://b7yfvbsykgvci" path="res://Scripts/menu.gd" id="1_xhh6f"]
+[ext_resource type="Texture2D" uid="uid://tsu5jvurwpwh" path="res://Assets/Cutscenes/Menu.png" id="2_cayip"]
 
 [node name="menu" type="CanvasLayer"]
 script = ExtResource("1_xhh6f")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.236784, 0.334107, 0.151257, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_cayip")
 
 [node name="Title" type="Label" parent="."]
 anchors_preset = 10

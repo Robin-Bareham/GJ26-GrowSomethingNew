@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @onready var list: Array
+@onready var menubg = $menubg
 
 var selected_box = -1
 var previous = true #True = menu, false = pause

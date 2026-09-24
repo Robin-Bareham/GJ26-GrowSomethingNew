@@ -1,19 +1,45 @@
-[gd_scene load_steps=4 format=3 uid="uid://dww0mwgtu4li8"]
+[gd_scene load_steps=5 format=3 uid="uid://dww0mwgtu4li8"]
 
 [ext_resource type="StyleBox" uid="uid://dtk484ihyqfbi" path="res://Assets/Styles/SBF_deselected.tres" id="1_8qavf"]
 [ext_resource type="Script" uid="uid://b7yfvbsykgvci" path="res://Scripts/menu.gd" id="1_e8c2f"]
 [ext_resource type="Texture2D" uid="uid://ba1tadjoa5yto" path="res://Assets/Cutscenes/Controls.png" id="2_ejwpf"]
+[ext_resource type="Texture2D" uid="uid://tsu5jvurwpwh" path="res://Assets/Cutscenes/Menu.png" id="2_m0n3a"]
 
 [node name="controls" type="CanvasLayer"]
 script = ExtResource("1_e8c2f")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="menubg" type="TextureRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.235294, 0.333333, 0.152941, 1)
+texture = ExtResource("2_m0n3a")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 45.0
+offset_top = 203.0
+offset_right = -947.0
+offset_bottom = -364.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.235294, 0.333333, 0.152941, 0.470588)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 998.0
+offset_top = 92.0
+offset_right = 6.0
+offset_bottom = -475.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.84, 1.4)
+color = Color(0.235294, 0.333333, 0.152941, 0.470588)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1920.0
