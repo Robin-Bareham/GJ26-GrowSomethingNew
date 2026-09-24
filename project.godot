@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="GrowSmthNew"
+config/name="First Roots"
 run/main_scene="uid://dt1jd6r8s7g8a"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="uid://bcbj3tht3fbg5"
+config/windows_native_icon="res://Assets/ICON.ico"
 
 [autoload]
 
