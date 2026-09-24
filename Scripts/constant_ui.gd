@@ -38,7 +38,7 @@ func _process(delta):
 			clock.hide()
 
 func progressTime(delta):
-	if(GlobalScript.timer_active && !AllDia.dia_open):
+	if(GlobalScript.timer_active && !AllDia.dia_open && GlobalScript.currentState == GlobalScript.gameState.GAME):
 				timer += 1 * delta
 				if(timer >= timer_end):
 					if(!GlobalScript.minigame_active && !AllDia.dia_open):

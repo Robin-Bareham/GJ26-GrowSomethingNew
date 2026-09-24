@@ -78,7 +78,7 @@ func keyInputs():
 		if(AllDia.dia_open):
 			GlobalScript.choose = 1
 		
-	if(Input.is_action_just_pressed("pause")):
+	if(Input.is_action_just_pressed("pause") && GlobalScript.currentState == GlobalScript.gameState.GAME):
 		GlobalScript.nextState = GlobalScript.gameState.PAUSE
 		GlobalScript.change_state = true
 	#if(Input.is_action_just_pressed("test")):
