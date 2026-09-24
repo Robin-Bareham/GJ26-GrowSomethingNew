@@ -124,11 +124,12 @@ func progressDialogue():
 		# Option Box
 		if(v_option_container.visible):
 			if(v_opt1 || v_opt2 ):
+				var opt2 = v_opt2
 				v_option_container.hide()
 				#Show the current dialogue
 				#Choosing to search a pile or not
 				if(v_dia_type == 1):
-					if(v_opt2):
+					if(opt2):
 						hideBox()
 						return
 					else:
@@ -137,13 +138,15 @@ func progressDialogue():
 						GlobalScript.minigame_goal_image = v_current_pile
 						v_new_node = "HIDE"
 						return
+				
 				#Jump to the line as stated in pos 6 (opt 1) and 7 (opt2)
-				var indexJump
-				if(v_opt2):
-					indexJump = v_current_dialogue[v_current_line][7]
-				else:
-					indexJump = v_current_dialogue[v_current_line][6]
-				nextLine(indexJump)
+				#var indexJump
+				#if(v_opt2):
+					#indexJump = v_current_dialogue[v_current_line][7]
+				#else:
+					#indexJump = v_current_dialogue[v_current_line][6]
+				#nextLine(indexJump)
+				
 	#Switch between options if Option Box is visible.
 	if(v_option_container.visible && (GlobalScript.choose == 1 || GlobalScript.choose == 2)):
 		if(GlobalScript.choose == 2 && !v_opt2):
@@ -237,3 +240,25 @@ func eventActivated(version: String, dia: int, bg: String ):
 		nextLine(-1)
 		v_bg.changeBg(bg)
 		v_bg.showBg()
+
+func changeStyle(pos: Panel, active: bool):
+	if(active):
+		pos.add_theme_stylebox_override("panel",optSelected)
+	else:
+		pos.add_theme_stylebox_override("panel",optDeselected)
+
+func _on_opt_1_mouse_entered() -> void:
+	changeStyle(v_option1_panel,true)
+	v_opt1 = true
+
+func _on_opt_1_mouse_exited() -> void:
+	changeStyle(v_option1_panel,false)
+	v_opt1 = false
+
+func _on_opt_2_mouse_entered() -> void:
+	changeStyle(v_option2_panel,true)
+	v_opt2 = true
+
+func _on_opt_2_mouse_exited() -> void:
+	changeStyle(v_option2_panel,false)
+	v_opt2 = false
