@@ -32,7 +32,7 @@ func _process(delta):
 					GlobalScript.previousState = true
 					GlobalScript.change_state = true
 				2:
-					get_tree().quit()
+					pass #get_tree().quit()
 				3:
 					if(GlobalScript.previousState):
 						GlobalScript.nextState = GlobalScript.gameState.MENU
@@ -88,13 +88,13 @@ func _on_controls_mouse_exited() -> void:
 	changeStyle(1,false)
 	selected_box = -1
 	
-#QUIT BUTTON
-func _on_quit_mouse_entered() -> void:
-	changeStyle(2,true)
-	selected_box = 2
-func _on_quit_mouse_exited() -> void:
-	changeStyle(2,false)
-	selected_box = -1
+##QUIT BUTTON
+#func _on_quit_mouse_entered() -> void:
+	#changeStyle(2,true)
+	#selected_box = 2
+#func _on_quit_mouse_exited() -> void:
+	#changeStyle(2,false)
+	#selected_box = -1
 
 
 # CONTROLS BACK BUTTON
