@@ -5,17 +5,21 @@ var dia_closing = false
 
 var lake_interacted = false
 
-var randomPileMax = 2
+var randomPileMax = 3
 
 var dia_dic = {
 	"NoBF": [["Elm",0,"That looks like the way to the grove though...",">"],["Elm",0,"My eyes feel weird from it's brightness.",">"],["Elm",0,"I wonder if there's something around here that'll help.","v"]],
 	"Blindfold" : [["Elm",2,"This looks good, should protect my eyes nicely.","v","Blindfold","HIDE"]],
 	"G_Ash": [["Elm",0,"Nothing here but ash...","v"],["Elm",0,"Ash...","v"],["Elm",0,"...","v"]],
-	"G_Bark": [["Elm",0,"Burnt bark- I know how painful that is...","v"],["Elm",0,"The bark's been ripped off before it could heal.","v"],["Elm",0,"...","v"]],
-	"G_Closed": [["Elm",0,"More of these things? They look... uncanny.","v"],["Elm",0,"They're closed up, don't they need the light?","v"],["Elm",0,"...","v"]],
-	"G_Cloth": [["Elm",0,"We would spent time together as a grove making clothes for travlers...","v"],["Elm",0,"The cloth look ragged, I hope they were fine.","v"],["Elm",0,"...","v"]],
-	"G_Crown": [["Elm",0,"A burned flowercrown, I can only hope the saplings got out safely.","v"],["Elm",0,"More flowercrowns...","v"],["Elm",0,"...","v"]],
-	"G_Final": [["Elm",0,"It's... looking at me...",">"],["Elm",0,"...",">"],["Elm",0,"I can't keep doing this.","v"],["Elm",0,"2","v"]]
+	"G_Bark": [["Elm",0,"Burned bark? That looks painful.","v"],["Elm",0,"The bark's been ripped off before it could heal.","v"],
+	["Elm",0,"...","v"],["Elm",0,"These remind me of my own burns.","v"]],
+	"G_Closed": [["Elm",0,"More of these things? They look... uncanny.","v"],["Elm",0,"They're closed up, don't they need the light?","v"],
+	["Elm",0,"...","v"],["Elm",0,"They've spread like a disease. How could they survive here?","v"]],
+	"G_Cloth": [["Elm",0,"Torn cloth, the stitching is fused with the fabric.","v"],["Elm",0,"The cloth look ragged, I hope they're fine.","v"],
+	["Elm",0,"...","v"],["Elm",0,"As a grove we would spend time making clothes for those who needed it...","v"]],
+	"G_Crown": [["Elm",0,"A burned flowercrown, I can only hope the saplings got out safely.","v"],["Elm",0,"More flowercrowns...","v"],
+	["Elm",0,"...","v"],["Elm",0,"Who would want to burn someone so young?","v"]],
+	"G_Final": [["Elm",0,"...","v"]]
 }
 
 var scripted_dia = {
@@ -41,7 +45,11 @@ var scripted_dia = {
 	"D2Lake" : [["Elm",0,"It's... grown? Are those vines?",">"],["Elm",0,"They feel like vines...",">"],["Elm",2,"Now it's staring at me through the reflection...","v","N/A","LAKE"]],
 	"D3Lake" : [["Elm",0,"Are these horns? Ow-",">"],["Elm",0,"They're thorny like those roots.",">"],["Elm",2,"Urgh- I'm just going to stop, this is giving me a headache.","v","N/A","LAKE"]],
 	"D4Lake" : [["Elm",2,"...","v","N/A","LAKE"]],
-	"LakeSil" : [["Elm",0,"","v"]]
+	"LakeSil" : [["Elm",0,"","v"]],
+	"BRCorner" : [["Elm",0,"The forest looks rather thick and dark over there. Best to stay away.","v"]],
+	"BRCorner3" : [["Elm",0,"Its hard to see, but I don't think there's any of those weird buds over there.","v"]],
+	"Tree" : [["Elm",0,"The foliage seems healthy here. I guess the river does help.","v"]],
+	"Tree3": [["Elm",0,"There's these buds at the base, from a glance they look firmly planted but...",">"],["Elm",0,"They seem rather loose...","v"]]
 }
 
 var pile_dic = {

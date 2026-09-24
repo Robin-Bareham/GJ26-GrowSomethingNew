@@ -4,6 +4,7 @@ var v_interractable_list = []
 var area_root
 var v_in_search = false
 var v_in_scripted = false
+var v_current_name = ""
 var v_bg = ""
 var v_lake_dia = ""
 
@@ -42,24 +43,32 @@ func playerInteraction():
 
 func _on_area_entered(area: Area2D) -> void:
 	if(area.is_in_group("scripted")):
-		#Instant should ONLY be for woods to grove
-		if(area.getInst()):
-			##Going into grove
-			if(GlobalScript.items["Blindfold"]):
-				if(GlobalScript.day == 1):
-					GlobalScript.activate_cutscene = true
+		#For Area2Ds raw in scene
+		match area.name:
+			"ToGrove":
+				if(GlobalScript.items["Blindfold"]):
+					if(GlobalScript.day == 1):
+						GlobalScript.activate_cutscene = true
+					else:
+						transition("grove")
+						GlobalScript.start_timer = true
 				else:
-					transition("grove")
-					GlobalScript.start_timer = true
-			else:
-				dialogue_activation.emit("NoBF",0)
+					dialogue_activation.emit("NoBF",0)
 				#Change position of player
 				get_parent().position.y = GlobalScript.p_nobf_py
-		else:
-			# LAKE INTERACTIONS DIFFERENCECS
-			v_lake_dia = decidingLake()
-			v_interractable_list.append(v_lake_dia)
-			v_in_scripted = true
+			"Lake":
+				v_lake_dia = decidingLake()
+				v_interractable_list.append(v_lake_dia)
+				v_in_scripted = true
+				v_current_name = v_lake_dia
+			"BRCorner","Tree":
+				if(GlobalScript.day < 3):
+					v_interractable_list.append(area.name)
+					v_current_name = area.name
+				else:
+					v_interractable_list.append(area.name + "3")
+					v_current_name = area.name + "3"
+				v_in_scripted = true
 	#Not a scripted AREA
 	else:
 		area_root = area.get_parent().get_parent()
@@ -76,8 +85,9 @@ func _on_area_exited(area: Area2D) -> void:
 	var index = -1
 	if(area.is_in_group("scripted")):
 		v_in_scripted = false
-		index = v_interractable_list.find(v_lake_dia)
+		index = v_interractable_list.find(v_current_name)
 		v_bg = ""
+		v_current_name = ""
 	#NOT A SCRIPTED AREA
 	else:
 		area_root = area.get_parent().get_parent()

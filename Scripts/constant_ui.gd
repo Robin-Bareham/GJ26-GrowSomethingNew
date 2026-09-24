@@ -41,8 +41,9 @@ func progressTime(delta):
 	if(GlobalScript.timer_active && !AllDia.dia_open):
 				timer += 1 * delta
 				if(timer >= timer_end):
-					GlobalScript.day_over = true
-					GlobalScript.activate_cutscene = true
+					if(!GlobalScript.minigame_active && !AllDia.dia_open):
+						GlobalScript.day_over = true
+						GlobalScript.activate_cutscene = true
 				elif(timer >= (timer_end/3)*2):
 					if(GlobalScript.day == 3):
 						GlobalScript.day_over = true
