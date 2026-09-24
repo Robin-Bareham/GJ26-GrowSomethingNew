@@ -29,6 +29,7 @@ var v_opt_active = false
 var v_dia_type
 #Piles
 var v_current_pile = ""
+var v_minigameExitDia = false
 
 #What it can receive from
 @onready var v_interaction_hb = get_tree().current_scene.get_node("Environment").get_node("Player").get_node("Interaction_HB")
@@ -75,6 +76,7 @@ func showBox(object: String):
 	#Set statuses to true
 	AllDia.dia_open = true
 	GlobalScript.can_move = false
+	v_minigameExitDia = false
 	#Get the lines of dialogue related to the object
 	if(v_dia_type == 0):
 		v_current_dialogue = AllDia.dia_dic[object]
@@ -85,7 +87,7 @@ func showBox(object: String):
 				v_current_line += randi() % AllDia.randomPileMax + 1 #randomise pile response 1 ~ 2
 			else:
 				GlobalScript.items[object] = true
-			
+		v_minigameExitDia = true
 	elif(v_dia_type == 1):
 		v_current_dialogue = AllDia.pile_dic["pile"]
 		v_current_pile = object #Name of goal image
@@ -115,6 +117,10 @@ func progressDialogue():
 					GlobalScript.change_state = true
 					BackgroundMus.stream = load("res://Audio/B_ShatteredDreams.mp3")
 					BackgroundMus.play()
+				if(GlobalScript.current_energy <= 0 && v_minigameExitDia):
+					GlobalScript.day_over = true
+					GlobalScript.activate_cutscene = true
+					v_minigameExitDia = false
 				if(GlobalScript.trans_cutscene && GlobalScript.day != 4):
 					endBox()
 				else:

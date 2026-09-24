@@ -25,6 +25,7 @@ BackgroundMus="*res://Scenes/background_mus.tscn"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
 
 [global_group]
 

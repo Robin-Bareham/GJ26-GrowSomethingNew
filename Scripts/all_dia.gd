@@ -10,7 +10,8 @@ var randomPileMax = 3
 var dia_dic = {
 	"NoBF": [["Elm",0,"That looks like the way to the grove though...",">"],["Elm",0,"My eyes feel weird from it's brightness.",">"],["Elm",0,"I wonder if there's something around here that'll help.","v"]],
 	"Blindfold" : [["Elm",2,"This looks good, should protect my eyes nicely.","v","Blindfold","HIDE"]],
-	"G_Ash": [["Elm",0,"Nothing here but ash...","v"],["Elm",0,"Ash...","v"],["Elm",0,"...","v"]],
+	"G_Ash": [["Elm",0,"Nothing here but ash...","v"],["Elm",0,"Ash...","v"],
+	["Elm",0,"...","v"],["Elm",0,"It seems to disintegrate upon touch.","v"]],
 	"G_Bark": [["Elm",0,"Burned bark? That looks painful.","v"],["Elm",0,"The bark's been ripped off before it could heal.","v"],
 	["Elm",0,"...","v"],["Elm",0,"These remind me of my own burns.","v"]],
 	"G_Closed": [["Elm",0,"More of these things? They look... uncanny.","v"],["Elm",0,"They're closed up, don't they need the light?","v"],
@@ -24,8 +25,8 @@ var dia_dic = {
 
 var scripted_dia = {
 	"D1Pile" : [["Elm",0,"Its a bit hard to see with this blindfold on.",">"],["Elm",0,"Though if I feel around I should be able to move the rubbish around to see whats underneath.","v"]],
-	"D2Pile" : [["Elm",0,"Huh, it's a bit easier to see? I wouldn't have thought anything's changed...","v"]],
-	"D3Pile" : [["Elm",0,"I'd have thought my vision would be darker, I am still wearing the blindfold.",">"],["Elm",0,"Maybe it's the weird flowers? How I don't know but they're the only difference...",">"],["Elm",0,"Weird.","v"]],
+	"D2Pile" : [["Elm",0,"It's a bit easier to see? That shouldn't be right...","v"]],
+	"D3Pile" : [["Elm",0,"I'd have thought my vision would be darker, I am still wearing the blindfold.",">"],["Elm",0,"Maybe it's the weird flowers? I wouldn't know how but they're the only difference...","v"]],
 	"D4Pile" : [["Elm",0,"I can see most of the grove now, clearer than ever...",">"],["Elm",0,"I... I don't think I'll find anything but, one more search can't hurt.","v"]],
 	"D1End" : [["Elm",0,"It's too dark to see anymore... but, I don't think there was anything important.",">"],["Elm",0,"For good and bad.",">"],["Elm",4,"...",">","D1End02"],["Elm",0,"I feel exhaused.",">"],
 	["Elm",4,"I might just lie here for a bit... and carry on later...",">","D1End03"],["",0,"",">"],["",4,"","v","D1End04"]],

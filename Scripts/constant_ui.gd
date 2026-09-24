@@ -46,8 +46,9 @@ func progressTime(delta):
 						GlobalScript.activate_cutscene = true
 				elif(timer >= (timer_end/3)*2):
 					if(GlobalScript.day == 3):
-						GlobalScript.day_over = true
-						GlobalScript.activate_cutscene = true
+						if(!GlobalScript.minigame_active && !AllDia.dia_open):
+							GlobalScript.day_over = true
+							GlobalScript.activate_cutscene = true
 					clock.texture = evening_texture
 					lighting.showLight("evening")
 				elif(timer >= (timer_end/3)):

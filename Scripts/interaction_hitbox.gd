@@ -101,6 +101,7 @@ func changeNode(type:String):
 	if(type == "LAKE"):
 		v_interractable_list.remove_at(v_interractable_list.find(v_lake_dia))
 		v_lake_dia = "LakeSil"
+		v_current_name = v_lake_dia
 		v_interractable_list.append(v_lake_dia)
 		return
 	var index = v_interractable_list.find(area_root.getName())

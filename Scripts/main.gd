@@ -239,15 +239,16 @@ func activateMinigame():
 func deactivateMinigame():
 	mini_ui.hide()
 	GlobalScript.activating_minigame = false
-	GlobalScript.minigame_active = false
 	GlobalScript.current_energy -= 10
-	if(GlobalScript.current_energy <= 0):
-		GlobalScript.day_over = true
-		GlobalScript.activate_cutscene = true
-		return
+	#if(GlobalScript.current_energy <= 0):
+		#GlobalScript.day_over = true
+		#GlobalScript.activate_cutscene = true
+		#return
 	if(GlobalScript.minigame_goal_image != ""):
 		dia_ui.boxActivated(GlobalScript.minigame_goal_image,0)	
 	GlobalScript.minigame_goal_image = ""
+	GlobalScript.minigame_active = false
+	
 	#Adjust Energy
 	
 			
